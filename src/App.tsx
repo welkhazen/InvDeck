@@ -1,70 +1,55 @@
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 
 function openPrintableDeck(path: string) {
-  const win = window.open(path, "_blank");
+  const win = window.open(path, "_blank", "noopener,noreferrer");
   if (!win) return;
-
-  let didPrint = false;
-  const startedAt = Date.now();
-  const maxWaitMs = 10000;
-
-  const printOnce = () => {
-    if (didPrint) return;
-    didPrint = true;
+  const triggerPrint = () => {
     win.focus();
     win.print();
   };
-
-  const tryPrintWhenReady = () => {
-    if (didPrint || win.closed) return;
-
-    const isReady = win.document?.readyState === "complete";
-    if (isReady) {
-      printOnce();
-      return;
-    }
-
-    if (Date.now() - startedAt >= maxWaitMs) {
-      printOnce();
-      return;
-    }
-
-    window.setTimeout(tryPrintWhenReady, 250);
-  };
-
-  win.addEventListener("load", printOnce, { once: true });
-  window.setTimeout(tryPrintWhenReady, 250);
+  win.addEventListener("load", triggerPrint, { once: true });
+  setTimeout(triggerPrint, 1200);
 }
 
-function DeckPage({
-  title,
-  summary,
-  canonicalPath
-}: {
-  title: string;
-  summary: string;
-  canonicalPath: string;
-}) {
+function DeckPage({ title, summary }: { title: string; summary: string }) {
   return (
     <main className="layout">
       <section className="card">
-        <p className="eyebrow">raW pitch deck</p>
+        <p className="eyebrow">raW pitch deck hub</p>
         <h1>{title}</h1>
         <p className="subtext">{summary}</p>
+        <p className="tip">
+          Next step: replace this placeholder with an embedded PDF, image slides, or a live presentation component.
+        </p>
+        <Link className="button" to="/">
+          ← Back to selector
+        </Link>
+      </section>
+    </main>
+  );
+}
+
+function PitchSelector() {
+  return (
+    <main className="layout">
+      <section className="card">
+        <p className="eyebrow">raW pitch deck hub</p>
+        <h1>Choose deck version</h1>
+        <p className="subtext">Use this screen during founder/investor reviews so nobody needs to remember URLs.</p>
 
         <div className="grid">
-          <Link to="/pitch-v2" className="button primary">
-            Open current deck (V2)
-          </Link>
           <Link to="/pitch-v1" className="button ghost">
-            Open legacy deck (V1)
+            Open V1
           </Link>
-          <button onClick={() => openPrintableDeck(canonicalPath)} className="button ghost" type="button">
-            Print this version
+          <Link to="/pitch-v2" className="button primary">
+            Open V2
+          </Link>
+          <button onClick={() => openPrintableDeck("/pitch-v2")} className="button ghost" type="button">
+            Print PDF
           </button>
         </div>
 
-        <p className="tip">Next step: replace this placeholder with embedded slides (PDF or viewer) for a smoother investor experience.</p>
+        <p className="tip">Recommended flow: review V2, collect notes, then compare with V1 for copy/layout decisions.</p>
       </section>
     </main>
   );
@@ -73,16 +58,10 @@ function DeckPage({
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/pitch-v2" replace />} />
-      <Route
-        path="/pitch-v1"
-        element={<DeckPage title="Pitch Deck — V1" summary="Legacy baseline for comparison and archived messaging." canonicalPath="/pitch-v1" />}
-      />
-      <Route
-        path="/pitch-v2"
-        element={<DeckPage title="Pitch Deck — V2" summary="Primary deck to share with investors and partners." canonicalPath="/pitch-v2" />}
-      />
-      <Route path="*" element={<Navigate to="/pitch-v2" replace />} />
+      <Route path="/" element={<PitchSelector />} />
+      <Route path="/pitch-v1" element={<DeckPage title="Pitch Deck — V1" summary="Legacy baseline for comparison." />} />
+      <Route path="/pitch-v2" element={<DeckPage title="Pitch Deck — V2" summary="Primary version for investor conversations." />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

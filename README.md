@@ -1,6 +1,6 @@
 # InvDeck
 
-Direct-link investor deck app built with React + Vite, ready for Vercel.
+Clickable investor deck hub built with React + Vite, ready to deploy on Vercel.
 
 ## Local development
 
@@ -17,15 +17,15 @@ npm run dev
    - Framework: **Vite**
    - Build command: `npm run build`
    - Output directory: `dist`
-4. Deploy and share the generated URL (root redirects to `/pitch-v2`).
+4. Deploy and copy the generated `https://<project>.vercel.app` URL.
 
-`vercel.json` includes an SPA rewrite so direct links (for example `/pitch-v2`) work directly.
+`vercel.json` includes an SPA rewrite so routes like `/pitch-v2` work directly.
 
-## Suggested upgrade for smoother flow
+## Suggested next upgrade
 
-Add actual deck files and embed them inline:
+For smoother investor flow, replace placeholder pages with embedded assets:
 
 - `public/pitch-v1.pdf`
 - `public/pitch-v2.pdf`
 
-This creates a true click-through experience without switching contexts.
+Then render each with an `<iframe>` or PDF viewer for true click-through slides.
