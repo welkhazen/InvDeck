@@ -1,4 +1,5 @@
 import { Link, Navigate, Route, Routes } from "react-router-dom";
+import PitchV2 from "./pages/PitchV2";
 
 function openPrintableDeck(path: string) {
   const win = window.open(path, "_blank", "noopener,noreferrer");
@@ -60,7 +61,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<PitchSelector />} />
       <Route path="/pitch-v1" element={<DeckPage title="Pitch Deck — V1" summary="Legacy baseline for comparison." />} />
-      <Route path="/pitch-v2" element={<DeckPage title="Pitch Deck — V2" summary="Primary version for investor conversations." />} />
+      <Route path="/pitch-v2" element={<PitchV2 />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
