@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && mkdir -p dist/wave && cp next-social-wave/index.html dist/wave/index.html",
+    "build": "tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

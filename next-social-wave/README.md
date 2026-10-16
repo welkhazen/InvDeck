@@ -58,13 +58,10 @@ node check.mjs index.html [screenshot-dir]   # needs Playwright: npm i -g playwr
   - In display spots that hold the brand on its own (header, hero), it is written as `ra<span class="W">W</span>`.
   - In running copy, just write "raW".
 
-## Hosting
+## Hosting (not done)
 
-- **InvDeck's site:** `npm run build` at the repo root copies this folder's `index.html` to `dist/wave/index.html`, so the deck is served at `/wave/` and is the primary button on the deck hub. It goes live wherever InvDeck's Vercel project deploys `main`. `npm run dev` does not serve it; open `index.html` directly while editing.
+Nothing has been deployed. To put the deck online, here are two options:
+- **InvDeck's Vercel project:** copy `index.html` into InvDeck's `public/` folder, for example as `public/wave.html`.
 - **claude.ai artifact:** publish `dist/artifact.html` as a private artifact.
 
-Decide who should see it before you merge to `main`.
-
-## Imagery
-
-All artwork comes from myraw.app (`wzwznew/public/assets`): the hero, chapter images, the four product cards in chapter 09 and the room covers in chapter 05. `PHOTOS` and `ROOMS` in `build.py` list them. Testimonials in chapter 08 are text transcriptions, with no profile photos.
+Decide who should see it before you make it public.
