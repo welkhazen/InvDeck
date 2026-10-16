@@ -34,3 +34,72 @@ h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 1rem 0; }
 .primary { border-color: rgba(241,196,45,.4); color:#f1c42d; }
 .primary:hover { background: rgba(241,196,45,.1); }
 .tip { margin-top: 1.5rem; font-size: .95rem; }
+
+.pitch-layout {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.pitch-card {
+  width: min(1100px, 100%);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(13,13,13,.82);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+}
+
+.pitch-content {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.2fr .8fr;
+}
+
+.pitch-kicker { text-transform: uppercase; letter-spacing: .2em; color: #f1c42d; font-size: .75rem; }
+.pitch-body { font-size: 1.2rem; color: #ececec; line-height: 1.6; }
+.pitch-footer { color: #c8c8c8; margin-top: 1rem; }
+
+.pitch-visual {
+  border: 1px dashed rgba(255,255,255,.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  min-height: 230px;
+  display: grid;
+  align-content: center;
+  gap: .75rem;
+}
+.visual-chip {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: #f1c42d;
+}
+.avatar-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
+}
+.avatar-mosaic span {
+  aspect-ratio: 1;
+  border-radius: .8rem;
+  background: linear-gradient(140deg, rgba(241,196,45,.4), rgba(255,255,255,.08));
+}
+.pitch-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+.pitch-nav button {
+  border-radius: .8rem; border:1px solid rgba(255,255,255,.25); background: transparent; color: #fff; padding: .7rem 1rem;
+}
+.pitch-nav button:disabled { opacity: .45; cursor: not-allowed; }
+
+.slide-theme-sunrise { background: radial-gradient(circle at top, rgba(241,196,45,.22), #080808 45%); }
+.slide-theme-dusk { background: radial-gradient(circle at top right, rgba(166,129,255,.25), #080808 45%); }
+.slide-theme-midnight { background: radial-gradient(circle at top left, rgba(81,153,255,.25), #080808 45%); }
+
+@media (max-width: 900px) {
+  .pitch-content { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .pitch-nav { display: none; }
+}
