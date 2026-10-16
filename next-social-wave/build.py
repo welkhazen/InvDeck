@@ -13,6 +13,7 @@ import argparse
 import base64
 import json
 import re
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -46,6 +47,24 @@ def load_model(therawme: Path) -> dict:
     return json.loads(html[start:end])
 
 
+# Clauses in the shipped tribe copy that the model's own parameters contradict
+# (Storm: 97% of labeled Storm answerers chose "Religious" on P89; Calm: not the
+# strongest single answer). Dropped here until therawme's tribes_v2.json is fixed.
+DESCRIPTION_FIXES = {
+    "The Storm": ("Not religious, not softened,", "Not softened,"),
+    "The Calm": ("Doesn't overthink - the strongest single answer in the whole community.", "Doesn't overthink."),
+}
+
+
+def fix_description(name, text):
+    old, new = DESCRIPTION_FIXES.get(name, (None, None))
+    if old is None:
+        return text
+    if old not in text:
+        sys.exit(f"DESCRIPTION_FIXES for {name} no longer matches the model; review the tribe copy")
+    return text.replace(old, new)
+
+
 def curate(m: dict) -> dict:
     tribes = m["tribes"]
     names = [t["name"] for t in tribes]
@@ -64,7 +83,7 @@ def curate(m: dict) -> dict:
                           "n": q["n"], "pa": pa, "lean": round(lean, 3)})
     quiz = m["quizzes"][0]
     return {
-        "tribes": [{"name": t["name"], "description": t["description"], "share": t["share"]} for t in tribes],
+        "tribes": [{"name": t["name"], "description": fix_description(t["name"], t["description"]), "share": t["share"]} for t in tribes],
         "questions": questions,
         "meta": {
             "full_pool": len(m["questions"]),
