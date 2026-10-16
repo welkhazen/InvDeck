@@ -22,6 +22,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + env(safe-area-inset-top,0px))}
 html.reduce-motion{scroll-behavior:auto}
 body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:1.0625rem;line-height:1.62;letter-spacing:.005em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -239,13 +240,12 @@ body:not(.present) #c01{display:flex;align-items:center}
 .qprog i.done{background:var(--gold)}
 .feedback{font-size:.86rem;color:var(--muted);min-height:2.6em}
 .feedback b{color:var(--silver);font-weight:600}
-.post .bar-row{grid-template-columns:minmax(0,6.6rem) minmax(0,1fr) 3.2rem}
-.post .bar-fill{background:var(--peri);opacity:.75}
-.post .lead .bar-fill{background:var(--gold);opacity:1}
-.post .lead .bl{color:var(--text)}
-.delta{font-size:.7rem;margin-left:4px}
-.delta.up{color:var(--gold)}.delta.down{color:var(--faint)}
-.trace svg{width:100%;height:auto;display:block}
+.srow{padding:10px 0;border-top:1px solid var(--line)}
+.srow:first-child{border-top:0;padding-top:0}
+.srow p{margin:0}
+.sbar{height:8px;border-radius:999px;background:var(--line-2);overflow:hidden;margin:8px 0 6px}
+.sbar i{display:block;height:100%;background:var(--gold)}
+.srow.min .sbar i{background:var(--peri)}
 .result{border:1px solid rgba(241,196,45,.4);border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(241,196,45,.06),transparent)}
 .result .tname{font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.6rem);color:var(--gold);letter-spacing:.04em}
 .limits{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.84rem;color:var(--muted)}
@@ -267,8 +267,7 @@ body:not(.present) #c01{display:flex;align-items:center}
 .sig .cap{font-size:11px;fill:var(--muted)}
 
 /* ---------- 08 pipeline ---------- */
-.pipe{list-style:none;margin-inline:0;margin-bottom:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;counter-reset:p}
-@media (max-width:900px){.pipe{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pipe{list-style:none;margin-inline:0;margin-bottom:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;counter-reset:p}
 @media (max-width:520px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .pipe button{width:100%;height:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;color:var(--muted)}
 .pipe button[aria-pressed="true"]{border-color:var(--gold);background:var(--surface-2)}
@@ -375,8 +374,6 @@ html.reduce-motion *{animation:none!important;transition:none!important}
 
 /* ---------- phone overrides (kept last so they win over component rules) ---------- */
 @media (max-width:520px){
-  .post .bar-row{grid-template-columns:minmax(0,5.2rem) minmax(0,1fr) 2.8rem}
-  .post .bar-row .bl,.post .bar-row .bar-track{grid-column:auto}
   .alloc .bar-row{grid-template-columns:minmax(0,1fr) 3.6rem}
 }
 @media (max-width:720px){body:not(.present) .pager{display:none}}
@@ -464,7 +461,7 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
     <div class="journey" aria-label="The core journey">
       <span>Question</span><i>→</i><span>Answer</span><i>→</i><span>Match</span><i>→</i><span>Talk</span><i>→</i><span>Insight</span><i>→</i><span>Return</span>
     </div>
-    <p class="tiny" style="margin-top:10px">Match and Insight are early: matching runs through the Tribe Test (implemented but unverified), and fuller insights are in progress.</p>
+    <p class="tiny" style="margin-top:10px">Match and Insight are early: answer-based matching is planned, and fuller insights are in progress.</p>
     <div class="row mt">
       <button class="btn gold" data-goto="c02">Begin</button>
       <button class="btn" data-goto="c06">Answer five questions</button>
@@ -592,7 +589,7 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
     </div>
     <div class="panel mt" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
       <div class="num-l" id="sm-bad">62%</div>
-      <p class="small" style="margin:0;flex:1;min-width:220px">From raW's own history: asked <em>"Social media: good, or bad?"</em>, 144 of <span id="sm-n">234</span> labeled answerers chose <strong>Bad</strong>. <span class="tiny">Historical answers from raW's own audience, recovered from the Tribe Test model's counts; not a representative survey.</span></p>
+      <p class="small" style="margin:0;flex:1;min-width:220px">From raW's own history: asked <em>"Social media: good, or bad?"</em>, 144 of <span id="sm-n">234</span> labeled answerers chose <strong>Bad</strong>. <span class="tiny">Historical answers from raW's own audience, recovered from the historical answer data; not a representative survey.</span></p>
     </div>
     <p class="note mt"><strong>This is a design hypothesis.</strong> raW has not yet measured that its loop retains people better than a feed. Proving it is what this round pays for.</p>
 
@@ -603,11 +600,11 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
           <thead><tr><th scope="col">Product</th><th scope="col">What it does well</th><th scope="col">Where raW differs</th></tr></thead>
           <tbody>
             <tr><td>Instagram, TikTok</td><td>Self-expression, entertainment, creator reach at enormous scale.</td><td>raW starts with a question, not an image, a face or a follower count.</td></tr>
-            <tr><td>Reddit</td><td>Shows pseudonymous interest communities can scale: 101.7M daily active uniques in Q4 2024.<a class="ref" href="#src-reddit">11</a></td><td>raW is built to route a person to a room from their own answers: today through the Tribe Test invite, with answer-based suggestions planned.</td></tr>
+            <tr><td>Reddit</td><td>Shows pseudonymous interest communities can scale: 101.7M daily active uniques in Q4 2024.<a class="ref" href="#src-reddit">11</a></td><td>raW starts from a person's own answers; routing them to a room from those answers is planned.</td></tr>
             <tr><td>Discord</td><td>Real-time community chat and rich identity customization.</td><td>Rooms on Discord are mostly found through links people already have. raW proposes finding the room through what you answer.</td></tr>
             <tr><td>Yubo, Wizz</td><td>Social discovery for young adults; Yubo is monetized through in-app purchases and subscriptions.</td><td>raW leads with opinions and shared experiences rather than profiles and faces.</td></tr>
             <tr><td>Anonymous apps (Secret, Yik Yak, NGL)</td><td>Showed strong demand for saying what you think without your name. Several struggled with abuse and moderation.</td><td>raW pairs pseudonymity with accounts, moderation, invite codes and admin-run rooms, with member-owned rooms planned.</td></tr>
-            <tr><td>Personality tests (16Personalities, Boo)</td><td>Self-discovery content draws large audiences.</td><td>raW's eight tribes come from clustering real answers, and each tribe has its own room (implemented but unverified).</td></tr>
+            <tr><td>Personality tests (16Personalities, Boo)</td><td>Self-discovery content draws large audiences.</td><td>raW uses a short quiz only as one more way in. The product is the questions, the splits and the rooms.</td></tr>
             <tr><td>AI companions (Character.AI, Replika)</td><td>Always-available conversation.</td><td>raW connects people with other people.</td></tr>
           </tbody>
         </table>
@@ -643,7 +640,7 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
   <div class="wrap">
     <p class="eyebrow">Interactive investor experience</p>
     <h2 id="h06">Don't just hear about raW. Experience it.</h2>
-    <p class="lede">Answer five real raW questions. A real model, trained on real answers, updates its belief about which of eight data-defined tribes your answers resemble.</p>
+    <p class="lede">Answer five real questions from raW's history and see where you stand. Every split comes from people who answered the same question before you.</p>
 
     <div class="demo mt">
       <div class="stack">
@@ -660,21 +657,16 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
         <div class="result" id="result" hidden aria-live="polite"></div>
       </div>
       <div class="stack">
-        <div class="panel post">
-          <div class="row" style="justify-content:space-between"><p class="label" style="margin:0">Model belief across the eight tribes</p><span class="tag t-sim">Model posterior</span></div>
-          <div class="bars" id="post-bars" style="margin-top:14px"></div>
-          <div class="trace" style="margin-top:16px">
-            <p class="tiny" style="margin:0 0 4px">Strength of the leading tribe after each answer</p>
-            <svg id="trace" viewBox="0 0 300 84" role="img" aria-label="Line showing the leading tribe's probability after each answer"></svg>
-          </div>
+        <div class="panel">
+          <p class="label" style="margin:0">Where you stand</p>
+          <div id="splits" style="margin-top:14px"><p class="tiny" style="margin:0">Your answers appear here, next to how everyone else answered.</p></div>
         </div>
         <div class="panel">
           <p class="label">Keep in mind</p>
           <ul class="limits" style="margin-top:10px">
-            <li>The bars show the model's belief given your answers. They are not a measure of accuracy and not a personality diagnosis.</li>
-            <li>The eight tribes are clusters found in the historical answers of 1,795 voters (Instagram accounts). They are not externally validated personality types.</li>
-            <li>The full Tribe Test recovers a voter's data-defined tribe 87.9% of the time in an internal simulation on 1,780 voters, measured at a 27-question cap (uniform chance is 12.5%; always guessing the largest tribe would score about 28%). This demo uses a curated pool of <span id="pool-n">38</span> everyday questions, so that figure does not transfer to it, and a five-question reading is less certain still.</li>
-            <li>"Community lean" figures are model estimates from labeled answers, not live poll results. Nothing here is stored or sent anywhere.</li>
+            <li>The questions are a curated pool of <span id="pool-n">37</span> everyday questions from The Cumulative Mind. Sensitive topics are left out.</li>
+            <li>Splits are estimated from each question's historical answers. They describe raW's own audience, not a representative survey.</li>
+            <li>Nothing you answer here is stored or sent anywhere.</li>
           </ul>
         </div>
       </div>
@@ -710,7 +702,7 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
     <div class="split">
       <div>
         <h2 id="h08">The proof of concept already exists. It started on Instagram.</h2>
-        <p class="lede">Before the app, the founder ran The Cumulative Mind, an Instagram page that asked one honest question at a time. It is raW's proof of concept: people answered, played it with friends, and wrote in when it went quiet. Those answers also became raW's first dataset. Below is what followers wrote, then each step from story poll to model, and how much of it is verified.</p>
+        <p class="lede">Before the app, the founder ran The Cumulative Mind, an Instagram page that asked one honest question at a time. It is raW's proof of concept: people answered, played it with friends, and wrote in when it went quiet. Those answers also became raW's first dataset. Below is what followers wrote, then each step from story poll to dataset, and how much of it is verified.</p>
       </div>
       <figure class="shot"><img data-img="ph_mind" alt="The Cumulative Mind artwork: a golden brain whose roots grow into a heart."><figcaption>The Cumulative Mind, the Instagram page raW grew from</figcaption></figure>
     </div>
@@ -741,20 +733,20 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
     <div class="panel" id="pipe-detail" style="margin-top:12px" aria-live="polite"></div>
 
     <div class="grid g3 mt">
-      <div><p class="label">Measured</p><p class="small">An adaptive model built from historical answers, with documented code, validation and limitations. It is built into the Tribe Test on theraw.me; live use is not yet verified.</p></div>
-      <div><p class="label">Suggested</p><p class="small">Tribe centres held steady as the data grew, and the test recovers most labeled voters' tribes from their own recorded answers. Voters near tribe boundaries moved between refits, and placing new people has not been tested.</p></div>
-      <div><p class="label">Not yet verified</p><p class="small">That the clusters predict who people will enjoy talking to, or that they improve retention in the app. That needs live product data.</p></div>
+      <div><p class="label">Measured</p><p class="small">Tens of thousands of votes on honest questions, extracted and partly audited. They count vote records, not people.</p></div>
+      <div><p class="label">Suggested</p><p class="small">People engage with honest questions, play them with friends and come back for more, as the messages above show.</p></div>
+      <div><p class="label">Not yet verified</p><p class="small">That the same behaviour holds inside the app: retention and room activity need live product data after the 1 November launch.</p></div>
     </div>
     <details class="ev">
       <summary>Reconciling the counts</summary>
       <div class="ev-body">
-        <p>Three different vote counts appear in raW's records. <strong>33,486</strong> confirmed votes in the original extraction set. <strong>37,302</strong> trusted user-vote records in a later founder-reported audit of 105 poll instances (95 trusted, 10 awaiting review). <strong>23,424</strong> answers bridged from the audited master into the model across 31 polls. They come from different pipeline stages and dates, so they should not be added together.</p>
-        <p>All three count vote records, not people. The clearest people count is <strong>1,795</strong> voters with at least eight answers, the group used to define the tribes.</p>
+        <p>Two vote counts appear in raW's records. <strong>33,486</strong> confirmed votes in the original extraction set. <strong>37,302</strong> trusted user-vote records in a later founder-reported audit of 105 poll instances (95 trusted, 10 awaiting review). They come from different pipeline stages and dates, so they should not be added together.</p>
+        <p>Both count vote records, not people.</p>
         <p>The audit's source files (the poll source of truth spreadsheet and database, the Poll Data Hub) were not available for this review, so the audit figures are shown as founder-reported. Instagram follower and per-question vote counts are also founder-reported.</p>
         <p><strong>Data rights.</strong> The historical answers come from Instagram story polls. Usernames stay in private files on the founder's computer; this deck and the published model hold only aggregate statistics. Confirming the right to use this data in the product is on the legal checklist this round funds.</p>
       </div>
     </details>
-    <p class="note mt"><strong>On defensibility.</strong> A dataset alone is not a moat. The potential moat is a retained community that keeps answering, if each new answer is fed back into the questions and rooms that bring people back. That loop is not built yet: today the model is trained only on historical Instagram answers.</p>
+    <p class="note mt"><strong>On defensibility.</strong> A dataset alone is not a moat. The potential moat is a retained community that keeps answering, if each new answer is fed back into the questions and rooms that bring people back. That loop is not built yet.</p>
   </div>
 </section>
 
@@ -763,7 +755,7 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
   <div class="wrap">
     <p class="eyebrow">The product is real</p>
     <h2 id="h09">The foundation is already built.</h2>
-    <p class="lede">raW is in an invite-only beta at myraw.app, with the public launch set for 1 November 2026. Signup needs an invite code, which the public Tribe Test hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.</p>
+    <p class="lede">raW is in an invite-only beta at myraw.app, with the public launch set for 1 November 2026. Signup needs an invite code, which the public quiz funnel also hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.</p>
     <div class="row" style="margin-top:20px;gap:8px">
       <span class="tag t-verified">Verified in code</span><span class="tag t-impl">Implemented but unverified</span><span class="tag t-prog">In progress</span><span class="tag t-plan">Planned</span>
     </div>
@@ -776,8 +768,8 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
           <li><span>Interest communities with realtime group chat, likes and replies</span><span class="tag t-verified">Verified in code</span></li>
           <li><span>Moderation: message reports, warnings, timeouts, bans and blocked words</span><span class="tag t-verified">Verified in code</span></li>
           <li><span>Avatar ranks, store and tokens, with spending checked on the server</span><span class="tag t-verified">Verified in code</span></li>
-          <li><span>Tribe rooms opened by single-use invite codes from the Tribe Test</span><span class="tag t-impl">Implemented but unverified</span></li>
-          <li><span>Tribe Test: adaptive 23-question engine on theraw.me</span><span class="tag t-impl">Implemented but unverified</span></li>
+          <li><span>Locked rooms opened by single-use invite codes</span><span class="tag t-impl">Implemented but unverified</span></li>
+          <li><span>Quiz funnel on theraw.me (the Tribe Test) that brings new people and answers into the app</span><span class="tag t-impl">Implemented but unverified</span></li>
         </ul>
       </div>
       <div class="col">
@@ -786,8 +778,8 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
           <li><span>Activation and retention baseline</span><span class="tiny">Signup, onboarding and poll-answer events are instrumented; room-join and message events are defined but not yet sent. No retention figures are verified for this deck.</span><span class="tag t-prog">In progress</span></li>
           <li><span>iOS app</span><span class="tiny">Capacitor build and App Store preparation in progress.</span><span class="tag t-prog">In progress</span></li>
           <li><span>Return trigger</span><span class="tiny">Push and email notifications that open the conversation they are about.</span><span class="tag t-prog">In progress</span></li>
-          <li><span>Tribe Test to tribe room funnel</span><span class="tiny">Link and invite flow built. Conversion not yet measured.</span><span class="tag t-prog">In progress</span></li>
-          <li><span>Pricing</span><span class="tiny">Placeholder prices only: token packs ($5 to $90) and a $5-a-month plan in the app wallet, granted by hand on request; $1 and $2.99 on the Tribe Test site; $12 and $19 on an older reports preview. No payment processor or checkout is connected. A public donation page collects contact details from people who offer to back raW.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Quiz funnel into the app</span><span class="tiny">Link and invite flow built. Conversion not yet measured.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Pricing</span><span class="tiny">Placeholder prices only: token packs ($5 to $90) and a $5-a-month plan in the app wallet, granted by hand on request; $1 and $2.99 on the quiz site; $12 and $19 on an older reports preview. No payment processor or checkout is connected. A public donation page collects contact details from people who offer to back raW.</span><span class="tag t-prog">In progress</span></li>
         </ul>
       </div>
       <div class="col">
@@ -820,9 +812,9 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
     <p class="eyebrow">How the model can become a business</p>
     <h2 id="h10">Monetization follows meaningful participation.</h2>
     <ol class="ladder mt">
-      <li><span class="step">Stage 1</span><h3>Free participation</h3><p class="small muted">A daily set of polls, open rooms and chat are free. Extra polls, locked rooms and the in-app Tribe Test cost tokens, which members can also earn.</p><span class="tag t-verified">Verified in code</span></li>
+      <li><span class="step">Stage 1</span><h3>Free participation</h3><p class="small muted">A daily set of polls, open rooms and chat are free. Extra polls, locked rooms and the in-app quiz cost tokens, which members can also earn.</p><span class="tag t-verified">Verified in code</span></li>
       <li><span class="step">Stage 2</span><h3>Premium identity</h3><p class="small muted">Rare avatars and ranks, built and priced in tokens. There is no in-app checkout for tokens.</p><span class="tag t-verified">Verified in code</span></li>
-      <li><span class="step">Stage 3</span><h3>Private and paid rooms</h3><p class="small muted">Revenue hypothesis. Locked tribe rooms are built and can charge tokens on entry. Member-run rooms and cash payment are not built.</p><span class="tag t-prog">In progress</span></li>
+      <li><span class="step">Stage 3</span><h3>Private and paid rooms</h3><p class="small muted">Revenue hypothesis. Locked rooms are built and can charge tokens on entry. Member-run rooms and cash payment are not built.</p><span class="tag t-prog">In progress</span></li>
       <li><span class="step">Stage 4</span><h3>Opt-in insights</h3><p class="small muted">A fuller reading built only from a person's own answers, only if they ask for it. A preview is built; reports are not generated yet and nothing is sold.</p><span class="tag t-prog">In progress</span></li>
     </ol>
     <p class="note mt"><strong>raW will not sell identifiable responses.</strong> In the app, answers are shown to other members only as totals. Any insight product is opt-in and built for the person who answered.</p>
@@ -960,7 +952,7 @@ html.reduce-motion .rv{opacity:1;transform:none;transition:none}
       <li id="src-dr">DataReportal (2025). <em>Digital 2025: Lebanon.</em> 5.34 million internet users, 91.6% penetration, early 2025. The 2026 edition reports 5.38 million and 91.8%; the 2025 edition stays closer to the other sources' years. <a href="https://datareportal.com/reports/digital-2025-lebanon" target="_blank" rel="noopener">datareportal.com</a></li>
       <li id="src-reddit">Reddit, Inc. (February 2025). Form 10-K for fiscal 2024 and Q4 2024 results. <a href="https://www.sec.gov/Archives/edgar/data/1713445/000171344525000018/rddt-20241231.htm" target="_blank" rel="noopener">sec.gov</a></li>
       <li id="src-findex">World Bank (2025). <em>Global Findex Database 2025.</em> Lebanon account ownership, 2024. <a href="https://microdata.worldbank.org/catalog/7860" target="_blank" rel="noopener">worldbank.org</a></li>
-      <li id="src-raw">raW internal sources (October 2026): the Tribe Test model, README and EXPLAINER (therawme repository); the app codebase, CEO review of 3 August 2026, analytics tracking plan, brand description and daily summary (wzwznew repository). Founder-reported figures are labeled where they appear.</li>
+      <li id="src-raw">raW internal sources (October 2026): historical answer data and its documentation (therawme repository); the app codebase, CEO review of 3 August 2026, analytics tracking plan, brand description and daily summary (wzwznew repository). Founder-reported figures are labeled where they appear.</li>
     </ol>
   </div>
 </section>
@@ -1228,7 +1220,7 @@ const flow = (function(){
     ["Choose an avatar", "Other members see only your username and avatar: no real name, no photo."],
     ["Answer a question", "Yes/No and this-or-that questions. One answer each."],
     ["Discover others", "See how others answered the moment you vote, and that you are not the only one."],
-    ["Enter a room", "Pick an interest room, or take the Tribe Test to unlock your tribe's locked room."],
+    ["Enter a room", "Pick a room for what is on your mind, from late-night talks to everyday dilemmas."],
     ["Connect", "Post, reply and like under your avatar. Moderated; signup needs an invite code for now."],
   ];
   const list = $("#flow-steps");
@@ -1242,7 +1234,7 @@ const flow = (function(){
       s.appendChild(g); s.appendChild(el("p", {class:"tiny"}, "Real avatars from the raW app. Tap one."));
     } else if (i===1 || i===2){
       s.appendChild(el("p", {class:"s-h"}, "A raW question"));
-      const p = el("div", {class:"poll"}); p.appendChild(el("span", {class:"tiny"}, "953 tribe-labeled historical answers"));
+      const p = el("div", {class:"poll"}); p.appendChild(el("span", {class:"tiny"}, "953 historical answers"));
       p.appendChild(el("div", {class:"q"}, "Trust or respect?"));
       const tr = DATA.questions.find(q => q.id==="P31"); const lean = tr ? tr.lean : .5;
       [["Trust", lean],["Respect", 1-lean]].forEach(([o,v],k) => {
@@ -1255,7 +1247,7 @@ const flow = (function(){
       s.appendChild(el("p", {class:"tiny"}, i===2 ? "Split shown is the model's estimate from labeled historical answers." : "Pick a side. In the app, other members see only the totals."));
     } else if (i===3){
       s.appendChild(el("p", {class:"s-h"}, "Rooms"));
-      [["LN","Late Night Talks","Real talk after midnight."],["TR","Tribe room","Opens with a single-use invite after the Tribe Test."],["IJ","Is It Just Me?","It's never just you."]].forEach(([ic,t,d]) => {
+      [["LN","Late Night Talks","Real talk after midnight."],["SY","Speak Your Truth","Say what you really think."],["IJ","Is It Just Me?","It's never just you."]].forEach(([ic,t,d]) => {
         const r = el("div", {class:"room"}); r.appendChild(el("span", {class:"ic"}, ic)); r.appendChild(el("span", {}, `<strong style="display:block;font-size:.88rem">${t}</strong><span class="tiny">${d}</span>`)); s.appendChild(r); });
     } else {
       s.appendChild(el("p", {class:"s-h"}, "Late Night Talks"));
@@ -1271,107 +1263,72 @@ const flow = (function(){
   return { set };
 })();
 
-/* ---------------- 06 demo: the real Tribe Test model ---------------- */
-const T = DATA.tribes, NT = T.length, CHECKPOINTS = [5, 10, Math.min(DATA.meta.fixed_len, DATA.questions.length)];
+/* ---------------- 06 demo: answer and see where you stand ---------------- */
+const STEP = 5;
 $("#pool-n").textContent = DATA.questions.length;
 let st;
-function prior(){ const s = T.reduce((a,t) => a+t.share, 0); return T.map(t => t.share/s); }
-function entropy(p){ return -p.reduce((a,x) => a + (x>0 ? x*Math.log(x) : 0), 0); }
-function expEntropy(post, q){
-  let e = 0;
-  for (const side of [0,1]){
-    const num = post.map((p,t) => p * (side===0 ? q.pa[t] : 1-q.pa[t])); const z = num.reduce((a,b)=>a+b,0);
-    if (z <= 0) continue;
-    e += z * -num.reduce((a,x) => a + (x/z)*Math.log(x/z + 1e-12), 0);
-  }
-  return e;
-}
+function shuffled(a){ a = a.slice(); for (let i = a.length-1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
 function resetDemo(){
-  st = { post: prior(), pool: DATA.questions.slice(), asked: [], q: null, order: null, target: 0, trace: [], last: null };
-  $("#result").hidden = true; nextQuestion(); renderPost(); renderTrace();
-  $("#q-feedback").textContent = "";
-}
-function pickNext(){
-  if (!st.pool.length) return null;
-  let best = null, bv = Infinity;
-  for (const q of st.pool){ const v = expEntropy(st.post, q); if (v < bv){ bv = v; best = q; } }
-  return best;
+  st = { pool: shuffled(DATA.questions), asked: [], q: null, order: null, target: STEP };
+  $("#result").hidden = true; $("#q-feedback").textContent = ""; renderSplits(); nextQuestion();
 }
 function nextQuestion(){
-  const limit = CHECKPOINTS[st.target];
-  if (st.asked.length >= limit || !st.pool.length){ st.q = null; showCheckpoint(); return; }
-  st.q = pickNext(); st.order = Math.random() < .5 ? [0,1] : [1,0];
+  if (st.asked.length >= st.target || !st.pool.length){ st.q = null; showCheckpoint(); return; }
+  st.q = st.pool[0]; st.order = Math.random() < .5 ? [0,1] : [1,0];
   renderQuestion();
 }
 function renderQuestion(){
-  const q = st.q, limit = CHECKPOINTS[st.target];
+  const q = st.q, limit = Math.min(st.target, st.asked.length + st.pool.length);
   $("#qcard").hidden = false;
   $("#q-count").textContent = `Question ${st.asked.length+1} of ${limit}`;
-  $("#q-n").textContent = `${fmt(q.n)} labeled answers`;
+  $("#q-n").textContent = `${fmt(q.n)} past answers`;
   $("#q-text").textContent = q.text;
-  const prog = $("#q-prog"); prog.innerHTML = ""; for (let k=0;k<limit;k++) prog.appendChild(el("i", {class: k < st.asked.length ? "done" : ""}));
+  const prog = $("#q-prog"); prog.innerHTML = ""; for (let k = st.target-STEP; k < limit; k++) prog.appendChild(el("i", {class: k < st.asked.length ? "done" : ""}));
   const box = $("#q-answers"); box.innerHTML = "";
   st.order.forEach(side => { const b = el("button", {class:"ans"}); b.textContent = side===0 ? q.a : q.b; b.onclick = () => answer(side); box.appendChild(b); });
   $("#q-skip").disabled = false;
 }
+const sameShare = a => a.side===0 ? a.q.lean : 1-a.q.lean;
 function answer(side){
-  const q = st.q, before = st.post.slice();
-  st.post = st.post.map((p,t) => p * (side===0 ? q.pa[t] : 1-q.pa[t]));
-  const z = st.post.reduce((a,b)=>a+b,0); st.post = st.post.map(p => p/z);
-  st.pool = st.pool.filter(x => x !== q);
-  st.asked.push({q, side}); st.last = before; st.trace.push(Math.max(...st.post));
-  const same = side===0 ? q.lean : 1-q.lean;
-  $("#q-feedback").innerHTML = `You chose <b>${side===0 ? q.a : q.b}</b>. The model estimates about <b>${pct(same)}</b> of the labeled community would lean the same way.`;
-  renderPost(); renderTrace(); renderSignals(); nextQuestion();
+  const q = st.q; st.pool = st.pool.filter(x => x !== q);
+  const a = {q, side}; st.asked.push(a);
+  $("#q-feedback").innerHTML = `You chose <b>${side===0 ? q.a : q.b}</b>, like about <b>${pct(sameShare(a))}</b> of the people who answered before you.`;
+  renderSplits(); renderSignals(); nextQuestion();
 }
 $("#q-skip").onclick = () => { if (!st.q) return; st.pool = st.pool.filter(x => x !== st.q); $("#q-feedback").textContent = "Skipped. A skip is replaced, not counted."; nextQuestion(); };
 $("#q-restart").onclick = () => { resetDemo(); renderSignals(); };
-function ranked(){ return st.post.map((p,i) => ({p, i})).sort((a,b) => b.p - a.p); }
-function renderPost(){
-  const host = $("#post-bars"); host.innerHTML = "";
-  const r = ranked(), lead = r[0].i;
-  T.forEach((t,i) => {
-    const d = st.last ? st.post[i] - st.last[i] : 0;
-    const label = `${t.name.replace("The ","")}${Math.abs(d) >= .01 ? `<span class="delta ${d>0?"up":"down"}">${d>0?"▲":"▼"}${Math.abs(d*100).toFixed(0)}</span>` : ""}`;
-    const [row] = barRow(label, st.post[i], 1, st.asked.length && i===lead ? "lead" : "", pct(st.post[i]));
-    host.appendChild(row);
+function renderSplits(){
+  const host = $("#splits"); if (!st.asked.length) return;
+  host.innerHTML = "";
+  st.asked.slice().reverse().forEach(a => {
+    const v = sameShare(a), choice = a.side===0 ? a.q.a : a.q.b;
+    const r = el("div", {class: "srow" + (v < .5 ? " min" : "")});
+    r.appendChild(el("p", {class:"small"}, a.q.text));
+    const bar = el("div", {class:"sbar"}); const fill = el("i"); fill.style.width = (v*100) + "%"; bar.appendChild(fill); r.appendChild(bar);
+    r.appendChild(el("p", {class:"tiny"}, `${choice}: about ${pct(v)} of ${fmt(a.q.n)} answered like you`));
+    host.appendChild(r);
   });
-  host.setAttribute("aria-label", "Model belief: " + r.slice(0,3).map(x => `${T[x.i].name} ${pct(x.p)}`).join(", "));
-}
-function renderTrace(){
-  const s = $("#trace"); s.innerHTML = "";
-  const n = CHECKPOINTS[CHECKPOINTS.length-1], pts = [Math.max(...prior()), ...st.trace];
-  for (const y of [.25,.5,.75]) s.appendChild(svgEl("line", {x1:0, x2:300, y1:84-y*80, y2:84-y*80, stroke:"#1f1f22", "stroke-width":1}));
-  const xs = k => k/(n) * 296 + 2, ys = v => 82 - v*78;
-  const d = pts.map((v,k) => `${k?"L":"M"}${xs(k).toFixed(1)},${ys(v).toFixed(1)}`).join(" ");
-  s.appendChild(svgEl("path", {d, fill:"none", stroke:"#818cf8", "stroke-width":2, "vector-effect":"non-scaling-stroke"}));
-  const last = pts.length-1; s.appendChild(svgEl("circle", {cx:xs(last), cy:ys(pts[last]), r:3.5, fill:"#f1c42d"}));
-  CHECKPOINTS.slice(0,2).forEach(c => s.appendChild(svgEl("line", {x1:xs(c), x2:xs(c), y1:0, y2:84, stroke:"#2a2a2e", "stroke-dasharray":"3 3", "stroke-width":1})));
-  s.setAttribute("aria-label", `Leading tribe probability after ${st.trace.length} answers: ${pct(pts[last])}`);
 }
 function showCheckpoint(){
   $("#q-text").textContent = ""; $("#q-answers").innerHTML = ""; $("#q-skip").disabled = true; $("#qcard").hidden = true;
-  const r = ranked(), top = T[r[0].i], second = T[r[1].i], n = st.asked.length;
-  const H = entropy(st.post)/Math.log(NT);
+  const n = st.asked.length, maj = st.asked.filter(a => sameShare(a) >= .5).length;
   const res = $("#result"); res.hidden = false; res.innerHTML = "";
-  const stage = n >= CHECKPOINTS[2] || !st.pool.length ? "Demo reading" : "Provisional pattern";
-  res.appendChild(el("p", {class:"label"}, `${stage} after ${n} answers`));
-  res.appendChild(el("p", {class:"tname", style:"margin:6px 0"}, top.name));
-  res.appendChild(el("p", {class:"small"}, `The model currently leans toward ${top.name} at ${pct(r[0].p)}, with ${second.name} next at ${pct(r[1].p)}. Remaining uncertainty: ${pct(H)} of the maximum.`));
-  res.appendChild(el("p", {class:"small muted", style:"font-style:italic"}, `How raW describes ${top.name}, from the tribe's typical answers: “${top.description}”`));
+  res.appendChild(el("p", {class:"label"}, st.pool.length ? `Your snapshot after ${n} answers` : `All ${n} questions answered`));
+  res.appendChild(el("p", {class:"tname", style:"margin:6px 0"}, `${maj} of ${n} with the majority`));
+  const lowest = st.asked.length ? Math.min(...st.asked.map(sameShare)) : 0;
+  res.appendChild(el("p", {class:"small"}, n === maj
+    ? "You sided with most people every time. On raW, that is where a conversation starts: you are not the only one who thinks this."
+    : `Even where you were in the minority, at least ${pct(lowest)} of people answered like you. That is who raW helps you find: the people who answered like you did.`));
   const row = el("div", {class:"row"});
-  if (st.target < CHECKPOINTS.length-1 && st.pool.length){
-    const nextN = CHECKPOINTS[st.target+1];
-    const b = el("button", {class:"btn gold small"}, `Continue to ${nextN} questions`);
-    b.onclick = () => { st.target++; res.hidden = true; nextQuestion(); $("#q-text").focus?.(); };
+  if (st.pool.length){
+    const b = el("button", {class:"btn gold small"}, `Answer ${Math.min(STEP, st.pool.length)} more`);
+    b.onclick = () => { st.target += STEP; res.hidden = true; nextQuestion(); };
     row.appendChild(b);
   }
   const rb = el("button", {class:"btn small"}, "Restart"); rb.onclick = () => { resetDemo(); renderSignals(); }; row.appendChild(rb);
   const sb = el("button", {class:"btn small"}, "See what the answers reveal"); sb.onclick = () => goTo("c07"); row.appendChild(sb);
   res.appendChild(row); brand(res);
-  $("#q-count").textContent = `${n} answered`;
-  $("#q-prog").innerHTML = "";
-  $("#q-n").textContent = "";
+  $("#q-count").textContent = `${n} answered`; $("#q-prog").innerHTML = ""; $("#q-n").textContent = "";
   $("#q-feedback").textContent = n ? "" : "No questions answered.";
 }
 
@@ -1383,17 +1340,16 @@ function renderSignals(){
   const s = $("#sig"); s.innerHTML = "";
   const answered = st && st.asked.length ? st.asked.slice(-6).map(a => a.q) : SAMPLE.map(id => DATA.questions.find(q => q.id===id)).filter(Boolean);
   $("#sig-src").textContent = st && st.asked.length ? `Built from your last ${answered.length} answers in chapter 06.` : "Sample questions. Answer some in chapter 06 to see your own.";
-  $("#sig-src").textContent += " The four signals are categories, not computed scores: today raW computes the live split and the Tribe Test's tribe estimate (implemented but unverified).";
+  $("#sig-src").textContent += " The four signals are categories, not computed scores: today raW computes the live split after each vote.";
   brand($("#sig-src"));
   const qx = 150, sx = 450, ox = 720;
   const qy = answered.map((_,k) => 50 + k*(320/Math.max(1,answered.length-1)));
   const SIG = [["Interests",70],["Perspectives",160],["Common ground",250],["Community fit",340]];
   const OUT = [
-    ["Live split after each vote", "obs", 40, [0,1,2]],
-    ["Tribe estimate (Tribe Test)", "obs", 112, [1,2]],
-    ["Locked tribe room invite", "obs", 184, [3]],
-    ["Insight report in the app", "plan", 256, [0,1]],
-    ["Room recommendations", "plan", 318, [0,3]],
+    ["Live split after each vote", "obs", 44, [0,1,2]],
+    ["Rooms to join", "obs", 128, [0,3]],
+    ["Insight report in the app", "plan", 212, [0,1]],
+    ["Room recommendations", "plan", 296, [0,3]],
     ["People you would relate to", "plan", 380, [2,3]],
   ];
   const show = k => sigMode==="all" || sigMode===k;
@@ -1416,16 +1372,14 @@ $$("[data-sig]").forEach(b => b.onclick = () => { sigMode = b.dataset.sig; $$("[
 const M = DATA.meta;
 const PIPE = [
   {t:"Story polls", v:"~11K", s:"founder", d:"The Cumulative Mind, the founder's Instagram account, asked one honest question at a time. The founder reports about 11,000 followers and up to about 3,000 votes on a single question. These figures are founder-reported and were not independently verified for this deck."},
-  {t:"Extraction", v:fmt(M.confirmed_votes), s:"verified", d:`Story voter lists were read with OCR. raW's current extraction pipeline counts a voter row only if it is read in at least two frames or its handle was read cleanly elsewhere; the code of the original extraction behind the model was not available for this review. Usernames stay in private files on the founder's computer; the published model holds only aggregate tribe statistics. Result: ${fmt(M.confirmed_votes)} confirmed votes in the extraction set.`},
+  {t:"Extraction", v:fmt(M.confirmed_votes), s:"verified", d:`Story voter lists were read with OCR. raW's current extraction pipeline counts a voter row only if it is read in at least two frames or its handle was read cleanly elsewhere; the code of the original extraction behind the model was not available for this review. Usernames stay in private files on the founder's computer; the published data holds only aggregate statistics. Result: ${fmt(M.confirmed_votes)} confirmed votes in the extraction set.`},
   {t:"Audit", v:"37,302", s:"founder", d:"A later audit documented 105 poll instances: 95 trusted, 10 awaiting review, and 37,302 trusted user-vote records. The audit files were not available for this review, so these figures are founder-reported. They count vote records, not people, and not every historical poll has been audited."},
-  {t:"Bridge", v:"23,424", s:"verified", d:`Quiz polls were matched to the audited master by shared-voter agreement (at least 90% among at least 20 shared voters) where that evidence exists, by wording where it does not, and two by hand from the recordings. Matches below 75% agreement were refused. Shipped model note: “${M.bridge}”. Reposted questions stay separate on purpose.`},
-  {t:"Tribes", v:"1,795", s:"docs", d:"Eight tribes were found with k-modes (best of 12 restarts, no tribe under 3%) on the 30 August 2026 corpus, then refit as answers arrived; 1,795 voters with at least eight answers now carry a tribe label. The restart and refit code is documented but not in the repository, so it was not re-run. Eight was a product choice for variety; a five-tribe fit scored higher in internal simulation (92.0% vs 89.0% under the same policy, 30 August 2026)."},
-  {t:"Tribe Test", v:pct(M.validated_accuracy,1), s:"sim", d:`An adaptive test picks each next question to sharpen its belief the most. Replaying the test's policy (27-question cap) on ${fmt(M.validated_on)} labeled voters' real answers recovered their data-defined tribe ${pct(M.validated_accuracy,1)} of the time (uniform chance 12.5%; always guessing the largest tribe: about 28%). Labels and training share one corpus, so this is internal recovery, not psychometric validity or prediction about strangers. Measured with a 27-question cap; simulations averaged ${M.avg_length} questions. Because each voter had answered only about 12 pool questions, this measures classification from all their recorded answers, not the question ordering. ${M.full_pool} of the 122 quiz questions have enough labeled answers to use.`},
+  {t:"Quiz funnel", v:"theraw.me", s:"impl", d:"The same historical answers power a short quiz on theraw.me, the Tribe Test. It is one more way in: it gives people a reason to answer more questions and hands out invite codes into the app. It is not the product, and its conversion has not been measured."},
 ];
-const STATUS = {verified:["t-verified","Verified in code"], founder:["t-founder","Founder-reported"], sim:["t-sim","Internal simulation"], docs:["t-impl","Documented, not re-run"]};
-PIPE.forEach((p,i) => { const li = el("li"); const b = el("button", {"aria-pressed": String(i===5)}, `<span class="pn">${String(i+1).padStart(2,"0")}</span><strong>${p.t}</strong><span class="pv">${p.v}</span><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span>`); b.onclick = () => showPipe(i); li.appendChild(b); $("#pipe").appendChild(li); });
+const STATUS = {verified:["t-verified","Verified in code"], founder:["t-founder","Founder-reported"], sim:["t-sim","Internal simulation"], impl:["t-impl","Implemented but unverified"]};
+PIPE.forEach((p,i) => { const li = el("li"); const b = el("button", {"aria-pressed": String(i===1)}, `<span class="pn">${String(i+1).padStart(2,"0")}</span><strong>${p.t}</strong><span class="pv">${p.v}</span><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span>`); b.onclick = () => showPipe(i); li.appendChild(b); $("#pipe").appendChild(li); });
 function showPipe(i){ $$("#pipe button").forEach((b,k) => b.setAttribute("aria-pressed", String(k===i))); const p = PIPE[i]; $("#pipe-detail").innerHTML = `<div class="row" style="justify-content:space-between"><h3>${String(i+1).padStart(2,"0")} · ${p.t}</h3><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span></div><p class="small muted" style="margin-bottom:0">${p.d}</p>`; brand($("#pipe-detail")); }
-showPipe(5);
+showPipe(1);
 
 /* ---------------- 10 calculator ---------------- */
 const USERS = 5340000;
@@ -1454,7 +1408,7 @@ const STAGES = [
   {n:"International", tag:["t-plan","Planned"], rows:{
     "Target users":"Diaspora and interest communities anywhere that form around shared questions.",
     "Distribution":"Shareable question pages, community owners who bring their members, partnerships.",
-    "Localization":"Multilingual questions and rooms; tribes re-fit on each region's own answers.",
+    "Localization":"Multilingual questions and rooms, with questions drawn from each region's own answers.",
     "Trust and safety":"Scaled moderation tooling, regional policies, transparency reporting.",
     "Ready to expand when":"Rooms sustain themselves through member owners, and acquisition cost is known and repeatable."}},
   {n:"Global", tag:["t-plan","Planned"], rows:{
@@ -1492,7 +1446,7 @@ const fly = (function(){
   const me = [110,230], next = [470,330];
   const STEPS = [
     {k:"Step 1", h:"A person enters.", p:"Bored, curious, disconnected or new in town. They answer one honest question.", m:"What raW would measure: first-session poll answers, time to first answer."},
-    {k:"Step 2", h:"They find understanding.", p:"The split shows they are not alone. Through the Tribe Test, they reach the room of people who answered alike.", m:"What raW would measure: poll answer → room action within 24 hours (the north-star candidate)."},
+    {k:"Step 2", h:"They find understanding.", p:"The split shows they are not alone, and they join a room to talk about it.", m:"What raW would measure: poll answer → room action within 24 hours (the north-star candidate)."},
     {k:"Step 3", h:"They build confidence.", p:"Replies, likes and a returning conversation. The room starts to feel like theirs.", m:"What raW would measure: second-week return, replies received in the first week."},
     {k:"Step 4", h:"They contribute.", p:"They share an experience, answer someone else, start a thread.", m:"What raW would measure: share of members who reply to others, not only post."},
     {k:"Step 5", h:"They welcome the next person.", p:"Someone new arrives, and the person who was once new is the one who replies first.", m:"What raW would measure: newcomer second-week return when welcomed by a member versus not (a comparison, not proof of cause unless tested at random)."},

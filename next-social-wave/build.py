@@ -13,7 +13,6 @@ import argparse
 import base64
 import json
 import re
-import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -25,10 +24,11 @@ HERE = Path(__file__).resolve().parent
 #   P76 sexual connotation                      P79 age bracket (demographic, not opinion)
 #   P119 gender stereotype                      P138 disability framing
 #   P112 same question as P15 (the model's SAME_QUESTION rule keeps P15)
+#   P94 shown in chapter 04 with its exact split, so not repeated here
 DEMO_POOL = [
     "P01", "P03", "P04", "P06", "P11", "P15", "P17", "P18", "P19", "P20", "P21", "P25",
     "P31", "P32", "P35", "P36", "P53", "P55", "P58", "P61", "P66", "P68", "P73", "P78",
-    "P83", "P85", "P86", "P87", "P90", "P91", "P93", "P94", "P95", "P96", "P97", "P110",
+    "P83", "P85", "P86", "P87", "P90", "P91", "P93", "P95", "P96", "P97", "P110",
     "P116", "P118",
 ]
 
@@ -64,23 +64,6 @@ def load_model(therawme: Path) -> dict:
     return json.loads(html[start:end])
 
 
-# Clauses in the shipped tribe copy that the model's own parameters contradict
-# (Storm: 97% of labeled Storm answerers chose "Religious" on P89; Calm: not the
-# strongest single answer). Dropped here until therawme's tribes_v2.json is fixed.
-DESCRIPTION_FIXES = {
-    "The Storm": ("Not religious, not softened,", "Not softened,"),
-    "The Calm": ("Doesn't overthink - the strongest single answer in the whole community.", "Doesn't overthink."),
-}
-
-
-def fix_description(name, text):
-    old, new = DESCRIPTION_FIXES.get(name, (None, None))
-    if old is None:
-        return text
-    if old not in text:
-        sys.exit(f"DESCRIPTION_FIXES for {name} no longer matches the model; review the tribe copy")
-    return text.replace(old, new)
-
 
 def curate(m: dict) -> dict:
     tribes = m["tribes"]
@@ -97,20 +80,12 @@ def curate(m: dict) -> dict:
         # (Laplace-smoothed, labeled voters only). Shown as an estimate, never as a poll result.
         lean = sum(t["share"] * p for t, p in zip(tribes, pa))
         questions.append({"id": pid, "text": q["text"], "a": q["a"], "b": q["b"],
-                          "n": q["n"], "pa": pa, "lean": round(lean, 3)})
-    quiz = m["quizzes"][0]
+                          "n": q["n"], "lean": round(lean, 3)})
     return {
-        "tribes": [{"name": t["name"], "description": fix_description(t["name"], t["description"]), "share": t["share"]} for t in tribes],
         "questions": questions,
         "meta": {
-            "full_pool": len(m["questions"]),
             "demo_pool": len(questions),
-            "fixed_len": m["fixed_len"],
             "confirmed_votes": m["corpus_voters"],  # named corpus_voters in the model, but it counts confirmed votes
-            "bridge": m["bridge"],
-            "validated_accuracy": quiz["validated_accuracy"],
-            "validated_on": quiz["validated_on"],
-            "avg_length": quiz["avg_length"],
         },
     }
 
@@ -152,8 +127,7 @@ def main():
                   '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
                   + out + "\n</html>\n")
     (HERE / "index.html").write_text(standalone, encoding="utf-8")
-    print(f"index.html {len(standalone)/1e3:.0f} KB | demo pool {len(data['questions'])} of "
-          f"{data['meta']['full_pool']} questions | {len(images)} images inlined")
+    print(f"index.html {len(standalone)/1e3:.0f} KB | demo pool {len(data['questions'])} questions | {len(images)} images inlined")
 
 
 if __name__ == "__main__":

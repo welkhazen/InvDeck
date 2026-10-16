@@ -44,21 +44,21 @@ async function runDemo(page, label) {
   await page.click("#c06 #q-restart");
   for (let k = 0; k < 5; k++) await page.click("#q-answers .ans >> nth=0");
   ok(await page.isVisible("#result"), `${label}: result not shown after 5 answers`);
-  const first = await page.textContent("#result .tname");
-  ok(!!first && first.startsWith("The "), `${label}: no tribe named after 5 answers`);
-  await page.click("#result .btn.gold"); // continue to 10
+  ok(/^\d+ of 5 with the majority$/.test(await page.textContent("#result .tname")), `${label}: snapshot after 5 answers missing`);
+  ok(await page.$$eval("#splits .srow", r => r.length === 5), `${label}: splits panel does not list 5 answers`);
+  await page.click("#result .btn.gold"); // five more
   for (let k = 0; k < 5; k++) await page.click("#q-answers .ans >> nth=1");
-  ok((await page.textContent("#result .label")).includes("10 answers"), `${label}: checkpoint at 10 missing`);
-  await page.click("#result .btn.gold"); // continue to full
+  ok((await page.textContent("#result .label")).includes("10 answers"), `${label}: snapshot at 10 missing`);
   let guard = 0;
-  while (await page.isVisible("#q-answers .ans") && guard++ < 40) await page.click("#q-answers .ans >> nth=0");
-  ok((await page.textContent("#result .label")).includes("Demo reading"), `${label}: demo reading not reached`);
-  ok(await page.$$eval("#result .btn.gold", b => b.length === 0), `${label}: continue button still offered after full reading`);
-  const sum = await page.$$eval("#post-bars .bv", v => v.reduce((a, x) => a + parseFloat(x.textContent), 0));
-  ok(Math.abs(sum - 100) < 5, `${label}: posterior bars do not sum to ~100% (${sum})`);
-  await page.click("#q-restart");
+  while (await page.isVisible("#result .btn.gold") && guard++ < 20) {
+    await page.click("#result .btn.gold");
+    while (await page.isVisible("#q-answers .ans")) await page.click("#q-answers .ans >> nth=0");
+  }
+  ok((await page.textContent("#result .label")).startsWith("All "), `${label}: end of pool not reached`);
+  ok(!(await page.textContent("#c06")).toLowerCase().includes("tribe"), `${label}: demo still mentions tribes`);
+  ok(await page.isHidden("#qcard"), `${label}: empty question card shown with the result`);
+  await page.click("#result >> text=Restart");
   ok(await page.isHidden("#result") && (await page.textContent("#q-count")).startsWith("Question 1 of 5"), `${label}: restart did not reset the demo`);
-  // skip replaces without counting
   await page.click("#q-skip");
   ok((await page.textContent("#q-count")).startsWith("Question 1 of 5"), `${label}: skip counted as an answer`);
 }
