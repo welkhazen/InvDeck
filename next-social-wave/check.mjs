@@ -52,7 +52,7 @@ async function runDemo(page, label) {
   await page.click("#result .btn.gold"); // continue to full
   let guard = 0;
   while (await page.isVisible("#q-answers .ans") && guard++ < 40) await page.click("#q-answers .ans >> nth=0");
-  ok((await page.textContent("#result .label")).includes("Full reading"), `${label}: full reading not reached`);
+  ok((await page.textContent("#result .label")).includes("Demo reading"), `${label}: demo reading not reached`);
   ok(await page.$$eval("#result .btn.gold", b => b.length === 0), `${label}: continue button still offered after full reading`);
   const sum = await page.$$eval("#post-bars .bv", v => v.reduce((a, x) => a + parseFloat(x.textContent), 0));
   ok(Math.abs(sum - 100) < 5, `${label}: posterior bars do not sum to ~100% (${sum})`);

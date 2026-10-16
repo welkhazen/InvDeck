@@ -423,6 +423,7 @@ body.present .ch.is-active{padding-bottom:96px}
     <div class="journey" aria-label="The core journey">
       <span>Question</span><i>→</i><span>Answer</span><i>→</i><span>Match</span><i>→</i><span>Talk</span><i>→</i><span>Insight</span><i>→</i><span>Return</span>
     </div>
+    <p class="tiny" style="margin-top:10px">Match and Insight are early: matching runs through the Tribe Test today, and fuller insights are in progress.</p>
     <div class="row mt">
       <button class="btn gold" data-goto="c02">Begin</button>
       <button class="btn" data-goto="c06">Answer five questions</button>
@@ -496,6 +497,7 @@ body.present .ch.is-active{padding-bottom:96px}
             <div><div class="num-l">43.5%</div><p class="tiny">probable PTSD</p></div>
           </div>
           <p class="tiny">Nationally representative phone survey of 1,000 adults, July to September 2022. These are screening results, not diagnoses. Fieldwork predates the 2024 war.<a class="ref" href="#src-karam">3</a></p>
+          <p class="tiny">Context, not a market: raW is a social discovery product, not a mental-health service, and does not claim to change these figures.</p>
         </div>
         <div class="grid g2">
           <div class="panel"><div class="num-l">145<span class="muted" style="font-size:.45em"> of 147</span></div><p class="tiny">countries for life evaluation, World Happiness Report 2025 (2022–2024 average).<a class="ref" href="#src-whr">9</a></p></div>
@@ -546,8 +548,8 @@ body.present .ch.is-active{padding-bottom:96px}
       </figure>
     </div>
     <div class="panel mt" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-      <div class="num-l" id="sm-bad">≈65%</div>
-      <p class="small" style="margin:0;flex:1;min-width:220px">From raW's own history: asked <em>"Social media: good, or bad?"</em>, about two in three of <span id="sm-n">234</span> labeled answerers leaned <strong>Bad</strong>. <span class="tiny">Model estimate from labeled historical answers; not a representative survey.</span></p>
+      <div class="num-l" id="sm-bad">62%</div>
+      <p class="small" style="margin:0;flex:1;min-width:220px">From raW's own history: asked <em>"Social media: good, or bad?"</em>, 144 of <span id="sm-n">234</span> labeled answerers chose <strong>Bad</strong>. <span class="tiny">Historical answers from raW's own audience, recovered from the Tribe Test model's counts; not a representative survey.</span></p>
     </div>
     <p class="note mt"><strong>This is a design hypothesis.</strong> raW has not yet measured that its loop retains people better than a feed. Proving it is what this round pays for.</p>
 
@@ -558,11 +560,11 @@ body.present .ch.is-active{padding-bottom:96px}
           <thead><tr><th scope="col">Product</th><th scope="col">What it does well</th><th scope="col">Where raW differs</th></tr></thead>
           <tbody>
             <tr><td>Instagram, TikTok</td><td>Self-expression, entertainment, creator reach at enormous scale.</td><td>raW starts with a question, not an image, a face or a follower count.</td></tr>
-            <tr><td>Reddit</td><td>Proves pseudonymous interest communities scale: 101.7M daily active uniques in Q4 2024.<a class="ref" href="#src-reddit">11</a></td><td>raW routes a person to a room from their own answers instead of search and browsing.</td></tr>
+            <tr><td>Reddit</td><td>Shows pseudonymous interest communities can scale: 101.7M daily active uniques in Q4 2024.<a class="ref" href="#src-reddit">11</a></td><td>raW is built to route a person to a room from their own answers: today through the Tribe Test invite, with answer-based suggestions planned.</td></tr>
             <tr><td>Discord</td><td>Real-time community chat and rich identity customization.</td><td>Rooms on Discord are mostly found through links people already have. raW proposes finding the room through what you answer.</td></tr>
             <tr><td>Yubo, Wizz</td><td>Social discovery for young adults, monetized through in-app purchases and subscriptions.</td><td>raW leads with opinions and shared experiences rather than profiles and faces.</td></tr>
-            <tr><td>Anonymous apps (Secret, Yik Yak, NGL)</td><td>Showed strong demand for saying what you think without your name. Several struggled with abuse and moderation.</td><td>raW pairs pseudonymity with accounts, moderation, invite codes and rooms that have owners.</td></tr>
-            <tr><td>Personality tests (16Personalities, Boo)</td><td>Self-discovery content draws large audiences.</td><td>raW's eight tribes come from clustering real answers, and each tribe opens a room.</td></tr>
+            <tr><td>Anonymous apps (Secret, Yik Yak, NGL)</td><td>Showed strong demand for saying what you think without your name. Several struggled with abuse and moderation.</td><td>raW pairs pseudonymity with accounts, moderation, invite codes and admin-run rooms, with member-owned rooms planned.</td></tr>
+            <tr><td>Personality tests (16Personalities, Boo)</td><td>Self-discovery content draws large audiences.</td><td>raW's eight tribes come from clustering real answers, and each tribe has its own room (implemented but unverified).</td></tr>
             <tr><td>AI companions (Character.AI, Replika)</td><td>Always-available conversation.</td><td>raW connects people with other people.</td></tr>
           </tbody>
         </table>
@@ -581,7 +583,7 @@ body.present .ch.is-active{padding-bottom:96px}
       <div>
         <ol class="steps" id="flow-steps"></ol>
         <div class="row" style="margin-top:14px"><button class="btn small" id="flow-next">Next step</button></div>
-        <p class="tiny" style="margin-top:16px">Recreated from the shipped app. The avatars, room name and question are real. Chat messages are examples, not real users.</p>
+        <p class="tiny" style="margin-top:16px">Recreated from the shipped app. The avatars, room names and question are real. Chat messages are examples, not real users.</p>
       </div>
       <div class="phone" aria-live="polite"><div class="screen" id="flow-screen"></div></div>
     </div>
@@ -622,8 +624,8 @@ body.present .ch.is-active{padding-bottom:96px}
           <p class="label">Keep in mind</p>
           <ul class="limits" style="margin-top:10px">
             <li>The bars show the model's belief given your answers. They are not a measure of accuracy and not a personality diagnosis.</li>
-            <li>The eight tribes are clusters found in 1,795 people's historical answers. They are not externally validated personality types.</li>
-            <li>The full Tribe Test recovers a voter's data-defined tribe 87.9% of the time in an internal simulation on 1,780 voters (chance is 12.5%). This demo uses a curated pool of <span id="pool-n">38</span> everyday questions, so that figure does not transfer to it.</li>
+            <li>The eight tribes are clusters found in the historical answers of 1,795 voters (Instagram accounts). They are not externally validated personality types.</li>
+            <li>The full Tribe Test recovers a voter's data-defined tribe 87.9% of the time in an internal simulation on 1,780 voters, measured at a 27-question cap (uniform chance is 12.5%; always guessing the largest tribe would score about 28%). This demo uses a curated pool of <span id="pool-n">38</span> everyday questions, so that figure does not transfer to it, and a five-question reading is less certain still.</li>
             <li>"Community lean" figures are model estimates from labeled answers, not live poll results. Nothing here is stored or sent anywhere.</li>
           </ul>
         </div>
@@ -640,11 +642,11 @@ body.present .ch.is-active{padding-bottom:96px}
     <p class="lede">Answers can point to interests, perspectives and common ground. Some of that is in the product today. Some is a capability raW intends to build.</p>
     <div class="row mt" style="justify-content:space-between">
       <div class="seg" role="group" aria-label="What to show">
-        <button aria-pressed="true" data-sig="obs">Observed today</button>
+        <button aria-pressed="true" data-sig="obs">Built today</button>
         <button aria-pressed="false" data-sig="plan">Planned capability</button>
         <button aria-pressed="false" data-sig="all">Both</button>
       </div>
-      <div class="legend"><span><i style="background:var(--silver)"></i>Shipped or measured</span><span><i style="background:repeating-linear-gradient(90deg,var(--peri) 0 5px,transparent 5px 9px)"></i>Planned</span></div>
+      <div class="legend"><span><i style="background:var(--silver)"></i>Verified in code or implemented but unverified</span><span><i style="background:repeating-linear-gradient(90deg,var(--peri) 0 5px,transparent 5px 9px)"></i>Planned</span></div>
     </div>
     <div class="panel sig" style="margin-top:16px">
       <div class="sig-wrap"><svg id="sig" viewBox="0 0 860 420" role="img" aria-label="Network from your answers to signals and product outcomes"></svg></div>
@@ -663,8 +665,8 @@ body.present .ch.is-active{padding-bottom:96px}
     <div class="panel" id="pipe-detail" style="margin-top:12px" aria-live="polite"></div>
 
     <div class="grid g3 mt">
-      <div><p class="label">Measured</p><p class="small">An adaptive model built from historical answers, with documented code, validation and limitations. It ships today in the Tribe Test.</p></div>
-      <div><p class="label">Suggested</p><p class="small">People's answers form stable clusters, and a short adaptive sequence of questions can place a new person near one of them.</p></div>
+      <div><p class="label">Measured</p><p class="small">An adaptive model built from historical answers, with documented code, validation and limitations. It is built into the Tribe Test on theraw.me; live use is not yet verified.</p></div>
+      <div><p class="label">Suggested</p><p class="small">Tribe centres held steady as the data grew, and the test recovers most labeled voters' tribes from their own recorded answers. Voters near tribe boundaries moved between refits, and placing new people has not been tested.</p></div>
       <div><p class="label">Not yet verified</p><p class="small">That the clusters predict who people will enjoy talking to, or that they improve retention in the app. That needs live product data.</p></div>
     </div>
     <details class="ev">
@@ -673,7 +675,7 @@ body.present .ch.is-active{padding-bottom:96px}
         <p>Three different vote counts appear in raW's records. <strong>33,486</strong> confirmed votes in the original extraction set. <strong>37,302</strong> trusted user-vote records in a later founder-reported audit of 105 poll instances (95 trusted, 10 awaiting review). <strong>23,424</strong> answers bridged from the audited master into the model across 31 polls. They come from different pipeline stages and dates, so they should not be added together.</p>
         <p>All three count vote records, not people. The clearest people count is <strong>1,795</strong> voters with at least eight answers, the group used to define the tribes.</p>
         <p>The audit's source files (the poll source of truth spreadsheet and database, the Poll Data Hub) were not available for this review, so the audit figures are shown as founder-reported. Instagram follower and per-question vote counts are also founder-reported.</p>
-        <p><strong>Data rights.</strong> The historical answers come from Instagram story polls. Usernames are kept in a private vault and never leave the founder's machine. Confirming the right to use this data in the product is on the legal checklist this round funds.</p>
+        <p><strong>Data rights.</strong> The historical answers come from Instagram story polls. Usernames stay in private files on the founder's computer; this deck and the published model hold only aggregate statistics. Confirming the right to use this data in the product is on the legal checklist this round funds.</p>
       </div>
     </details>
     <p class="note mt"><strong>On defensibility.</strong> A dataset alone is not a moat. The potential moat is a retained community that keeps answering, because each answer improves the questions and rooms that bring people back.</p>
@@ -685,38 +687,38 @@ body.present .ch.is-active{padding-bottom:96px}
   <div class="wrap">
     <p class="eyebrow"><span class="n">09</span>The product is real</p>
     <h2 id="h09">The foundation is already built.</h2>
-    <p class="lede">raW is live at myraw.app as an invite-only beta. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.</p>
+    <p class="lede">raW is live at myraw.app as a beta. Signup needs an invite code, which the public Tribe Test hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.</p>
     <div class="row" style="margin-top:20px;gap:8px">
-      <span class="tag t-verified">Verified in code</span><span class="tag t-impl">Built, not verified in production</span><span class="tag t-prog">In progress</span><span class="tag t-plan">Planned</span>
+      <span class="tag t-verified">Verified in code</span><span class="tag t-impl">Implemented but unverified</span><span class="tag t-prog">In progress</span><span class="tag t-plan">Planned</span>
     </div>
     <div class="grid g3 mt">
       <div class="col">
         <h3>Built <span class="badges"><img data-img="badge_lvl-1" alt="raW rank badge, level 1"><img data-img="badge_lvl-5" alt="raW rank badge, level 5"><img data-img="badge_lvl-10" alt="raW rank badge, level 10"></span></h3>
         <ul class="items">
           <li><span>Username and avatar identity, no real name or photo</span><span class="tag t-verified">Verified in code</span></li>
-          <li><span>Yes/No polls with the live split shown after voting, one vote per person enforced in the database</span><span class="tag t-verified">Verified in code</span></li>
-          <li><span>Interest communities with realtime group chat, likes, replies and pinned messages</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Yes/No polls with the split shown after voting (live member votes in the feed since 8 October 2026), one vote per person enforced in the database</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Interest communities with realtime group chat, likes and replies</span><span class="tag t-verified">Verified in code</span></li>
           <li><span>Moderation: message reports, warnings, timeouts, bans and blocked words</span><span class="tag t-verified">Verified in code</span></li>
           <li><span>Avatar ranks, store and tokens, with spending checked on the server</span><span class="tag t-verified">Verified in code</span></li>
-          <li><span>Tribe rooms opened by single-use invite codes from the Tribe Test</span><span class="tag t-impl">Not verified in production</span></li>
-          <li><span>Tribe Test: adaptive 23-question engine on theraw.me</span><span class="tag t-impl">Not verified in production</span></li>
+          <li><span>Tribe rooms opened by single-use invite codes from the Tribe Test</span><span class="tag t-impl">Implemented but unverified</span></li>
+          <li><span>Tribe Test: adaptive 23-question engine on theraw.me</span><span class="tag t-impl">Implemented but unverified</span></li>
         </ul>
       </div>
       <div class="col">
         <h3>Being validated</h3>
         <ul class="items">
-          <li><span>Activation and retention baseline</span><span class="tiny">Analytics events are defined and instrumented. No retention figures are verified for this deck.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Activation and retention baseline</span><span class="tiny">Signup, onboarding and poll-answer events are instrumented; room-join and message events are defined but not yet sent. No retention figures are verified for this deck.</span><span class="tag t-prog">In progress</span></li>
           <li><span>iOS app</span><span class="tiny">Capacitor build and App Store preparation in progress.</span><span class="tag t-prog">In progress</span></li>
           <li><span>Return trigger</span><span class="tiny">Push and email notifications that open the conversation they are about.</span><span class="tag t-prog">In progress</span></li>
           <li><span>Tribe Test to tribe room funnel</span><span class="tiny">Link and invite flow built. Conversion not yet measured.</span><span class="tag t-prog">In progress</span></li>
-          <li><span>Pricing</span><span class="tiny">$1, $2.99 and $3.99 appear as placeholders. Nobody is charged today.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Pricing</span><span class="tiny">Placeholder prices only: token packs ($5 to $90) and a $5-a-month plan in the app wallet, granted by hand on request; $1 and $2.99 on the Tribe Test site; $12 and $19 on an older reports preview. No payment processor or checkout is connected.</span><span class="tag t-prog">In progress</span></li>
         </ul>
       </div>
       <div class="col">
         <h3>Next</h3>
         <ul class="items">
           <li><span>Real checkout for premium identity and private rooms</span><span class="tag t-plan">Planned</span></li>
-          <li><span>Opt-in personal insights built from your own answers</span><span class="tag t-plan">Planned</span></li>
+          <li><span>Opt-in personal insights built from your own answers</span><span class="tiny">Engine, catalog and preview built; reports not generated yet and purchases switched off.</span><span class="tag t-prog">In progress</span></li>
           <li><span>Community recommendations from answer patterns</span><span class="tag t-plan">Planned</span></li>
           <li><span>Arabic language and right-to-left interface</span><span class="tag t-plan">Planned</span></li>
           <li><span>Android release</span><span class="tag t-plan">Planned</span></li>
@@ -733,16 +735,16 @@ body.present .ch.is-active{padding-bottom:96px}
     <p class="eyebrow"><span class="n">10</span>How the model can become a business</p>
     <h2 id="h10">Monetization follows meaningful participation.</h2>
     <ol class="ladder mt">
-      <li><span class="step">Stage 1</span><h3>Free participation</h3><p class="small muted">Polls, rooms and chat stay free. This is where trust and habit are built.</p><span class="tag t-verified">Live, free</span></li>
-      <li><span class="step">Stage 2</span><h3>Premium identity</h3><p class="small muted">Rare avatars and ranks. Built and priced in tokens; buying tokens with money is not live.</p><span class="tag t-impl">Built, no checkout</span></li>
-      <li><span class="step">Stage 3</span><h3>Private and paid rooms</h3><p class="small muted">Locked tribe rooms and member-run communities. The app shows a price; no payment is taken.</p><span class="tag t-prog">Revenue hypothesis</span></li>
-      <li><span class="step">Stage 4</span><h3>Opt-in insights</h3><p class="small muted">A fuller reading built only from a person's own answers, only if they ask for it.</p><span class="tag t-plan">Planned</span></li>
+      <li><span class="step">Stage 1</span><h3>Free participation</h3><p class="small muted">A daily set of polls, open rooms and chat are free. Extra polls, locked rooms and the in-app Tribe Test cost tokens, which members can also earn.</p><span class="tag t-verified">Verified in code</span></li>
+      <li><span class="step">Stage 2</span><h3>Premium identity</h3><p class="small muted">Rare avatars and ranks, built and priced in tokens. There is no in-app checkout for tokens.</p><span class="tag t-verified">Verified in code</span></li>
+      <li><span class="step">Stage 3</span><h3>Private and paid rooms</h3><p class="small muted">Revenue hypothesis. Locked tribe rooms are built and can charge tokens on entry. Member-run rooms and cash payment are not built.</p><span class="tag t-prog">In progress</span></li>
+      <li><span class="step">Stage 4</span><h3>Opt-in insights</h3><p class="small muted">A fuller reading built only from a person's own answers, only if they ask for it. A preview is built; reports are not generated yet and nothing is sold.</p><span class="tag t-prog">In progress</span></li>
     </ol>
-    <p class="note mt"><strong>raW will not sell identifiable responses.</strong> Answers are shown to others only as totals. Any insight product is opt-in and built for the person who answered.</p>
+    <p class="note mt"><strong>raW will not sell identifiable responses.</strong> In the app, answers are shown to other members only as totals. Any insight product is opt-in and built for the person who answered.</p>
 
     <div class="panel mt">
       <div class="row" style="justify-content:space-between"><h3>What would it take? A transparent arithmetic</h3><span class="tag t-illus">Illustrative scenario</span></div>
-      <p class="small muted">Start from Lebanon's 5.34 million internet users.<a class="ref" href="#src-dr">10</a> Move the sliders. Every default is an assumption, not a measurement: raW has not yet measured conversion, retention or acquisition cost.</p>
+      <p class="small muted">Start from Lebanon's 5.34 million internet users (all ages, early 2025; raW is 18+, so the eligible base is smaller).<a class="ref" href="#src-dr">10</a> Move the sliders. Every default is an assumption, not a measurement: raW has not yet measured conversion, retention or acquisition cost.</p>
       <div class="calc" style="margin-top:16px">
         <div class="stack">
           <div class="field"><label for="c-join">Share of internet users who join <output id="o-join"></output></label><input type="range" id="c-join" min="0.1" max="5" step="0.1" value="1"></div>
@@ -755,7 +757,7 @@ body.present .ch.is-active{padding-bottom:96px}
             <div><span class="tiny">Paying</span><b id="r-pay">0</b></div>
             <div><span class="tiny">Revenue per year</span><b id="r-rev">$0</b></div>
           </div>
-          <p class="tiny">Lebanon alone is a proving ground, not the business case. The case rests on whether the loop works and travels. Only 23% of adults in Lebanon had a bank or mobile-money account in 2024, so app-store billing and markets beyond Lebanon matter for revenue.<a class="ref" href="#src-findex">12</a></p>
+          <p class="tiny">Lebanon alone is a proving ground, not the business case. The case rests on whether the loop works and travels. Only 23% of adults in Lebanon had a bank or mobile-money account in 2024, so payment access limits revenue in Lebanon, and markets beyond Lebanon matter.<a class="ref" href="#src-findex">12</a></p>
         </div>
       </div>
     </div>
@@ -804,10 +806,10 @@ body.present .ch.is-active{padding-bottom:96px}
   <div class="wrap">
     <p class="eyebrow"><span class="n">13</span>The investment opportunity</p>
     <h2 id="h13">Fund the proof. Build the future.</h2>
-    <p class="lede">The provisional base target is $100,000. It buys the evidence this deck cannot yet show: retention, safety and willingness to pay.</p>
+    <p class="lede">The provisional base target is $100,000. It funds the work to measure what this deck cannot yet show: retention, safety and willingness to pay.</p>
     <div class="fund-head mt">
       <div class="seg" role="group" aria-label="Funding scenario" id="fund-tabs"></div>
-      <span class="tag t-illus">Founder assumptions for discussion</span>
+      <span class="tag t-illus">Planning assumptions for discussion</span>
     </div>
     <div class="grid g2" style="margin-top:18px">
       <div class="stack">
@@ -815,7 +817,7 @@ body.present .ch.is-active{padding-bottom:96px}
         <div class="panel alloc"><p class="label">Allocation</p><div class="bars" id="fund-alloc" style="margin-top:12px"></div></div>
       </div>
       <div class="panel">
-        <p class="label">Measurable milestones</p>
+        <p class="label">Target milestones (goals, not commitments)</p>
         <ol class="miles" id="fund-miles" style="margin-top:12px"></ol>
         <p class="tiny" id="fund-team" style="margin-top:14px"></p>
       </div>
@@ -824,7 +826,7 @@ body.present .ch.is-active{padding-bottom:96px}
       <summary>Assumptions behind the scenarios</summary>
       <div class="ev-body">
         <p>Runway is the amount spent before the reserve, divided by the monthly burn shown. Burn assumes a lean team based in Lebanon, existing infrastructure (Vercel, Supabase, PostHog) and no paid acquisition beyond small tests.</p>
-        <p>Allocations and runway are planning assumptions to discuss with investors. They are not committed budgets. No valuation, instrument or terms are proposed here, and no investors are committed.</p>
+        <p>Allocations, runway and milestones are planning assumptions to discuss with investors. They are not committed budgets. No valuation, instrument or terms are proposed here, and no investors are committed.</p>
         <p>Specific numeric targets (for example a week-four retention threshold) are set after a two-week baseline, so they rest on real traffic rather than guesses.</p>
       </div>
     </details>
@@ -854,9 +856,9 @@ body.present .ch.is-active{padding-bottom:96px}
   <div class="wrap">
     <p class="eyebrow">Appendix</p>
     <h2 id="hs" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Sources and evidence</h2>
-    <p class="small muted">External figures were checked against the publisher or press coverage of it in October 2026. Internal figures come from raW's own repositories. The full register, claim audit and open questions ship with this file as research-sources.md and evidence-status.md.</p>
+    <p class="small muted">External figures were checked through search results and press coverage of each publisher's release in October 2026; source pages were not opened directly. Internal figures come from raW's own repositories. The full register, claim audit and open questions ship with this file as research-sources.md and evidence-status.md.</p>
     <ol style="margin-top:20px">
-      <li id="src-who">WHO Commission on Social Connection (June 2025). <em>From loneliness to social connection: charting a path to healthier societies.</em> Prevalence 2014–2023; regional and income-group estimates; modeled mortality. <a href="https://www.who.int/publications/i/item/978240112360" target="_blank" rel="noopener">who.int</a></li>
+      <li id="src-who">WHO Commission on Social Connection (June 2025). <em>From loneliness to social connection: charting a path to healthier societies.</em> Prevalence 2014–2023; regional and income-group estimates; modeled mortality. <a href="https://www.who.int/publications/i/item/9789240112360" target="_blank" rel="noopener">who.int</a></li>
       <li id="src-gallup">Gallup (2024). <em>Over 1 in 5 People Worldwide Feel Lonely a Lot.</em> 2023 Gallup World Poll data. <a href="https://news.gallup.com/poll/646718/people-worldwide-feel-lonely-lot.aspx" target="_blank" rel="noopener">news.gallup.com</a></li>
       <li id="src-karam">Karam et al. (January 2025). <em>The aftermath of multiple trauma on a nation: unraveling Lebanon's unique mental health struggle.</em> Frontiers in Psychiatry. n = 1,000, July–September 2022. <a href="https://www.frontiersin.org/articles/10.3389/fpsyt.2024.1444245/full" target="_blank" rel="noopener">frontiersin.org</a></li>
       <li id="src-wb">World Bank (May 2024). <em>Lebanon Poverty and Equity Assessment 2024: Weathering a Protracted Crisis.</em> <a href="https://www.worldbank.org/en/news/press-release/2024/05/23/lebanon-poverty-more-than-triples-over-the-last-decade-reaching-44-under-a-protracted-crisis" target="_blank" rel="noopener">worldbank.org</a></li>
@@ -865,7 +867,7 @@ body.present .ch.is-active{padding-bottom:96px}
       <li id="src-itu-arab">ITU (2024–2025). Arab States digital development figures: 70% of people online in 2024. <a href="https://www.itu.int/en/ITU-D/bdt-director/Pages/Speeches.aspx?ItemID=559" target="_blank" rel="noopener">itu.int</a></li>
       <li id="src-itu">ITU (November 2024). <em>Facts and Figures 2024.</em> 5.5 billion people, 68% of the world, online. <a href="https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx" target="_blank" rel="noopener">itu.int</a></li>
       <li id="src-whr">World Happiness Report 2025 (March 2025). Life evaluations, 2022–2024 average. <a href="https://worldhappiness.report/ed/2025/" target="_blank" rel="noopener">worldhappiness.report</a></li>
-      <li id="src-dr">DataReportal (2025). <em>Digital 2025: Lebanon.</em> 5.34 million internet users, 91.6% penetration, early 2025. <a href="https://datareportal.com/reports/digital-2025-lebanon" target="_blank" rel="noopener">datareportal.com</a></li>
+      <li id="src-dr">DataReportal (2025). <em>Digital 2025: Lebanon.</em> 5.34 million internet users, 91.6% penetration, early 2025. The 2026 edition reports 5.38 million and 91.8%; the 2025 edition stays closer to the other sources' years. <a href="https://datareportal.com/reports/digital-2025-lebanon" target="_blank" rel="noopener">datareportal.com</a></li>
       <li id="src-reddit">Reddit, Inc. (February 2025). Form 10-K for fiscal 2024 and Q4 2024 results. <a href="https://www.sec.gov/Archives/edgar/data/1713445/000171344525000018/rddt-20241231.htm" target="_blank" rel="noopener">sec.gov</a></li>
       <li id="src-findex">World Bank (2025). <em>Global Findex Database 2025.</em> Lebanon account ownership, 2024. <a href="https://microdata.worldbank.org/catalog/7860" target="_blank" rel="noopener">worldbank.org</a></li>
       <li id="src-raw">raW internal sources (October 2026): the Tribe Test model, README and EXPLAINER (therawme repository); the app codebase, CEO review of 3 August 2026, analytics tracking plan, brand description and daily summary (wzwznew repository). Founder-reported figures are labeled where they appear.</li>
@@ -875,7 +877,7 @@ body.present .ch.is-active{padding-bottom:96px}
 </main>
 
 <footer>
-  <div class="wrap"><span>ra<span class="W">W</span> · Pre-seed presentation · October 2026</span><span>Every figure is dated and sourced. Illustrations and assumptions are labeled.</span></div>
+  <div class="wrap"><span>ra<span class="W">W</span> · Pre-seed presentation · October 2026</span><span>External figures are dated and sourced; internal figures name their source. Illustrations and assumptions are labeled.</span></div>
 </footer>
 
 <script>
@@ -1072,11 +1074,11 @@ const CMP = [
   {name:"Youth unemployment", unit:"of 15–24-year-olds in the labour force", max:.6, vals:[
     {v:.13, t:"13%", src:"ILO global estimate, 2023", ref:"src-ilo"},
     {v:.28, t:"28%", src:"ILO Arab States estimate, 2023", ref:"src-ilo"},
-    {v:.478, t:"47.8%", src:"CAS/ILO national survey, January 2022", ref:"src-lfs"}]},
+    {v:null, t:"—", src:"No comparable ILO estimate shown. The January 2022 national survey (47.8%) is in the panel above", ref:"src-lfs"}]},
   {name:"Internet use", unit:"of people online", max:1, vals:[
     {v:.68, t:"68%", src:"ITU, 2024", ref:"src-itu"},
     {v:.70, t:"70%", src:"ITU Arab States, 2024", ref:"src-itu-arab"},
-    {v:.916, t:"91.6%", src:"DataReportal, early 2025 (different method)", ref:"src-dr"}]},
+    {v:null, t:"—", src:"No comparable ITU figure shown. DataReportal reports 91.6% for early 2025, using a different method", ref:"src-dr"}]},
 ];
 const GEO = ["Global","MENA","Lebanon"];
 function renderCmp(sel){
@@ -1099,7 +1101,7 @@ function renderCmp(sel){
   });
 }
 $$("[data-geo]").forEach(b => b.onclick = () => { renderCmp(+b.dataset.geo); numberRefs(); });
-renderCmp(2);
+renderCmp(0);
 
 /* ---------------- 04 loops ---------------- */
 function drawLoop(g, labels, notes){
@@ -1117,7 +1119,6 @@ function drawLoop(g, labels, notes){
   const mo = svgEl("animateMotion", {dur: labels.length*1.6 + "s", repeatCount:"indefinite", path:`M ${cx} ${cy-r} a ${r} ${r} 0 1 1 -0.01 0`});
   runner.setAttribute("cx", 0); runner.setAttribute("cy", 0); runner.appendChild(mo);
 }
-{ const q = DATA.questions.find(x => x.id === "P94"); if (q) { $("#sm-bad").textContent = "≈" + pct(1 - q.lean); $("#sm-n").textContent = fmt(q.n); } }
 drawLoop($("#loop-a"), ["Post","Scroll","Compare","Repeat"], ["publish a curated self","consume others' highlights","measure yourself against them","come back for more of the same"]);
 drawLoop($("#loop-b"), ["Answer","Relate","Connect","Contribute","Return"], ["give one honest answer","see who answered like you","join the room where they talk","help or welcome someone","come back when the conversation moves"]);
 function syncSvgAnim(){ $$("svg").forEach(s => { if (s.pauseAnimations) reduce ? s.pauseAnimations() : s.unpauseAnimations(); }); }
@@ -1130,9 +1131,9 @@ const flow = (function(){
   const STEPS = [
     ["Choose an avatar", "No real name, no photo. A username and an avatar are your identity."],
     ["Answer a question", "Yes/No and this-or-that questions. One answer each."],
-    ["Discover others", "See the live split the moment you vote, and that you are not the only one."],
-    ["Enter a room", "Interest and tribe rooms where people who think alike are already talking."],
-    ["Connect", "Post, reply and like under your avatar. Moderated, invite-only for now."],
+    ["Discover others", "See how others answered the moment you vote, and that you are not the only one."],
+    ["Enter a room", "Pick an interest room, or take the Tribe Test to unlock your tribe's locked room."],
+    ["Connect", "Post, reply and like under your avatar. Moderated; signup needs an invite code for now."],
   ];
   const list = $("#flow-steps");
   STEPS.forEach(([t,d],k) => { const li = el("li"); const b = el("button", {}, `<b>${k+1}</b><span><strong>${t}</strong>${d}</span>`); b.onclick = () => set(k); li.appendChild(b); list.appendChild(li); });
@@ -1144,8 +1145,8 @@ const flow = (function(){
       AV.forEach(a => { const b = el("button", {"aria-pressed": String(a===av), "aria-label": a.replace("-"," ")}); const im = el("img", {alt:""}); im.src = IMG["av_"+a]; b.appendChild(im); b.onclick = () => { av = a; screen(); }; g.appendChild(b); });
       s.appendChild(g); s.appendChild(el("p", {class:"tiny"}, "Real avatars from the raW app. Tap one."));
     } else if (i===1 || i===2){
-      s.appendChild(el("p", {class:"s-h"}, "Today's question"));
-      const p = el("div", {class:"poll"}); p.appendChild(el("span", {class:"tiny"}, "953 labeled answers in raW's history"));
+      s.appendChild(el("p", {class:"s-h"}, "A raW question"));
+      const p = el("div", {class:"poll"}); p.appendChild(el("span", {class:"tiny"}, "953 tribe-labeled historical answers"));
       p.appendChild(el("div", {class:"q"}, "Trust or respect?"));
       const tr = DATA.questions.find(q => q.id==="P31"); const lean = tr ? tr.lean : .5;
       [["Trust", lean],["Respect", 1-lean]].forEach(([o,v],k) => {
@@ -1155,10 +1156,10 @@ const flow = (function(){
         p.appendChild(d);
       });
       s.appendChild(p);
-      s.appendChild(el("p", {class:"tiny"}, i===2 ? "Split shown is the model's estimate from labeled historical answers." : "Pick a side. Nobody sees your answer, only the totals."));
+      s.appendChild(el("p", {class:"tiny"}, i===2 ? "Split shown is the model's estimate from labeled historical answers." : "Pick a side. In the app, other members see only the totals."));
     } else if (i===3){
-      s.appendChild(el("p", {class:"s-h"}, "Rooms for you"));
-      [["LN","Late Night Talks","For the conversations that start after midnight."],["TR","Tribe room","Opens with a single-use invite after the Tribe Test."],["IB","I'm Bored","Start something with whoever is around."]].forEach(([ic,t,d]) => {
+      s.appendChild(el("p", {class:"s-h"}, "Rooms"));
+      [["LN","Late Night Talks","Real talk after midnight."],["TR","Tribe room","Opens with a single-use invite after the Tribe Test."],["IJ","Is It Just Me?","Relatable moments and shared observations."]].forEach(([ic,t,d]) => {
         const r = el("div", {class:"room"}); r.appendChild(el("span", {class:"ic"}, ic)); r.appendChild(el("span", {}, `<strong style="display:block;font-size:.88rem">${t}</strong><span class="tiny">${d}</span>`)); s.appendChild(r); });
     } else {
       s.appendChild(el("p", {class:"s-h"}, "Late Night Talks"));
@@ -1224,7 +1225,7 @@ function answer(side){
   st.pool = st.pool.filter(x => x !== q);
   st.asked.push({q, side}); st.last = before; st.trace.push(Math.max(...st.post));
   const same = side===0 ? q.lean : 1-q.lean;
-  $("#q-feedback").innerHTML = `You chose <b>${side===0 ? q.a : q.b}</b>. About <b>${pct(same)}</b> of the labeled community leaned the same way (model estimate).`;
+  $("#q-feedback").innerHTML = `You chose <b>${side===0 ? q.a : q.b}</b>. The model estimates about <b>${pct(same)}</b> of the labeled community would lean the same way.`;
   renderPost(); renderTrace(); renderSignals(); nextQuestion();
 }
 $("#q-skip").onclick = () => { if (!st.q) return; st.pool = st.pool.filter(x => x !== st.q); $("#q-feedback").textContent = "Skipped. A skip is replaced, not counted."; nextQuestion(); };
@@ -1257,7 +1258,7 @@ function showCheckpoint(){
   const r = ranked(), top = T[r[0].i], second = T[r[1].i], n = st.asked.length;
   const H = entropy(st.post)/Math.log(NT);
   const res = $("#result"); res.hidden = false; res.innerHTML = "";
-  const stage = n >= CHECKPOINTS[2] || !st.pool.length ? "Full reading" : "Provisional pattern";
+  const stage = n >= CHECKPOINTS[2] || !st.pool.length ? "Demo reading" : "Provisional pattern";
   res.appendChild(el("p", {class:"label"}, `${stage} after ${n} answers`));
   res.appendChild(el("p", {class:"tname", style:"margin:6px 0"}, top.name));
   res.appendChild(el("p", {class:"small"}, `The model currently leans toward ${top.name} at ${pct(r[0].p)}, with ${second.name} next at ${pct(r[1].p)}. Remaining uncertainty: ${pct(H)} of the maximum.`));
@@ -1286,6 +1287,8 @@ function renderSignals(){
   const s = $("#sig"); s.innerHTML = "";
   const answered = st && st.asked.length ? st.asked.slice(-6).map(a => a.q) : SAMPLE.map(id => DATA.questions.find(q => q.id===id)).filter(Boolean);
   $("#sig-src").textContent = st && st.asked.length ? `Built from your last ${answered.length} answers in chapter 06.` : "Sample questions. Answer some in chapter 06 to see your own.";
+  $("#sig-src").textContent += " The four signals are categories, not computed scores: today raW computes the live split and the Tribe Test's tribe estimate (implemented but unverified).";
+  brand($("#sig-src"));
   const qx = 150, sx = 450, ox = 720;
   const qy = answered.map((_,k) => 50 + k*(320/Math.max(1,answered.length-1)));
   const SIG = [["Interests",70],["Perspectives",160],["Common ground",250],["Community fit",340]];
@@ -1293,14 +1296,14 @@ function renderSignals(){
     ["Live split after each vote", "obs", 40, [0,1,2]],
     ["Tribe estimate (Tribe Test)", "obs", 112, [1,2]],
     ["Locked tribe room invite", "obs", 184, [3]],
-    ["Personal insight report", "plan", 256, [0,1]],
+    ["Insight report in the app", "plan", 256, [0,1]],
     ["Room recommendations", "plan", 318, [0,3]],
     ["People you would relate to", "plan", 380, [2,3]],
   ];
   const show = k => sigMode==="all" || sigMode===k;
   const g = svgEl("g"); s.appendChild(g);
   // edges q -> signals (observed: answers are captured)
-  answered.forEach((q,k) => SIG.forEach(([_,y],j) => { if ((k+j)%2===0 || j===2) g.appendChild(svgEl("path", {class:"e obs", d:`M${qx+120},${qy[k]} C ${qx+200},${qy[k]} ${sx-110},${y} ${sx-60},${y}`, opacity:.55})); }));
+  answered.forEach((q,k) => SIG.forEach(([_,y],j) => { if ((k+j)%2===0 || j===2) g.appendChild(svgEl("path", {class:`e ${j===3 ? "obs" : "plan"} ${j===3 || show("plan") ? "" : "dim"}`, d:`M${qx+120},${qy[k]} C ${qx+200},${qy[k]} ${sx-110},${y} ${sx-60},${y}`, opacity:.55})); }));
   OUT.forEach(([label,kind,y,from]) => from.forEach(j => g.appendChild(svgEl("path", {class:`e ${kind} ${show(kind)?"":"dim"}`, d:`M${sx+60},${SIG[j][1]} C ${sx+130},${SIG[j][1]} ${ox-110},${y} ${ox-70},${y}`}))));
   answered.forEach((q,k) => { const n = svgEl("g"); const t = svgEl("title"); t.textContent = q.text; n.appendChild(t);
     n.appendChild(svgEl("rect", {class:"qn", x:qx-120, y:qy[k]-15, width:240, height:30, rx:15}));
@@ -1317,13 +1320,13 @@ $$("[data-sig]").forEach(b => b.onclick = () => { sigMode = b.dataset.sig; $$("[
 const M = DATA.meta;
 const PIPE = [
   {t:"Story polls", v:"~11K", s:"founder", d:"The Cumulative Mind, the founder's Instagram account, asked one honest question at a time. The founder reports about 11,000 followers and up to about 3,000 votes on a single question. These figures are founder-reported and were not independently verified for this deck."},
-  {t:"Extraction", v:fmt(M.confirmed_votes), s:"verified", d:`Story voter lists were read with OCR. A voter row counts only if read in at least two frames or matched to a handle seen cleanly elsewhere. Real usernames live in one private file that never leaves the founder's machine; everything else uses anonymous ids. Result: ${fmt(M.confirmed_votes)} confirmed votes in the extraction set.`},
+  {t:"Extraction", v:fmt(M.confirmed_votes), s:"verified", d:`Story voter lists were read with OCR. raW's current extraction pipeline counts a voter row only if it is read in at least two frames or its handle was read cleanly elsewhere; the code of the original extraction behind the model was not available for this review. Usernames stay in private files on the founder's computer; the published model holds only aggregate tribe statistics. Result: ${fmt(M.confirmed_votes)} confirmed votes in the extraction set.`},
   {t:"Audit", v:"37,302", s:"founder", d:"A later audit documented 105 poll instances: 95 trusted, 10 awaiting review, and 37,302 trusted user-vote records. The audit files were not available for this review, so these figures are founder-reported. They count vote records, not people, and not every historical poll has been audited."},
-  {t:"Bridge", v:"23,424", s:"verified", d:`Quiz polls were matched to the audited master only where shared voters agreed at least 90% of the time. Shipped model note: “${M.bridge}”. Reposted questions stay separate on purpose.`},
-  {t:"Tribes", v:"1,795", s:"verified", d:"1,795 voters with at least eight answers were clustered into eight tribes (k-modes, best of 12 restarts, no tribe under 3%). Eight was a product choice for variety; a five-tribe fit measured more accurate (92.0% vs 89.0% under the same policy, 30 August 2026)."},
-  {t:"Tribe Test", v:pct(M.validated_accuracy,1), s:"sim", d:`An adaptive test picks each next question to sharpen its belief the most. Replaying the exact policy on ${fmt(M.validated_on)} labeled voters' real answers recovered their data-defined tribe ${pct(M.validated_accuracy,1)} of the time (chance: 12.5%). Labels and training share one corpus, so this is internal recovery, not psychometric validity or prediction about strangers. Measured with a 27-question cap; simulations averaged ${M.avg_length} questions. ${M.full_pool} of 122 historical questions have enough labeled answers to use.`},
+  {t:"Bridge", v:"23,424", s:"verified", d:`Quiz polls were matched to the audited master by shared-voter agreement (at least 90% among at least 20 shared voters) where that evidence exists, by wording where it does not, and two by hand from the recordings. Matches below 75% agreement were refused. Shipped model note: “${M.bridge}”. Reposted questions stay separate on purpose.`},
+  {t:"Tribes", v:"1,795", s:"docs", d:"Eight tribes were found with k-modes (best of 12 restarts, no tribe under 3%) on the 30 August 2026 corpus, then refit as answers arrived; 1,795 voters with at least eight answers now carry a tribe label. The restart and refit code is documented but not in the repository, so it was not re-run. Eight was a product choice for variety; a five-tribe fit scored higher in internal simulation (92.0% vs 89.0% under the same policy, 30 August 2026)."},
+  {t:"Tribe Test", v:pct(M.validated_accuracy,1), s:"sim", d:`An adaptive test picks each next question to sharpen its belief the most. Replaying the test's policy (27-question cap) on ${fmt(M.validated_on)} labeled voters' real answers recovered their data-defined tribe ${pct(M.validated_accuracy,1)} of the time (uniform chance 12.5%; always guessing the largest tribe: about 28%). Labels and training share one corpus, so this is internal recovery, not psychometric validity or prediction about strangers. Measured with a 27-question cap; simulations averaged ${M.avg_length} questions. Because each voter had answered only about 12 pool questions, this measures classification from all their recorded answers, not the question ordering. ${M.full_pool} of the 122 quiz questions have enough labeled answers to use.`},
 ];
-const STATUS = {verified:["t-verified","Verified in code"], founder:["t-founder","Founder-reported"], sim:["t-sim","Internal simulation"]};
+const STATUS = {verified:["t-verified","Verified in code"], founder:["t-founder","Founder-reported"], sim:["t-sim","Internal simulation"], docs:["t-impl","Documented, not re-run"]};
 PIPE.forEach((p,i) => { const li = el("li"); const b = el("button", {"aria-pressed": String(i===5)}, `<span class="pn">${String(i+1).padStart(2,"0")}</span><strong>${p.t}</strong><span class="pv">${p.v}</span><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span>`); b.onclick = () => showPipe(i); li.appendChild(b); $("#pipe").appendChild(li); });
 function showPipe(i){ $$("#pipe button").forEach((b,k) => b.setAttribute("aria-pressed", String(k===i))); const p = PIPE[i]; $("#pipe-detail").innerHTML = `<div class="row" style="justify-content:space-between"><h3>${String(i+1).padStart(2,"0")} · ${p.t}</h3><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span></div><p class="small muted" style="margin-bottom:0">${p.d}</p>`; brand($("#pipe-detail")); }
 showPipe(5);
@@ -1343,22 +1346,22 @@ const STAGES = [
   {n:"Lebanon", tag:["t-prog","In progress"], rows:{
     "Target users":"Adults 18 to 34 in Lebanon, Beirut first, plus the existing Cumulative Mind audience.",
     "Distribution":"Instagram story polls that link to the same question in the app, WhatsApp sharing, university communities, invite codes.",
-    "Localization":"Lebanese English first, local topics and rooms; Arabic copy for onboarding.",
-    "Trust and safety":"18+ gate, reports, timeouts, bans and blocked words already in the product; human review of reports.",
+    "Localization":"Lebanese English first, with local topics and rooms. Arabic onboarding is planned (funded in the $150K scenario).",
+    "Trust and safety":"Self-declared 18+ gate, reports, timeouts, bans and blocked words already in the product. Reports are stored for review; an in-app review queue is not built yet.",
     "Ready to expand when":"Week-four retention of activated members holds across several monthly cohorts, safety reports stay within set limits, and invites bring in new members without paid acquisition."}},
-  {n:"MENA", tag:["t-plan","Plan"], rows:{
+  {n:"MENA", tag:["t-plan","Planned"], rows:{
     "Target users":"Arabic-speaking young adults in markets close to Lebanon's diaspora and culture, starting with one or two test markets.",
     "Distribution":"Diaspora networks, regional creators, Arabic question formats that travel on Instagram and WhatsApp.",
     "Localization":"Full Arabic, right-to-left interface, dialect-aware questions, local payment methods through the app stores.",
     "Trust and safety":"Arabic-language moderation, a legal review of content rules in each market before launch.",
     "Ready to expand when":"A test market matches Lebanon's activation and retention without the founder seeding rooms."}},
-  {n:"International", tag:["t-plan","Plan"], rows:{
+  {n:"International", tag:["t-plan","Planned"], rows:{
     "Target users":"Diaspora and interest communities anywhere that form around shared questions.",
     "Distribution":"Shareable question pages, community owners who bring their members, partnerships.",
     "Localization":"Multilingual questions and rooms; tribes re-fit on each region's own answers.",
     "Trust and safety":"Scaled moderation tooling, regional policies, transparency reporting.",
     "Ready to expand when":"Rooms sustain themselves through member owners, and acquisition cost is known and repeatable."}},
-  {n:"Global", tag:["t-plan","Plan"], rows:{
+  {n:"Global", tag:["t-plan","Planned"], rows:{
     "Target users":"Anyone who would rather be understood than seen.",
     "Distribution":"The product itself: answers and rooms that people share because they relate to them.",
     "Localization":"Local questions on a shared engine.",
@@ -1392,11 +1395,11 @@ const fly = (function(){
   const far = [[420,90],[450,200],[410,300],[90,300],[70,170],[120,70],[350,320],[180,330]];
   const me = [110,230], next = [470,330];
   const STEPS = [
-    {k:"Step 1", h:"A person enters.", p:"Bored, curious, disconnected or new in town. They answer one honest question.", m:"What raW measures: first-session poll answers, time to first answer."},
-    {k:"Step 2", h:"They find understanding.", p:"The split shows they are not alone. They enter the room where people who answered alike are talking.", m:"What raW measures: poll answer → room action within 24 hours (the north-star candidate)."},
-    {k:"Step 3", h:"They build confidence.", p:"Replies, likes and a returning conversation. The room starts to feel like theirs.", m:"What raW measures: second-week return, replies received in the first week."},
-    {k:"Step 4", h:"They contribute.", p:"They share an experience, answer someone else, start a thread.", m:"What raW measures: share of members who reply to others, not only post."},
-    {k:"Step 5", h:"They welcome the next person.", p:"Someone new arrives, and the person who was once new is the one who replies first.", m:"What raW measures: newcomer second-week return when welcomed by a member versus not."},
+    {k:"Step 1", h:"A person enters.", p:"Bored, curious, disconnected or new in town. They answer one honest question.", m:"What raW would measure: first-session poll answers, time to first answer."},
+    {k:"Step 2", h:"They find understanding.", p:"The split shows they are not alone. Through the Tribe Test, they reach the room of people who answered alike.", m:"What raW would measure: poll answer → room action within 24 hours (the north-star candidate)."},
+    {k:"Step 3", h:"They build confidence.", p:"Replies, likes and a returning conversation. The room starts to feel like theirs.", m:"What raW would measure: second-week return, replies received in the first week."},
+    {k:"Step 4", h:"They contribute.", p:"They share an experience, answer someone else, start a thread.", m:"What raW would measure: share of members who reply to others, not only post."},
+    {k:"Step 5", h:"They welcome the next person.", p:"Someone new arrives, and the person who was once new is the one who replies first.", m:"What raW would measure: newcomer second-week return when welcomed by a member versus not (a comparison, not proof of cause unless tested at random)."},
   ];
   let i = 0;
   const edges = [], nodes = {};
@@ -1436,9 +1439,9 @@ const FUND = [
   {amt:150000, label:"$150K", months:15, burn:9300, team:"Adds a dedicated community and moderation lead.",
    alloc:[["Product reliability and safety",45000],["Community activation",35000],["Legal, privacy and operations",20000],["Analytics and retention evidence",15000],["Mobile readiness",15000],["Early monetization tests",10000],["Reserve",10000]],
    add:["Android release.","Rooms run by member owners, with the founder no longer seeding conversation.","Arabic onboarding and question set."]},
-  {amt:250000, label:"$250K", months:18, burn:13300, team:"Adds a full-time engineer and a first MENA test market.",
-   alloc:[["Product reliability and safety",75000],["Community activation",55000],["Legal, privacy and operations",30000],["Mobile readiness",25000],["Analytics and retention evidence",20000],["Early monetization tests",20000],["MENA test market",15000],["Reserve",10000]],
-   add:["Android release.","Rooms run by member owners, with the founder no longer seeding conversation.","Arabic onboarding and question set.","One MENA test market launched with localized onboarding, measured against Lebanon's cohorts.","A second monetization test, so pricing rests on two data points."]},
+  {amt:250000, label:"$250K", months:18, burn:13300, team:"Everything in $150K, plus a full-time engineer.",
+   alloc:[["Product reliability and safety",75000],["Community activation",55000],["Legal, privacy and operations",30000],["Mobile readiness",25000],["Analytics and retention evidence",20000],["Early monetization tests",20000],["MENA test market (if Lebanon's gate is met)",15000],["Reserve",10000]],
+   add:["Android release.","Rooms run by member owners, with the founder no longer seeding conversation.","Arabic onboarding and question set.","If Lebanon meets its expansion gate, one MENA test market launched with localized onboarding, measured against Lebanon's cohorts.","A second monetization test, so pricing rests on two data points."]},
 ];
 FUND.forEach((f,i) => { const b = el("button", {"aria-pressed":"false"}, f.label); b.onclick = () => renderFund(i); $("#fund-tabs").appendChild(b); });
 function renderFund(i){
