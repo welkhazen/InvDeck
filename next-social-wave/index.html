@@ -1159,7 +1159,7 @@ const flow = (function(){
       s.appendChild(el("p", {class:"tiny"}, i===2 ? "Split shown is the model's estimate from labeled historical answers." : "Pick a side. In the app, other members see only the totals."));
     } else if (i===3){
       s.appendChild(el("p", {class:"s-h"}, "Rooms"));
-      [["LN","Late Night Talks","Real talk after midnight."],["TR","Tribe room","Opens with a single-use invite after the Tribe Test."],["IJ","Is It Just Me?","Relatable moments and shared observations."]].forEach(([ic,t,d]) => {
+      [["LN","Late Night Talks","Real talk after midnight."],["TR","Tribe room","Opens with a single-use invite after the Tribe Test."],["IJ","Is It Just Me?","It's never just you."]].forEach(([ic,t,d]) => {
         const r = el("div", {class:"room"}); r.appendChild(el("span", {class:"ic"}, ic)); r.appendChild(el("span", {}, `<strong style="display:block;font-size:.88rem">${t}</strong><span class="tiny">${d}</span>`)); s.appendChild(r); });
     } else {
       s.appendChild(el("p", {class:"s-h"}, "Late Night Talks"));
