@@ -1,0 +1,1472 @@
+<title>raW — The Next Social Wave</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="raW pre-seed investor presentation: an anonymous-first social discovery platform. Answer one honest question, find people you relate to, start talking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Raleway:ital,wght@0,300..700;1,400&display=swap">
+<style>
+/*__MICHROMA__*/
+/* Layout: one editorial scroll of 14 numbered chapters (the order is the argument);
+   presentation mode shows one chapter per screen. Dark metallic ground, gold used only for
+   emphasis, periwinkle only for model/data. Single dark look by brand choice. */
+:root{
+  --ink:#080808; --surface:#0f0f10; --surface-2:#151517; --line:#1a1a1a; --line-2:#2a2a2e;
+  --text:#ebebeb; --silver:#d9d9d9; --muted:#a19e96; --faint:#706d66;
+  --gold:#f1c42d; --gold-soft:rgba(241,196,45,.14); --peri:#818cf8; --peri-soft:rgba(129,140,248,.16);
+  --display:"Michroma","Eurostile","Arial Black",sans-serif;
+  --serif:"Instrument Serif","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --body:"Raleway","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --gut-r:max(16px,env(safe-area-inset-right,0px));
+  --head:56px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + env(safe-area-inset-top,0px))}
+html.reduce-motion{scroll-behavior:auto}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:1.0625rem;line-height:1.62;letter-spacing:.005em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+a{color:var(--silver);text-underline-offset:3px}
+a:hover{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+button{font:inherit;color:inherit}
+img{max-width:100%}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.W{color:var(--gold)}
+.rw{text-transform:none;letter-spacing:inherit}
+.wordmark{font-family:var(--display);letter-spacing:.02em}
+.logo{display:inline-block;background:url("__IMG_logo__") center/contain no-repeat;flex:none}
+
+/* ---------- header ---------- */
+.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;height:var(--head);display:flex;align-items:center;gap:12px;padding-left:var(--gut);padding-right:var(--gut-r);background:rgba(8,8,8,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:.95rem}
+.brand .logo{width:26px;height:26px}
+.where{flex:1;min-width:0;display:flex;align-items:baseline;gap:10px;font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden}
+.where b{font-family:var(--display);font-weight:400;color:var(--silver);font-size:.7rem;letter-spacing:.12em}
+.where span{overflow:hidden;text-overflow:ellipsis}
+.tools{display:flex;gap:6px}
+.tbtn{background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:6px 12px;font-size:.78rem;color:var(--silver);cursor:pointer;white-space:nowrap}
+.tbtn:hover{border-color:var(--silver);color:var(--text)}
+.tbtn[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+.progress{position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--gold)}
+@media (max-width:720px){.where{display:none}.tools{margin-left:auto}.hide-sm{display:none}}
+
+/* chapter menu */
+.menu{position:fixed;z-index:70;top:calc(var(--head) + env(safe-area-inset-top,0px) + 8px);right:var(--gut-r);width:min(360px,calc(100vw - 32px));max-height:calc(100dvh - var(--head) - 40px);overflow:auto;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.menu ol{list-style:none;margin:0;padding:0}
+.menu button{width:100%;text-align:left;display:flex;gap:12px;align-items:baseline;background:none;border:0;border-radius:8px;padding:9px 10px;cursor:pointer;color:var(--silver);font-size:.92rem}
+.menu button:hover,.menu button[aria-current="true"]{background:var(--surface-2);color:var(--text)}
+.menu button b{font-family:var(--display);font-weight:400;font-size:.66rem;color:var(--faint);width:22px;flex:none}
+.menu button[aria-current="true"] b{color:var(--gold)}
+.menu .menu-foot{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:8px;padding-top:10px}
+
+/* pager */
+.pager{position:fixed;z-index:40;right:calc(var(--gut-r) + 4px);bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;gap:6px}
+.pager button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:rgba(15,15,16,.9);cursor:pointer;color:var(--silver);font-size:1.1rem}
+.pager button:hover{border-color:var(--gold);color:var(--gold)}
+.pager button:disabled{opacity:.3;cursor:default}
+
+/* ---------- chapters ---------- */
+main{padding-top:calc(var(--head) + env(safe-area-inset-top,0px))}
+.ch{position:relative;border-top:1px solid var(--line);padding-block:clamp(64px,11vh,128px);padding-left:var(--gut);padding-right:var(--gut-r)}
+.wrap{max-width:1120px;margin:0 auto;position:relative}
+.eyebrow{display:flex;gap:14px;align-items:center;font-family:var(--display);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 22px}
+.eyebrow .n{color:var(--gold)}
+.eyebrow::after{content:"";height:1px;flex:0 1 80px;background:var(--line-2)}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.04}
+h1{font-size:clamp(2.6rem,6.4vw,5.4rem)}
+h2{font-size:clamp(2.1rem,4.6vw,3.7rem);max-width:20ch}
+h2 em,h1 em{font-style:italic;color:var(--silver)}
+h3{font-family:var(--body);font-weight:600;font-size:1.06rem;letter-spacing:.01em}
+.lede{font-size:clamp(1.08rem,1.6vw,1.25rem);color:var(--silver);max-width:62ch;margin:22px 0 0}
+p{max-width:66ch}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+.tiny{font-size:.76rem;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:16px}
+.grid{display:grid;gap:clamp(16px,2.4vw,28px)}
+.grid>*{min-width:0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}}
+.mt{margin-top:clamp(32px,5vw,56px)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,2.4vw,28px)}
+.num-xl{font-family:var(--serif);font-size:clamp(4.2rem,11vw,8.5rem);line-height:.9;letter-spacing:-.02em}
+.num-l{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;font-variant-numeric:tabular-nums}
+.label{font-family:var(--display);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.ref{font-size:.7em;vertical-align:super;line-height:0;color:var(--muted);text-decoration:none;margin-left:2px}
+.ref:hover{color:var(--gold)}
+.note{border-left:2px solid var(--line-2);padding:2px 0 2px 14px;color:var(--muted);font-size:.9rem;max-width:72ch}
+.note strong{color:var(--silver);font-weight:600}
+
+/* tags: state is always text, never color alone */
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:3px 9px;border:1px solid var(--line-2);color:var(--silver);white-space:nowrap}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.t-verified{background:var(--silver);color:#111;border-color:var(--silver)}
+.t-impl{color:var(--silver)}
+.t-prog{color:var(--peri);border-color:rgba(129,140,248,.5)}
+.t-plan{color:var(--muted);border-style:dashed}
+.t-founder{color:var(--gold);border-color:rgba(241,196,45,.45)}
+.t-sim{color:var(--peri);border-color:rgba(129,140,248,.5)}
+.t-illus{color:var(--gold);border-color:rgba(241,196,45,.45);border-style:dashed}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 20px;border:1px solid var(--line-2);background:transparent;cursor:pointer;text-decoration:none;color:var(--text);font-weight:600;font-size:.95rem}
+.btn:hover{border-color:var(--silver);color:var(--text)}
+.btn.gold{background:var(--gold);color:#111;border-color:var(--gold)}
+.btn.gold:hover{background:#ffd54a;color:#111}
+.btn.small{padding:8px 14px;font-size:.85rem}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+/* evidence */
+details.ev{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:18px}
+details.ev>summary{cursor:pointer;list-style:none;padding:14px 18px;display:flex;justify-content:space-between;gap:12px;font-size:.9rem;color:var(--silver)}
+details.ev>summary::-webkit-details-marker{display:none}
+details.ev>summary::after{content:"+";font-family:var(--display);color:var(--gold)}
+details.ev[open]>summary::after{content:"–"}
+details.ev .ev-body{padding:0 18px 18px;font-size:.92rem;color:var(--muted)}
+details.ev .ev-body p{margin:.6em 0}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.88rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--silver);font-size:.78rem;letter-spacing:.04em}
+td{color:var(--muted)}
+td:first-child{color:var(--text)}
+
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 3.4rem;gap:12px;align-items:center;font-size:.86rem}
+.bar-row .bl{color:var(--silver);line-height:1.25}
+.bar-track{height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden;position:relative}
+.bar-fill{height:100%;background:var(--silver);border-radius:999px 4px 4px 999px;transition:width .5s ease}
+.bar-fill.gold{background:var(--gold)}
+.bar-fill.hollow{background:transparent;border:1.5px solid var(--silver)}
+.bar-row .bv{text-align:right;font-variant-numeric:tabular-nums;color:var(--text)}
+@media (max-width:520px){.bar-row{grid-template-columns:minmax(0,1fr) 3.2rem}.bar-row .bl{grid-column:1/-1}.bar-row .bar-track{grid-column:1}}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:8px;border-radius:999px;margin-right:6px;vertical-align:middle}
+
+/* ---------- 01 hero ---------- */
+#c01{border-top:0;overflow:hidden;padding-block:clamp(72px,14vh,160px) clamp(64px,10vh,120px)}
+#net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
+.hero{position:relative;z-index:1}
+.hero-mark{display:flex;align-items:center;gap:18px;margin-bottom:clamp(28px,5vw,48px)}
+.hero-mark .logo{width:clamp(56px,7vw,76px);height:clamp(56px,7vw,76px)}
+.hero-mark .wordmark{font-size:clamp(2rem,4.6vw,3.2rem)}
+.hero h1{max-width:15ch}
+.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.6vw,2rem);color:var(--silver);margin:22px 0 0}
+.journey{display:flex;flex-wrap:wrap;gap:8px 6px;align-items:center;margin-top:clamp(28px,4vw,44px);font-family:var(--display);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.journey span{border:1px solid var(--line-2);border-radius:999px;padding:7px 12px;background:rgba(8,8,8,.6)}
+.journey span:first-child{color:var(--gold);border-color:rgba(241,196,45,.45)}
+.journey i{font-style:normal;color:var(--faint)}
+.hero .meta{margin-top:28px;font-size:.82rem;color:var(--faint);letter-spacing:.04em}
+
+/* ---------- 02 ---------- */
+.dots6{display:flex;gap:clamp(8px,1.6vw,14px);margin:6px 0 18px}
+.dots6 i{width:clamp(28px,4.4vw,44px);aspect-ratio:1;border-radius:50%;border:1.5px solid var(--line-2);background:var(--surface-2)}
+.dots6 i.on{background:var(--gold);border-color:var(--gold)}
+
+/* ---------- 03 ---------- */
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.85rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--silver);color:#111}
+.cmp-card .geo{display:grid;grid-template-columns:5.6rem minmax(0,1fr) 3.4rem;gap:10px;align-items:center;font-size:.82rem;color:var(--muted);padding:4px 0}
+.cmp-card .geo.sel{color:var(--text)}
+.cmp-card .geo .bar-fill{background:var(--line-2)}
+.cmp-card .geo.sel .bar-fill{background:var(--gold)}
+.cmp-card .geo .bv{text-align:right;font-variant-numeric:tabular-nums}
+.na{font-size:.78rem;color:var(--faint);font-style:italic}
+
+/* ---------- 04 loops ---------- */
+.loop svg{width:100%;height:auto;display:block;max-width:420px;margin:0 auto}
+.loop text{font-family:var(--body);font-size:13px;fill:var(--silver)}
+.loop .ring{fill:none;stroke:var(--line-2);stroke-width:1.5}
+.loop.raw .ring{stroke:rgba(241,196,45,.4)}
+.loop .node{fill:var(--surface-2);stroke:var(--line-2)}
+.loop.raw .node{stroke:var(--gold)}
+.loop .runner{fill:var(--silver)}
+.loop.raw .runner{fill:var(--gold)}
+
+/* ---------- 05 flow ---------- */
+.flow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:clamp(24px,4vw,56px);align-items:center}
+@media (max-width:820px){.flow{grid-template-columns:minmax(0,1fr)}}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.steps button{width:100%;text-align:left;display:flex;gap:14px;align-items:flex-start;background:none;border:1px solid transparent;border-radius:12px;padding:12px 14px;cursor:pointer;color:var(--muted)}
+.steps button b{font-family:var(--display);font-weight:400;font-size:.66rem;color:var(--faint);padding-top:5px;flex:none;width:18px}
+.steps button strong{display:block;color:var(--silver);font-weight:600}
+.steps button[aria-current="true"]{border-color:var(--line-2);background:var(--surface)}
+.steps button[aria-current="true"] b{color:var(--gold)}
+.steps button[aria-current="true"] strong{color:var(--text)}
+.phone{width:100%;max-width:340px;margin:0 auto;aspect-ratio:9/17.5;border:1px solid var(--line-2);border-radius:38px;background:linear-gradient(180deg,#121214,#0b0b0c);padding:18px 16px;position:relative;overflow:hidden}
+.phone::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:84px;height:20px;border-radius:999px;background:#000}
+.screen{height:100%;display:flex;flex-direction:column;gap:12px;padding-top:30px;font-size:.86rem}
+.screen .s-h{font-family:var(--display);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.av-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.av-grid button{border:1.5px solid var(--line-2);border-radius:50%;padding:3px;background:none;cursor:pointer;aspect-ratio:1}
+.av-grid button[aria-pressed="true"]{border-color:var(--gold)}
+.av-grid img{width:100%;height:100%;border-radius:50%;display:block}
+.poll{border:1px solid var(--line-2);border-radius:16px;padding:14px;background:var(--surface)}
+.poll .q{font-family:var(--serif);font-size:1.45rem;line-height:1.1;margin:4px 0 12px}
+.poll .opt{display:flex;justify-content:space-between;border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;margin-top:8px;position:relative;overflow:hidden}
+.poll .opt.mine{border-color:var(--gold)}
+.chat{display:flex;flex-direction:column;gap:10px}
+.msg{display:flex;gap:8px;align-items:flex-end}
+.msg img{width:28px;height:28px;border-radius:50%}
+.msg p{margin:0;background:var(--surface-2);border:1px solid var(--line);border-radius:14px 14px 14px 4px;padding:8px 10px;font-size:.8rem;color:var(--silver)}
+.msg.me{flex-direction:row-reverse}
+.msg.me p{border-radius:14px 14px 4px 14px;border-color:rgba(241,196,45,.35)}
+.room{border:1px solid var(--line-2);border-radius:14px;padding:12px;display:flex;gap:10px;align-items:center;background:var(--surface)}
+.room .ic{width:38px;height:38px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;font-family:var(--display);font-size:.7rem;color:var(--gold)}
+
+/* ---------- 06 demo ---------- */
+.demo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(18px,3vw,36px);align-items:start}
+@media (max-width:860px){.demo{grid-template-columns:minmax(0,1fr)}}
+.qcard{background:var(--surface);border:1px solid var(--line-2);border-radius:20px;padding:clamp(20px,3vw,32px);min-height:320px;display:flex;flex-direction:column;gap:16px}
+.qmeta{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.qtext{font-family:var(--serif);font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.08;text-wrap:balance}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:420px){.answers{grid-template-columns:minmax(0,1fr)}}
+.ans{border:1px solid var(--line-2);border-radius:14px;padding:16px;background:var(--surface-2);cursor:pointer;text-align:left;font-weight:600;font-size:1rem;color:var(--text);min-height:56px}
+.ans:hover{border-color:var(--gold)}
+.ans:disabled{cursor:default;opacity:.55}
+.qprog{display:flex;gap:4px}
+.qprog i{height:3px;flex:1;background:var(--line-2);border-radius:2px}
+.qprog i.done{background:var(--gold)}
+.feedback{font-size:.86rem;color:var(--muted);min-height:2.6em}
+.feedback b{color:var(--silver);font-weight:600}
+.post .bar-row{grid-template-columns:minmax(0,6.6rem) minmax(0,1fr) 3.2rem}
+.post .bar-fill{background:var(--peri);opacity:.75}
+.post .lead .bar-fill{background:var(--gold);opacity:1}
+.post .lead .bl{color:var(--text)}
+.delta{font-size:.7rem;margin-left:4px}
+.delta.up{color:var(--gold)}.delta.down{color:var(--faint)}
+.trace svg{width:100%;height:auto;display:block}
+.result{border:1px solid rgba(241,196,45,.4);border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(241,196,45,.06),transparent)}
+.result .tname{font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.6rem);color:var(--gold);letter-spacing:.04em}
+.limits{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.84rem;color:var(--muted)}
+.limits li{padding-left:16px;position:relative}
+.limits li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border:1px solid var(--peri);border-radius:50%}
+
+/* ---------- 07 signals ---------- */
+.sig-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sig svg{display:block;width:100%;min-width:640px;height:auto}
+.sig text{font-family:var(--body);font-size:13px;fill:var(--silver)}
+.sig .hub{fill:var(--gold-soft);stroke:var(--gold)}
+.sig .qn{fill:var(--surface-2);stroke:var(--line-2)}
+.sig .sn{fill:var(--surface);stroke:var(--peri)}
+.sig .on{fill:var(--surface);stroke:var(--silver)}
+.sig .e{stroke:var(--line-2);stroke-width:1.2;fill:none}
+.sig .e.obs{stroke:var(--silver)}
+.sig .e.plan{stroke:var(--peri);stroke-dasharray:5 5}
+.sig .dim{opacity:.18}
+.sig .cap{font-size:11px;fill:var(--muted)}
+
+/* ---------- 08 pipeline ---------- */
+.pipe{list-style:none;margin-inline:0;margin-bottom:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;counter-reset:p}
+@media (max-width:900px){.pipe{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pipe button{width:100%;height:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;color:var(--muted)}
+.pipe button[aria-pressed="true"]{border-color:var(--gold);background:var(--surface-2)}
+.pipe .pn{font-family:var(--display);font-size:.6rem;color:var(--faint);letter-spacing:.14em}
+.pipe button[aria-pressed="true"] .pn{color:var(--gold)}
+.pipe strong{color:var(--text);font-size:.92rem;line-height:1.25}
+.pipe .pv{font-family:var(--serif);font-size:1.5rem;color:var(--silver);line-height:1}
+
+/* ---------- 09 columns ---------- */
+.col h3{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--line-2);margin-bottom:6px}
+.items{list-style:none;margin:0;padding:0}
+.items li{padding:11px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.items li span:first-child{color:var(--silver);font-size:.93rem}
+.items .tiny{line-height:1.45}
+.items .tag,.ladder .tag,.pipe .tag{align-self:flex-start}
+.pipe .tag{white-space:normal}
+.badges{display:flex;gap:12px;align-items:end}
+.badges img{width:30px;height:auto}
+
+/* ---------- 10 ladder ---------- */
+.ladder{list-style:none;margin-inline:0;margin-bottom:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:end}
+@media (max-width:820px){.ladder{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.ladder{grid-template-columns:minmax(0,1fr)}}
+.ladder li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.ladder li:nth-child(1){min-height:200px}.ladder li:nth-child(2){min-height:230px}.ladder li:nth-child(3){min-height:260px}.ladder li:nth-child(4){min-height:290px}
+@media (max-width:820px){.ladder li{min-height:0!important}}
+.ladder .step{font-family:var(--display);font-size:.6rem;letter-spacing:.16em;color:var(--gold)}
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,3vw,36px)}
+@media (max-width:760px){.calc{grid-template-columns:minmax(0,1fr)}}
+.field{display:flex;flex-direction:column;gap:6px;font-size:.88rem}
+.field label{display:flex;justify-content:space-between;gap:10px;color:var(--silver)}
+.field output{font-variant-numeric:tabular-nums;color:var(--gold)}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.outs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:460px){.outs{grid-template-columns:minmax(0,1fr)}}
+.outs div{border:1px dashed rgba(241,196,45,.4);border-radius:12px;padding:14px}
+.outs b{display:block;font-family:var(--serif);font-weight:400;font-size:1.9rem;line-height:1.05;font-variant-numeric:tabular-nums}
+
+/* ---------- 11 rings ---------- */
+.expand{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:center}
+@media (max-width:820px){.expand{grid-template-columns:minmax(0,1fr)}}
+.rings svg{width:100%;max-width:440px;height:auto;display:block;margin:0 auto}
+.rings circle{fill:transparent;stroke:var(--line-2);stroke-width:1.5;cursor:pointer;transition:stroke .2s}
+.rings circle.active{stroke:var(--gold);stroke-width:2.5}
+.rings text{font-family:var(--display);font-size:10px;letter-spacing:.14em;fill:var(--muted);text-transform:uppercase;pointer-events:none}
+.rings text.active{fill:var(--gold)}
+.stage-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.stage dl{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);gap:10px 18px;margin:0;font-size:.9rem}
+@media (max-width:520px){.stage dl{grid-template-columns:minmax(0,1fr)}.stage dt{margin-top:6px}}
+.stage dt{color:var(--muted);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
+.stage dd{margin:0;color:var(--silver)}
+
+/* ---------- 12 flywheel ---------- */
+.fly{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,48px);align-items:center}
+@media (max-width:820px){.fly{grid-template-columns:minmax(0,1fr)}}
+.fly svg{width:100%;height:auto;display:block}
+.fly .edge{stroke:var(--line-2);stroke-width:1.2;transition:opacity .6s,stroke .6s}
+.fly .edge.lit{stroke:var(--silver)}
+.fly .edge.give{stroke:var(--gold)}
+.fly .p{fill:var(--surface-2);stroke:var(--line-2);stroke-width:1.2;transition:all .6s}
+.fly .p.room{stroke:var(--silver)}
+.fly .p.me{fill:var(--gold);stroke:var(--gold)}
+.fly .p.new{fill:var(--peri);stroke:var(--peri)}
+.fly .hidden{opacity:0}
+.fly-steps{list-style:none;margin:0 0 18px;padding:0;display:flex;gap:6px}
+.fly-steps li{flex:1;height:3px;border-radius:2px;background:var(--line-2)}
+.fly-steps li.done{background:var(--gold)}
+
+/* ---------- 13 funding ---------- */
+.fund-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.kpis{grid-template-columns:minmax(0,1fr)}}
+.kpis div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
+.kpis b{display:block;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.05;font-variant-numeric:tabular-nums}
+.alloc .bar-row{grid-template-columns:minmax(0,13rem) minmax(0,1fr) 4.2rem}
+.miles{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:m}
+.miles li{counter-increment:m;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;font-size:.92rem;color:var(--silver)}
+.miles li::before{content:counter(m,decimal-leading-zero);font-family:var(--display);font-size:.62rem;color:var(--gold);padding-top:4px}
+.miles li.add{color:var(--text)}
+
+/* ---------- 14 + sources ---------- */
+#c14 .wrap{text-align:left}
+.final h2{font-size:clamp(2.2rem,5vw,4.2rem);max-width:22ch}
+.final .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--silver);margin-top:24px;max-width:40ch}
+.contact{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.95rem}
+.contact code{font-family:var(--body);background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:8px 12px;user-select:all;color:var(--text)}
+.sources ol{padding-left:1.4em;margin:0;display:grid;gap:10px;font-size:.88rem;color:var(--muted)}
+.sources li{max-width:90ch}
+.sources li:target{color:var(--text)}
+.sources a{word-break:break-word}
+footer{padding-block:40px calc(40px + env(safe-area-inset-bottom,0px));padding-left:var(--gut);padding-right:var(--gut-r);border-top:1px solid var(--line);color:var(--faint);font-size:.8rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- presentation mode ---------- */
+body.present .ch,body.present .appendix,body.present footer{display:none}
+body.present .ch.is-active{display:flex;align-items:center;min-height:calc(100dvh - var(--head) - env(safe-area-inset-top,0px));border-top:0}
+body.present .ch.is-active>.wrap{width:100%}
+body.present .ch.is-active{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:.25}to{opacity:1}}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion:reduce){html:not(.motion-on) *{animation:none!important;transition:none!important}html:not(.motion-on){scroll-behavior:auto}}
+html.reduce-motion *{animation:none!important;transition:none!important}
+
+/* ---------- phone overrides (kept last so they win over component rules) ---------- */
+@media (max-width:520px){
+  .post .bar-row{grid-template-columns:minmax(0,5.2rem) minmax(0,1fr) 2.8rem}
+  .post .bar-row .bl,.post .bar-row .bar-track{grid-column:auto}
+  .alloc .bar-row{grid-template-columns:minmax(0,1fr) 3.6rem}
+}
+@media (max-width:720px){body:not(.present) .pager{display:none}}
+body.present .ch.is-active{padding-bottom:96px}
+</style>
+
+<header class="top">
+  <a class="brand" href="#c01" aria-label="raW, back to opening"><span class="logo" role="img" aria-label="raW logo"></span><span class="wordmark">ra<span class="W">W</span></span></a>
+  <div class="where" aria-live="polite"><b id="where-n">01 / 14</b><span id="where-t">Opening</span></div>
+  <div class="tools">
+    <button class="tbtn" id="btn-menu" aria-expanded="false" aria-controls="menu">Chapters</button>
+    <button class="tbtn" id="btn-present" aria-pressed="false" title="One chapter per screen. Arrow keys or swipe to move. Esc to exit.">Present</button>
+    <button class="tbtn hide-sm" id="btn-motion" aria-pressed="false" title="Turn animation off or on">Reduce motion</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<nav class="menu" id="menu" hidden aria-label="Chapters">
+  <ol id="menu-list"></ol>
+  <div class="menu-foot">
+    <button class="tbtn" data-goto="sources">Sources</button>
+    <button class="tbtn" id="btn-motion-2" aria-pressed="false">Reduce motion</button>
+    <button class="tbtn" id="btn-restart">Restart from the beginning</button>
+  </div>
+</nav>
+
+<div class="pager" aria-label="Chapter navigation">
+  <button id="prev" aria-label="Previous chapter">&#8592;</button>
+  <button id="next" aria-label="Next chapter">&#8594;</button>
+</div>
+
+<main id="top">
+
+<!-- ======================= 01 OPENING ======================= -->
+<section class="ch" id="c01" data-title="Opening" aria-labelledby="h01">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap hero">
+    <div class="hero-mark"><span class="logo" role="img" aria-label="raW logo"></span><span class="wordmark">ra<span class="W">W</span></span></div>
+    <h1 id="h01">The next social wave starts with one honest answer.</h1>
+    <p class="sub">From being seen to being understood.</p>
+    <div class="journey" aria-label="The core journey">
+      <span>Question</span><i>→</i><span>Answer</span><i>→</i><span>Match</span><i>→</i><span>Talk</span><i>→</i><span>Insight</span><i>→</i><span>Return</span>
+    </div>
+    <div class="row mt">
+      <button class="btn gold" data-goto="c02">Begin</button>
+      <button class="btn" data-goto="c06">Answer five questions</button>
+    </div>
+    <p class="meta">Pre-seed presentation · Built in Lebanon · October 2026</p>
+  </div>
+</section>
+
+<!-- ======================= 02 PROBLEM ======================= -->
+<section class="ch" id="c02" data-title="The human problem" aria-labelledby="h02">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">02</span>The human problem</p>
+    <h2 id="h02">We have never been more connected. Yet millions still feel alone.</h2>
+    <div class="grid g2 mt" style="align-items:end">
+      <div>
+        <div class="dots6" role="img" aria-label="One of six circles highlighted"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="num-xl">1 in 6</div>
+        <p class="lede" style="margin-top:12px">people worldwide experience loneliness, according to the WHO Commission on Social Connection.<a class="ref" href="#src-who">1</a></p>
+        <p class="tiny">15.8% estimated prevalence, data from 2014 to 2023. Published June 2025.</p>
+      </div>
+      <div class="grid g2">
+        <div class="panel"><div class="num-l">17–21%</div><p class="small muted">of people aged 13 to 29 feel lonely, the highest of any age group. Teenagers are highest of all.<a class="ref" href="#src-who">1</a></p></div>
+        <div class="panel"><div class="num-l">24% <span class="muted" style="font-size:.5em">vs</span> 11%</div><p class="small muted">loneliness in low-income countries compared with high-income countries.<a class="ref" href="#src-who">1</a></p></div>
+        <div class="panel"><div class="num-l">≈871,000</div><p class="small muted">deaths a year associated with loneliness, about 100 every hour. A modeled estimate.<a class="ref" href="#src-who">1</a></p></div>
+        <div class="panel"><div class="num-l">68%</div><p class="small muted">of the world was online in 2024. Access to each other is no longer the gap.<a class="ref" href="#src-itu">8</a></p></div>
+      </div>
+    </div>
+
+    <details class="ev">
+      <summary>Age, geography and method</summary>
+      <div class="ev-body">
+        <div class="grid g2">
+          <div>
+            <p class="label">Loneliness by WHO region</p>
+            <div class="bars" id="who-bars" role="img" aria-label="Loneliness prevalence: WHO African Region 24 percent, Eastern Mediterranean about 21 percent, South-East Asia 18 percent, global 15.8 percent."></div>
+          </div>
+          <div>
+            <p class="label">By country income group</p>
+            <div class="bars" id="inc-bars" role="img" aria-label="Loneliness: low-income countries 24 percent, high-income countries 11 percent."></div>
+          </div>
+        </div>
+        <p><strong>Other WHO regions</strong> are omitted because we could not verify their values from the report for this deck.</p>
+        <p><strong>Definitions.</strong> Loneliness is the painful feeling that one's connections fall short of what one wants. Social isolation is having few connections. Neither is a clinical diagnosis. Gallup's separate global measure found 23% of adults felt lonely "a lot of the day yesterday" in 2023.<a class="ref" href="#src-gallup">2</a></p>
+        <p><strong>Limits.</strong> The 871,000 figure is a modeled association, not a count of deaths caused by loneliness. Prevalence estimates pool surveys that differ in wording and year.</p>
+        <p><strong>What raW is not.</strong> raW is a social discovery product. It is not therapy, a medical service or a treatment for loneliness, depression or anxiety.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ======================= 03 LEBANON ======================= -->
+<section class="ch" id="c03" data-title="Why Lebanon, why now" aria-labelledby="h03">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">03</span>Why Lebanon, why now</p>
+    <h2 id="h03">In Lebanon, connection isn't an abstract need.</h2>
+    <p class="lede">Since 2019, Lebanon has lived through a financial collapse, the 2020 Beirut port explosion, a pandemic and war. People stayed online. Many of the structures around them did not hold.</p>
+
+    <div class="grid g2 mt">
+      <div class="panel">
+        <p class="label">Before and after the crisis</p>
+        <div class="legend" style="margin:10px 0 16px"><span><i style="border:1.5px solid var(--silver)"></i>Earlier measurement</span><span><i style="background:var(--gold)"></i>Latest measurement</span></div>
+        <div class="bars" id="leb-bars" role="img" aria-label="Poverty rose from 12 percent in 2012 to 44 percent in 2022. Unemployment rose from 11.4 percent in 2018 to 2019 to 29.6 percent in January 2022. Youth unemployment rose from 23 percent to 47.8 percent over the same period."></div>
+        <p class="tiny" style="margin-top:14px">Poverty: World Bank, 2012 vs 2022, five of eight governorates surveyed.<a class="ref" href="#src-wb">4</a> Unemployment: CAS and ILO Labour Force Survey, 2018–19 vs January 2022; youth means ages 15 to 24.<a class="ref" href="#src-lfs">5</a></p>
+      </div>
+      <div class="stack">
+        <div class="panel">
+          <p class="label">Mental-health screening, 2022</p>
+          <div class="grid g3" style="margin-top:12px">
+            <div><div class="num-l">47.8%</div><p class="tiny">probable depression</p></div>
+            <div><div class="num-l">45.3%</div><p class="tiny">probable anxiety</p></div>
+            <div><div class="num-l">43.5%</div><p class="tiny">probable PTSD</p></div>
+          </div>
+          <p class="tiny">Nationally representative phone survey of 1,000 adults, July to September 2022. These are screening results, not diagnoses. Fieldwork predates the 2024 war.<a class="ref" href="#src-karam">3</a></p>
+        </div>
+        <div class="grid g2">
+          <div class="panel"><div class="num-l">145<span class="muted" style="font-size:.45em"> of 147</span></div><p class="tiny">countries for life evaluation, World Happiness Report 2025 (2022–2024 average).<a class="ref" href="#src-whr">9</a></p></div>
+          <div class="panel"><div class="num-l">91.6%</div><p class="tiny">of people in Lebanon use the internet, early 2025.<a class="ref" href="#src-dr">10</a></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt">
+      <div class="row" style="justify-content:space-between">
+        <p class="label" style="margin:0">Compare where comparable data exists</p>
+        <div class="seg" role="group" aria-label="Geography">
+          <button aria-pressed="false" data-geo="0">Global</button>
+          <button aria-pressed="false" data-geo="1">MENA</button>
+          <button aria-pressed="true" data-geo="2">Lebanon</button>
+        </div>
+      </div>
+      <div class="grid g3" id="cmp" style="margin-top:16px"></div>
+      <p class="tiny" style="margin-top:12px">Each card names the exact grouping and year. "MENA" uses the closest regional grouping each source publishes. Where no comparable figure exists, the card says so instead of estimating one.</p>
+    </div>
+
+    <details class="ev">
+      <summary>How to read these numbers</summary>
+      <div class="ev-body">
+        <p><strong>Earlier and latest measurements</strong> for poverty and unemployment come from the same source and method, so the change is meaningful. The poverty figure uses a new, unofficial 2022 poverty line and excludes three governorates the surveyors could not reach.<a class="ref" href="#src-wb">4</a></p>
+        <p><strong>Mental-health figures</strong> are not a trend. An earlier national survey (2002–2003, face-to-face diagnostic interviews) estimated lifetime prevalence near 25%. It used a different method, so the two numbers cannot be compared as before and after.<a class="ref" href="#src-karam">3</a></p>
+        <p><strong>Correlation, not causation.</strong> These indicators show pressure on daily life. They do not show that social media or the lack of it caused any of it, and they do not show that raW would change them.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ======================= 04 BROKEN EXPERIENCE ======================= -->
+<section class="ch" id="c04" data-title="The broken social experience" aria-labelledby="h04">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">04</span>The broken social experience</p>
+    <h2 id="h04">Social media made us visible. It didn't always make us understood.</h2>
+    <div class="grid g2 mt">
+      <figure class="loop panel" style="margin:0">
+        <p class="label">The familiar loop</p>
+        <svg viewBox="0 0 360 300" role="img" aria-label="Loop: post, scroll, compare, repeat."><g id="loop-a"></g></svg>
+        <figcaption class="small muted">Built around what people show. The feed rewards performance and attention.</figcaption>
+      </figure>
+      <figure class="loop raw panel" style="margin:0">
+        <p class="label" style="color:var(--gold)">raW's proposed loop</p>
+        <svg viewBox="0 0 360 300" role="img" aria-label="Loop: answer, relate, connect, contribute, return."><g id="loop-b"></g></svg>
+        <figcaption class="small muted">Built around what people think. Every turn starts with a question and ends with a person.</figcaption>
+      </figure>
+    </div>
+    <div class="panel mt" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      <div class="num-l" id="sm-bad">≈65%</div>
+      <p class="small" style="margin:0;flex:1;min-width:220px">From raW's own history: asked <em>"Social media: good, or bad?"</em>, about two in three of <span id="sm-n">234</span> labeled answerers leaned <strong>Bad</strong>. <span class="tiny">Model estimate from labeled historical answers; not a representative survey.</span></p>
+    </div>
+    <p class="note mt"><strong>This is a design hypothesis.</strong> raW has not yet measured that its loop retains people better than a feed. Proving it is what this round pays for.</p>
+
+    <div class="mt">
+      <p class="label">Who already serves this need, and what raW does differently</p>
+      <div class="table-wrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th scope="col">Product</th><th scope="col">What it does well</th><th scope="col">Where raW differs</th></tr></thead>
+          <tbody>
+            <tr><td>Instagram, TikTok</td><td>Self-expression, entertainment, creator reach at enormous scale.</td><td>raW starts with a question, not an image, a face or a follower count.</td></tr>
+            <tr><td>Reddit</td><td>Proves pseudonymous interest communities scale: 101.7M daily active uniques in Q4 2024.<a class="ref" href="#src-reddit">11</a></td><td>raW routes a person to a room from their own answers instead of search and browsing.</td></tr>
+            <tr><td>Discord</td><td>Real-time community chat and rich identity customization.</td><td>Rooms on Discord are mostly found through links people already have. raW proposes finding the room through what you answer.</td></tr>
+            <tr><td>Yubo, Wizz</td><td>Social discovery for young adults, monetized through in-app purchases and subscriptions.</td><td>raW leads with opinions and shared experiences rather than profiles and faces.</td></tr>
+            <tr><td>Anonymous apps (Secret, Yik Yak, NGL)</td><td>Showed strong demand for saying what you think without your name. Several struggled with abuse and moderation.</td><td>raW pairs pseudonymity with accounts, moderation, invite codes and rooms that have owners.</td></tr>
+            <tr><td>Personality tests (16Personalities, Boo)</td><td>Self-discovery content draws large audiences.</td><td>raW's eight tribes come from clustering real answers, and each tribe opens a room.</td></tr>
+            <tr><td>AI companions (Character.AI, Replika)</td><td>Always-available conversation.</td><td>raW connects people with other people.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tiny" style="margin-top:10px">Competitor descriptions are qualitative. The only competitor figure shown is Reddit's, from its SEC filing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 05 INTRODUCING raW ======================= -->
+<section class="ch" id="c05" data-title="Introducing raW" aria-labelledby="h05">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">05</span>Introducing raW</p>
+    <h2 id="h05">One honest answer. A conversation that actually fits.</h2>
+    <div class="flow mt">
+      <div>
+        <ol class="steps" id="flow-steps"></ol>
+        <div class="row" style="margin-top:14px"><button class="btn small" id="flow-next">Next step</button></div>
+        <p class="tiny" style="margin-top:16px">Recreated from the shipped app. The avatars, room name and question are real. Chat messages are examples, not real users.</p>
+      </div>
+      <div class="phone" aria-live="polite"><div class="screen" id="flow-screen"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 DEMO ======================= -->
+<section class="ch" id="c06" data-title="Experience it" aria-labelledby="h06">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">06</span>Interactive investor experience</p>
+    <h2 id="h06">Don't just hear about raW. Experience it.</h2>
+    <p class="lede">Answer five real raW questions. A real model, trained on real answers, updates its belief about which of eight data-defined tribes your answers resemble.</p>
+
+    <div class="demo mt">
+      <div class="stack">
+        <div class="qcard" id="qcard">
+          <div class="qmeta"><span class="label" id="q-count">Question 1 of 5</span><span class="tiny" id="q-n"></span></div>
+          <div class="qprog" id="q-prog" aria-hidden="true"></div>
+          <div class="qtext" id="q-text" aria-live="polite"></div>
+          <div class="answers" id="q-answers"></div>
+          <div class="row" style="justify-content:space-between">
+            <div class="feedback" id="q-feedback" aria-live="polite"></div>
+            <div class="row"><button class="btn small" id="q-skip">Skip</button><button class="btn small" id="q-restart">Restart</button></div>
+          </div>
+        </div>
+        <div class="result" id="result" hidden aria-live="polite"></div>
+      </div>
+      <div class="stack">
+        <div class="panel post">
+          <div class="row" style="justify-content:space-between"><p class="label" style="margin:0">Model belief across the eight tribes</p><span class="tag t-sim">Model posterior</span></div>
+          <div class="bars" id="post-bars" style="margin-top:14px"></div>
+          <div class="trace" style="margin-top:16px">
+            <p class="tiny" style="margin:0 0 4px">Strength of the leading tribe after each answer</p>
+            <svg id="trace" viewBox="0 0 300 84" role="img" aria-label="Line showing the leading tribe's probability after each answer"></svg>
+          </div>
+        </div>
+        <div class="panel">
+          <p class="label">Keep in mind</p>
+          <ul class="limits" style="margin-top:10px">
+            <li>The bars show the model's belief given your answers. They are not a measure of accuracy and not a personality diagnosis.</li>
+            <li>The eight tribes are clusters found in 1,795 people's historical answers. They are not externally validated personality types.</li>
+            <li>The full Tribe Test recovers a voter's data-defined tribe 87.9% of the time in an internal simulation on 1,780 voters (chance is 12.5%). This demo uses a curated pool of <span id="pool-n">38</span> everyday questions, so that figure does not transfer to it.</li>
+            <li>"Community lean" figures are model estimates from labeled answers, not live poll results. Nothing here is stored or sent anywhere.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 07 SIGNALS ======================= -->
+<section class="ch" id="c07" data-title="What the answers reveal" aria-labelledby="h07">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">07</span>What the answers reveal</p>
+    <h2 id="h07">Every honest answer adds a signal.</h2>
+    <p class="lede">Answers can point to interests, perspectives and common ground. Some of that is in the product today. Some is a capability raW intends to build.</p>
+    <div class="row mt" style="justify-content:space-between">
+      <div class="seg" role="group" aria-label="What to show">
+        <button aria-pressed="true" data-sig="obs">Observed today</button>
+        <button aria-pressed="false" data-sig="plan">Planned capability</button>
+        <button aria-pressed="false" data-sig="all">Both</button>
+      </div>
+      <div class="legend"><span><i style="background:var(--silver)"></i>Shipped or measured</span><span><i style="background:repeating-linear-gradient(90deg,var(--peri) 0 5px,transparent 5px 9px)"></i>Planned</span></div>
+    </div>
+    <div class="panel sig" style="margin-top:16px">
+      <div class="sig-wrap"><svg id="sig" viewBox="0 0 860 420" role="img" aria-label="Network from your answers to signals and product outcomes"></svg></div>
+      <p class="tiny" id="sig-src" style="margin-top:8px"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 08 CUMULATIVE MIND ======================= -->
+<section class="ch" id="c08" data-title="The Cumulative Mind" aria-labelledby="h08">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">08</span>The Cumulative Mind</p>
+    <h2 id="h08">raW didn't start with an algorithm. It started with people answering honestly.</h2>
+    <p class="lede">Before the app, the founder ran The Cumulative Mind, an Instagram account that asked one honest question at a time. Those answers became raW's first dataset. Here is each step from story poll to model, and how much of it is verified.</p>
+    <ol class="pipe mt" id="pipe"></ol>
+    <div class="panel" id="pipe-detail" style="margin-top:12px" aria-live="polite"></div>
+
+    <div class="grid g3 mt">
+      <div><p class="label">Measured</p><p class="small">An adaptive model built from historical answers, with documented code, validation and limitations. It ships today in the Tribe Test.</p></div>
+      <div><p class="label">Suggested</p><p class="small">People's answers form stable clusters, and a short adaptive sequence of questions can place a new person near one of them.</p></div>
+      <div><p class="label">Not yet verified</p><p class="small">That the clusters predict who people will enjoy talking to, or that they improve retention in the app. That needs live product data.</p></div>
+    </div>
+    <details class="ev">
+      <summary>Reconciling the counts</summary>
+      <div class="ev-body">
+        <p>Three different vote counts appear in raW's records. <strong>33,486</strong> confirmed votes in the original extraction set. <strong>37,302</strong> trusted user-vote records in a later founder-reported audit of 105 poll instances (95 trusted, 10 awaiting review). <strong>23,424</strong> answers bridged from the audited master into the model across 31 polls. They come from different pipeline stages and dates, so they should not be added together.</p>
+        <p>All three count vote records, not people. The clearest people count is <strong>1,795</strong> voters with at least eight answers, the group used to define the tribes.</p>
+        <p>The audit's source files (the poll source of truth spreadsheet and database, the Poll Data Hub) were not available for this review, so the audit figures are shown as founder-reported. Instagram follower and per-question vote counts are also founder-reported.</p>
+        <p><strong>Data rights.</strong> The historical answers come from Instagram story polls. Usernames are kept in a private vault and never leave the founder's machine. Confirming the right to use this data in the product is on the legal checklist this round funds.</p>
+      </div>
+    </details>
+    <p class="note mt"><strong>On defensibility.</strong> A dataset alone is not a moat. The potential moat is a retained community that keeps answering, because each answer improves the questions and rooms that bring people back.</p>
+  </div>
+</section>
+
+<!-- ======================= 09 PRODUCT IS REAL ======================= -->
+<section class="ch" id="c09" data-title="The product is real" aria-labelledby="h09">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">09</span>The product is real</p>
+    <h2 id="h09">The foundation is already built.</h2>
+    <p class="lede">raW is live at myraw.app as an invite-only beta. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.</p>
+    <div class="row" style="margin-top:20px;gap:8px">
+      <span class="tag t-verified">Verified in code</span><span class="tag t-impl">Built, not verified in production</span><span class="tag t-prog">In progress</span><span class="tag t-plan">Planned</span>
+    </div>
+    <div class="grid g3 mt">
+      <div class="col">
+        <h3>Built <span class="badges"><img data-img="badge_lvl-1" alt="raW rank badge, level 1"><img data-img="badge_lvl-5" alt="raW rank badge, level 5"><img data-img="badge_lvl-10" alt="raW rank badge, level 10"></span></h3>
+        <ul class="items">
+          <li><span>Username and avatar identity, no real name or photo</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Yes/No polls with the live split shown after voting, one vote per person enforced in the database</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Interest communities with realtime group chat, likes, replies and pinned messages</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Moderation: message reports, warnings, timeouts, bans and blocked words</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Avatar ranks, store and tokens, with spending checked on the server</span><span class="tag t-verified">Verified in code</span></li>
+          <li><span>Tribe rooms opened by single-use invite codes from the Tribe Test</span><span class="tag t-impl">Not verified in production</span></li>
+          <li><span>Tribe Test: adaptive 23-question engine on theraw.me</span><span class="tag t-impl">Not verified in production</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Being validated</h3>
+        <ul class="items">
+          <li><span>Activation and retention baseline</span><span class="tiny">Analytics events are defined and instrumented. No retention figures are verified for this deck.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>iOS app</span><span class="tiny">Capacitor build and App Store preparation in progress.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Return trigger</span><span class="tiny">Push and email notifications that open the conversation they are about.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Tribe Test to tribe room funnel</span><span class="tiny">Link and invite flow built. Conversion not yet measured.</span><span class="tag t-prog">In progress</span></li>
+          <li><span>Pricing</span><span class="tiny">$1, $2.99 and $3.99 appear as placeholders. Nobody is charged today.</span><span class="tag t-prog">In progress</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Next</h3>
+        <ul class="items">
+          <li><span>Real checkout for premium identity and private rooms</span><span class="tag t-plan">Planned</span></li>
+          <li><span>Opt-in personal insights built from your own answers</span><span class="tag t-plan">Planned</span></li>
+          <li><span>Community recommendations from answer patterns</span><span class="tag t-plan">Planned</span></li>
+          <li><span>Arabic language and right-to-left interface</span><span class="tag t-plan">Planned</span></li>
+          <li><span>Android release</span><span class="tag t-plan">Planned</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note mt"><strong>No user, retention or revenue metrics appear in this deck</strong> because none were verified for it. The first job of this round is to produce them.</p>
+  </div>
+</section>
+
+<!-- ======================= 10 BUSINESS ======================= -->
+<section class="ch" id="c10" data-title="Business model" aria-labelledby="h10">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">10</span>How the model can become a business</p>
+    <h2 id="h10">Monetization follows meaningful participation.</h2>
+    <ol class="ladder mt">
+      <li><span class="step">Stage 1</span><h3>Free participation</h3><p class="small muted">Polls, rooms and chat stay free. This is where trust and habit are built.</p><span class="tag t-verified">Live, free</span></li>
+      <li><span class="step">Stage 2</span><h3>Premium identity</h3><p class="small muted">Rare avatars and ranks. Built and priced in tokens; buying tokens with money is not live.</p><span class="tag t-impl">Built, no checkout</span></li>
+      <li><span class="step">Stage 3</span><h3>Private and paid rooms</h3><p class="small muted">Locked tribe rooms and member-run communities. The app shows a price; no payment is taken.</p><span class="tag t-prog">Revenue hypothesis</span></li>
+      <li><span class="step">Stage 4</span><h3>Opt-in insights</h3><p class="small muted">A fuller reading built only from a person's own answers, only if they ask for it.</p><span class="tag t-plan">Planned</span></li>
+    </ol>
+    <p class="note mt"><strong>raW will not sell identifiable responses.</strong> Answers are shown to others only as totals. Any insight product is opt-in and built for the person who answered.</p>
+
+    <div class="panel mt">
+      <div class="row" style="justify-content:space-between"><h3>What would it take? A transparent arithmetic</h3><span class="tag t-illus">Illustrative scenario</span></div>
+      <p class="small muted">Start from Lebanon's 5.34 million internet users.<a class="ref" href="#src-dr">10</a> Move the sliders. Every default is an assumption, not a measurement: raW has not yet measured conversion, retention or acquisition cost.</p>
+      <div class="calc" style="margin-top:16px">
+        <div class="stack">
+          <div class="field"><label for="c-join">Share of internet users who join <output id="o-join"></output></label><input type="range" id="c-join" min="0.1" max="5" step="0.1" value="1"></div>
+          <div class="field"><label for="c-pay">Share of members who pay <output id="o-pay"></output></label><input type="range" id="c-pay" min="1" max="15" step="0.5" value="4"></div>
+          <div class="field"><label for="c-arppu">Yearly spend per paying member <output id="o-arppu"></output></label><input type="range" id="c-arppu" min="5" max="80" step="1" value="24"></div>
+        </div>
+        <div class="stack">
+          <div class="outs">
+            <div><span class="tiny">Members</span><b id="r-mem">0</b></div>
+            <div><span class="tiny">Paying</span><b id="r-pay">0</b></div>
+            <div><span class="tiny">Revenue per year</span><b id="r-rev">$0</b></div>
+          </div>
+          <p class="tiny">Lebanon alone is a proving ground, not the business case. The case rests on whether the loop works and travels. Only 23% of adults in Lebanon had a bank or mobile-money account in 2024, so app-store billing and markets beyond Lebanon matter for revenue.<a class="ref" href="#src-findex">12</a></p>
+        </div>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:14px">For scale: Reddit, a pseudonymous community platform, reported about $1.3 billion in 2024 revenue.<a class="ref" href="#src-reddit">11</a> That shows the category can become a large business. It says nothing about raW's outcome.</p>
+  </div>
+</section>
+
+<!-- ======================= 11 EXPANSION ======================= -->
+<section class="ch" id="c11" data-title="From Lebanon to the world" aria-labelledby="h11">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">11</span>From Lebanon to the world</p>
+    <h2 id="h11">Start with one community. Build a new social layer.</h2>
+    <div class="expand mt">
+      <div class="rings"><svg viewBox="0 0 440 440" id="rings" role="img" aria-label="Four concentric expansion stages: Lebanon, MENA, international communities, global"></svg></div>
+      <div class="stage">
+        <div class="stage-tabs seg" role="group" aria-label="Expansion stage" id="stage-tabs"></div>
+        <div id="stage-body" aria-live="polite"></div>
+      </div>
+    </div>
+    <p class="note mt"><strong>Only stage one is under way.</strong> Stages two to four are a plan, gated by evidence from the stage before.</p>
+  </div>
+</section>
+
+<!-- ======================= 12 FLYWHEEL ======================= -->
+<section class="ch" id="c12" data-title="The human flywheel" aria-labelledby="h12">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">12</span>The human flywheel</p>
+    <h2 id="h12">The helped become the helpers.</h2>
+    <div class="fly mt">
+      <div class="panel" style="padding:10px"><svg id="fly" viewBox="0 0 520 380" role="img" aria-label="A network that grows as a person finds a room, gains confidence and welcomes someone new"></svg></div>
+      <div>
+        <ol class="fly-steps" id="fly-steps" aria-hidden="true"></ol>
+        <p class="label" id="fly-k"></p>
+        <h3 id="fly-h" style="font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.2vw,2.4rem);line-height:1.1"></h3>
+        <p class="muted" id="fly-p"></p>
+        <p class="small" id="fly-m" style="border-top:1px solid var(--line);padding-top:12px"></p>
+        <div class="row"><button class="btn gold small" id="fly-next">Next</button><button class="btn small" id="fly-reset">Restart</button></div>
+      </div>
+    </div>
+    <p class="note mt"><strong>This is raW's mission and a product hypothesis, not a measured outcome.</strong> Each step names what raW would measure to test it.</p>
+  </div>
+</section>
+
+<!-- ======================= 13 INVESTMENT ======================= -->
+<section class="ch" id="c13" data-title="The investment" aria-labelledby="h13">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">13</span>The investment opportunity</p>
+    <h2 id="h13">Fund the proof. Build the future.</h2>
+    <p class="lede">The provisional base target is $100,000. It buys the evidence this deck cannot yet show: retention, safety and willingness to pay.</p>
+    <div class="fund-head mt">
+      <div class="seg" role="group" aria-label="Funding scenario" id="fund-tabs"></div>
+      <span class="tag t-illus">Founder assumptions for discussion</span>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="stack">
+        <div class="kpis" id="fund-kpis"></div>
+        <div class="panel alloc"><p class="label">Allocation</p><div class="bars" id="fund-alloc" style="margin-top:12px"></div></div>
+      </div>
+      <div class="panel">
+        <p class="label">Measurable milestones</p>
+        <ol class="miles" id="fund-miles" style="margin-top:12px"></ol>
+        <p class="tiny" id="fund-team" style="margin-top:14px"></p>
+      </div>
+    </div>
+    <details class="ev">
+      <summary>Assumptions behind the scenarios</summary>
+      <div class="ev-body">
+        <p>Runway is the amount spent before the reserve, divided by the monthly burn shown. Burn assumes a lean team based in Lebanon, existing infrastructure (Vercel, Supabase, PostHog) and no paid acquisition beyond small tests.</p>
+        <p>Allocations and runway are planning assumptions to discuss with investors. They are not committed budgets. No valuation, instrument or terms are proposed here, and no investors are committed.</p>
+        <p>Specific numeric targets (for example a week-four retention threshold) are set after a two-week baseline, so they rest on real traffic rather than guesses.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ======================= 14 FINAL ======================= -->
+<section class="ch final" id="c14" data-title="Closing" aria-labelledby="h14">
+  <div class="wrap">
+    <p class="eyebrow"><span class="n">14</span>Closing</p>
+    <h2 id="h14">Social media taught us how to build an audience. ra<span class="W">W</span> wants to help us build a community.</h2>
+    <p class="sub">A world where honest connection creates belonging, and the helped become the helpers.</p>
+    <div class="row mt" style="gap:18px">
+      <span class="logo" style="width:64px;height:64px" role="img" aria-label="raW logo"></span>
+      <div class="stack" style="gap:8px">
+        <p style="margin:0">Let's talk about the raise.</p>
+        <div class="contact"><code id="email">info@myraw.app</code><button class="btn small" id="copy-email">Copy email</button><a class="btn small" href="https://www.myraw.app" target="_blank" rel="noopener">www.myraw.app</a></div>
+        <p class="tiny" id="copy-status" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="row mt"><button class="btn" data-goto="sources">Sources and evidence</button><button class="btn" id="btn-restart-2">Restart presentation</button></div>
+  </div>
+</section>
+
+<!-- ======================= SOURCES ======================= -->
+<section class="ch appendix sources" id="sources" data-title="Sources" aria-labelledby="hs">
+  <div class="wrap">
+    <p class="eyebrow">Appendix</p>
+    <h2 id="hs" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Sources and evidence</h2>
+    <p class="small muted">External figures were checked against the publisher or press coverage of it in October 2026. Internal figures come from raW's own repositories. The full register, claim audit and open questions ship with this file as research-sources.md and evidence-status.md.</p>
+    <ol style="margin-top:20px">
+      <li id="src-who">WHO Commission on Social Connection (June 2025). <em>From loneliness to social connection: charting a path to healthier societies.</em> Prevalence 2014–2023; regional and income-group estimates; modeled mortality. <a href="https://www.who.int/publications/i/item/978240112360" target="_blank" rel="noopener">who.int</a></li>
+      <li id="src-gallup">Gallup (2024). <em>Over 1 in 5 People Worldwide Feel Lonely a Lot.</em> 2023 Gallup World Poll data. <a href="https://news.gallup.com/poll/646718/people-worldwide-feel-lonely-lot.aspx" target="_blank" rel="noopener">news.gallup.com</a></li>
+      <li id="src-karam">Karam et al. (January 2025). <em>The aftermath of multiple trauma on a nation: unraveling Lebanon's unique mental health struggle.</em> Frontiers in Psychiatry. n = 1,000, July–September 2022. <a href="https://www.frontiersin.org/articles/10.3389/fpsyt.2024.1444245/full" target="_blank" rel="noopener">frontiersin.org</a></li>
+      <li id="src-wb">World Bank (May 2024). <em>Lebanon Poverty and Equity Assessment 2024: Weathering a Protracted Crisis.</em> <a href="https://www.worldbank.org/en/news/press-release/2024/05/23/lebanon-poverty-more-than-triples-over-the-last-decade-reaching-44-under-a-protracted-crisis" target="_blank" rel="noopener">worldbank.org</a></li>
+      <li id="src-lfs">Central Administration of Statistics and ILO (2022). <em>Lebanon Follow-up Labour Force Survey, January 2022.</em> <a href="https://www.ilo.org/publications/lebanon-follow-labour-force-survey-january-2022-factsheet" target="_blank" rel="noopener">ilo.org</a></li>
+      <li id="src-ilo">ILO (August 2024). <em>Global Employment Trends for Youth 2024</em> and its Arab States brief. Youth unemployment 2023. <a href="https://www.ilo.org/publications/global-employment-trends-youth-2024" target="_blank" rel="noopener">ilo.org</a></li>
+      <li id="src-itu-arab">ITU (2024–2025). Arab States digital development figures: 70% of people online in 2024. <a href="https://www.itu.int/en/ITU-D/bdt-director/Pages/Speeches.aspx?ItemID=559" target="_blank" rel="noopener">itu.int</a></li>
+      <li id="src-itu">ITU (November 2024). <em>Facts and Figures 2024.</em> 5.5 billion people, 68% of the world, online. <a href="https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx" target="_blank" rel="noopener">itu.int</a></li>
+      <li id="src-whr">World Happiness Report 2025 (March 2025). Life evaluations, 2022–2024 average. <a href="https://worldhappiness.report/ed/2025/" target="_blank" rel="noopener">worldhappiness.report</a></li>
+      <li id="src-dr">DataReportal (2025). <em>Digital 2025: Lebanon.</em> 5.34 million internet users, 91.6% penetration, early 2025. <a href="https://datareportal.com/reports/digital-2025-lebanon" target="_blank" rel="noopener">datareportal.com</a></li>
+      <li id="src-reddit">Reddit, Inc. (February 2025). Form 10-K for fiscal 2024 and Q4 2024 results. <a href="https://www.sec.gov/Archives/edgar/data/1713445/000171344525000018/rddt-20241231.htm" target="_blank" rel="noopener">sec.gov</a></li>
+      <li id="src-findex">World Bank (2025). <em>Global Findex Database 2025.</em> Lebanon account ownership, 2024. <a href="https://microdata.worldbank.org/catalog/7860" target="_blank" rel="noopener">worldbank.org</a></li>
+      <li id="src-raw">raW internal sources (October 2026): the Tribe Test model, README and EXPLAINER (therawme repository); the app codebase, CEO review of 3 August 2026, analytics tracking plan, brand description and daily summary (wzwznew repository). Founder-reported figures are labeled where they appear.</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>ra<span class="W">W</span> · Pre-seed presentation · October 2026</span><span>Every figure is dated and sourced. Illustrations and assumptions are labeled.</span></div>
+</footer>
+
+<script>
+const DATA = /*__DATA__*/null;
+const IMG = /*__IMAGES__*/null;
+(function(){
+"use strict";
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const el = (tag, attrs={}, html) => { const n=document.createElement(tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (html!=null) n.innerHTML=html; return n; };
+const svgEl = (tag, attrs={}) => { const n=document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
+const pct = (x, d=0) => (x*100).toFixed(d) + "%";
+const fmt = n => n.toLocaleString("en-US");
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+
+$$("img[data-img]").forEach(i => { i.src = IMG[i.dataset.img]; });
+
+/* brand rule: every "raW" renders with its W in the accent color */
+function brand(root){
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n =>
+    /raW/.test(n.nodeValue) && !n.parentNode.closest("script,style,title,code,svg,.W,textarea") ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
+  const hits = []; while (w.nextNode()) hits.push(w.currentNode);
+  hits.forEach(n => {
+    const frag = document.createDocumentFragment();
+    n.nodeValue.split(/(raW)/).forEach(part => {
+      if (part === "raW") { const r = document.createElement("span"); r.className = "rw"; r.append("ra"); const s = document.createElement("span"); s.className = "W"; s.textContent = "W"; r.append(s); frag.append(r); }
+      else if (part) frag.append(part);
+    });
+    n.replaceWith(frag);
+  });
+}
+
+/* ---------------- motion ---------------- */
+const mq = matchMedia("(prefers-reduced-motion: reduce)");
+let reduce = store.get("raw-deck-motion") ? store.get("raw-deck-motion") === "off" : mq.matches;
+function applyMotion(){
+  document.documentElement.classList.toggle("reduce-motion", reduce);
+  document.documentElement.classList.toggle("motion-on", !reduce);
+  ["#btn-motion", "#btn-motion-2"].forEach(s => { const b=$(s); b.setAttribute("aria-pressed", String(reduce)); });
+  if (net) net.toggle();
+}
+function toggleMotion(){ reduce = !reduce; store.set("raw-deck-motion", reduce ? "off" : "on"); applyMotion(); }
+$("#btn-motion").onclick = toggleMotion; $("#btn-motion-2").onclick = toggleMotion;
+
+/* ---------------- chapters & navigation ---------------- */
+const chapters = $$(".ch:not(.appendix)");
+let current = 0;
+const present = () => document.body.classList.contains("present");
+const menuList = $("#menu-list");
+chapters.forEach((c, i) => {
+  const li = el("li"); const b = el("button", {"data-i": i}, `<b>${String(i+1).padStart(2,"0")}</b><span>${c.dataset.title}</span>`);
+  b.onclick = () => { goTo(i); closeMenu(); }; li.appendChild(b); menuList.appendChild(li);
+});
+function setCurrent(i){
+  current = i;
+  $("#where-n").textContent = `${String(i+1).padStart(2,"0")} / ${chapters.length}`;
+  $("#where-t").textContent = chapters[i].dataset.title;
+  $$("#menu-list button").forEach((b,k) => b.setAttribute("aria-current", String(k===i)));
+  $("#prev").disabled = i===0; $("#next").disabled = i===chapters.length-1;
+  if (present()) chapters.forEach((c,k) => c.classList.toggle("is-active", k===i));
+  $("#progress").style.width = ((i+1)/chapters.length*100) + "%";
+}
+function goTo(target){
+  if (target === "sources") { if (present()) togglePresent(false); $("#sources").scrollIntoView(); return; }
+  if (typeof target === "string") target = chapters.findIndex(c => c.id === target);
+  const i = Math.max(0, Math.min(chapters.length-1, target));
+  setCurrent(i);
+  if (present()) window.scrollTo({top:0, behavior:"instant"}); else chapters[i].scrollIntoView({behavior: reduce ? "auto" : "smooth"});
+}
+$$("[data-goto]").forEach(b => b.addEventListener("click", () => { goTo(b.dataset.goto); closeMenu(); }));
+$("#prev").onclick = () => goTo(current-1);
+$("#next").onclick = () => goTo(current+1);
+
+const io = new IntersectionObserver(entries => {
+  if (present()) return;
+  entries.forEach(e => { if (e.isIntersecting) setCurrent(chapters.indexOf(e.target)); });
+}, { rootMargin: "-45% 0px -50% 0px" });
+chapters.forEach(c => io.observe(c));
+
+function togglePresent(force){
+  const on = typeof force === "boolean" ? force : !present();
+  document.body.classList.toggle("present", on);
+  $("#btn-present").setAttribute("aria-pressed", String(on));
+  $("#btn-present").textContent = on ? "Exit" : "Present";
+  if (on) {
+    setCurrent(current); window.scrollTo({top:0, behavior:"instant"});
+    const de = document.documentElement;
+    if (de.requestFullscreen && !document.fullscreenElement) de.requestFullscreen().catch(() => {});
+  } else {
+    chapters.forEach(c => c.classList.remove("is-active"));
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    chapters[current].scrollIntoView();
+  }
+}
+$("#btn-present").onclick = () => togglePresent();
+document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && present()) {/* stay in present mode; Esc in fullscreen only leaves fullscreen */} });
+
+function restart(){ resetDemo(); fly.reset(); flow.set(0); closeMenu(); goTo(0); }
+$("#btn-restart").onclick = restart; $("#btn-restart-2").onclick = restart;
+
+const menu = $("#menu");
+function closeMenu(){ menu.hidden = true; $("#btn-menu").setAttribute("aria-expanded","false"); }
+$("#btn-menu").onclick = () => { menu.hidden = !menu.hidden; $("#btn-menu").setAttribute("aria-expanded", String(!menu.hidden)); if (!menu.hidden) $("#menu-list button[aria-current=true]")?.focus(); };
+document.addEventListener("click", e => { if (!menu.hidden && !menu.contains(e.target) && e.target !== $("#btn-menu")) closeMenu(); });
+
+document.addEventListener("keydown", e => {
+  const t = e.target;
+  if (t.closest && t.closest("input,textarea,select")) return;
+  if (e.key === "Escape") { if (!menu.hidden) { closeMenu(); $("#btn-menu").focus(); } else if (present()) togglePresent(false); return; }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const nextKeys = present() ? ["ArrowRight","PageDown"," "] : ["ArrowRight"];
+  const prevKeys = present() ? ["ArrowLeft","PageUp"] : ["ArrowLeft"];
+  if (nextKeys.includes(e.key) && !(e.key===" " && t.closest && t.closest("button,a,summary"))) { e.preventDefault(); goTo(current+1); }
+  else if (prevKeys.includes(e.key)) { e.preventDefault(); goTo(current-1); }
+  else if (e.key === "Home" && present()) { e.preventDefault(); goTo(0); }
+  else if (e.key === "End" && present()) { e.preventDefault(); goTo(chapters.length-1); }
+});
+let touch = null;
+document.addEventListener("touchstart", e => { if (present() && e.touches.length===1) touch = {x:e.touches[0].clientX, y:e.touches[0].clientY}; }, {passive:true});
+document.addEventListener("touchend", e => {
+  if (!touch || !present()) return;
+  const dx = e.changedTouches[0].clientX - touch.x, dy = e.changedTouches[0].clientY - touch.y; touch = null;
+  if (e.target.closest && e.target.closest(".sig-wrap,.table-wrap,input")) return;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)*1.5) goTo(current + (dx < 0 ? 1 : -1));
+}, {passive:true});
+
+/* ---------------- 01 hero network ---------------- */
+const net = (function(){
+  const cv = $("#net"), ctx = cv.getContext("2d"), host = $("#c01");
+  let W=0, H=0, pts=[], raf=0, visible=true, mouse={x:-999,y:-999}, dpr=1;
+  function size(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = host.clientWidth; H = host.clientHeight; cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n = Math.round(Math.min(90, Math.max(28, W*H/16000)));
+    let seed = 7; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+    pts = Array.from({length:n}, (_,i) => ({x: rnd()*W, y: rnd()*H, vx:(rnd()-.5)*.18, vy:(rnd()-.5)*.18, g: i%11===0}));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const R = Math.min(170, Math.max(110, W/9));
+    for (let i=0;i<pts.length;i++){ const a=pts[i];
+      for (let j=i+1;j<pts.length;j++){ const b=pts[j], d=Math.hypot(a.x-b.x, a.y-b.y);
+        if (d<R){ ctx.strokeStyle = (a.g||b.g) ? `rgba(241,196,45,${.22*(1-d/R)})` : `rgba(217,217,217,${.11*(1-d/R)})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } } }
+    for (const p of pts){ const near = Math.hypot(p.x-mouse.x, p.y-mouse.y) < 140;
+      ctx.fillStyle = p.g ? "rgba(241,196,45,.9)" : near ? "rgba(235,235,235,.8)" : "rgba(217,217,217,.38)";
+      ctx.beginPath(); ctx.arc(p.x,p.y, p.g ? 2.6 : near ? 2.2 : 1.6, 0, Math.PI*2); ctx.fill(); }
+  }
+  function step(){
+    for (const p of pts){
+      const dx = mouse.x-p.x, dy = mouse.y-p.y, d = Math.hypot(dx,dy);
+      if (d < 160 && d > 1){ p.vx += dx/d*.006; p.vy += dy/d*.006; }
+      p.vx *= .995; p.vy *= .995; p.x += p.vx; p.y += p.vy;
+      if (p.x<0||p.x>W) p.vx*=-1; if (p.y<0||p.y>H) p.vy*=-1;
+    }
+    draw(); raf = requestAnimationFrame(step);
+  }
+  function toggle(){ cancelAnimationFrame(raf); raf=0; if (!reduce && visible) step(); else draw(); }
+  host.addEventListener("pointermove", e => { const r = host.getBoundingClientRect(); mouse = {x:e.clientX-r.left, y:e.clientY-r.top}; if (reduce) draw(); });
+  host.addEventListener("pointerleave", () => { mouse = {x:-999,y:-999}; if (reduce) draw(); });
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; toggle(); }).observe(host);
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { size(); toggle(); }, 150); });
+  size();
+  return { toggle };
+})();
+applyMotion();
+
+/* ---------------- shared bar renderer ---------------- */
+function barRow(label, value, max, cls="", valueText){
+  const r = el("div", {class:"bar-row " + cls});
+  r.appendChild(el("span", {class:"bl"}, label));
+  const tr = el("div", {class:"bar-track"}); const f = el("div", {class:"bar-fill"}); tr.appendChild(f); r.appendChild(tr);
+  r.appendChild(el("span", {class:"bv"}, valueText ?? pct(value, value < .1 ? 1 : 0)));
+  f.style.width = (value/max*100) + "%"; r.title = `${label.replace(/<[^>]+>/g,"")}: ${valueText ?? pct(value,1)}`;
+  return [r, f];
+}
+
+/* ---------------- 02 ---------------- */
+[["WHO African Region",.24],["Eastern Mediterranean (approx.)",.21],["South-East Asia",.18],["Global",.158]].forEach(([l,v],i) => {
+  const [r,f] = barRow(l, v, .3, "", v===.158 ? "15.8%" : (i===1 ? "≈21%" : pct(v))); if (l==="Global") f.classList.add("gold"); $("#who-bars").appendChild(r); });
+[["Low-income countries",.24],["High-income countries",.11]].forEach(([l,v]) => $("#inc-bars").appendChild(barRow(l, v, .3)[0]));
+
+/* ---------------- 03 ---------------- */
+[["Poverty",.12,.44,"2012","2022"],["Unemployment",.114,.296,"2018–19","Jan 2022"],["Youth unemployment",.23,.478,"2018–19","Jan 2022"]].forEach(([l,a,b,ya,yb]) => {
+  const g = el("div", {class:"stack", style:"gap:6px"}); g.appendChild(el("span", {class:"small", style:"color:var(--silver)"}, l));
+  const [r1,f1] = barRow(`<span class="tiny">${ya}</span>`, a, .6, "", (a*100).toFixed(a===.114?1:0)+"%"); f1.classList.add("hollow");
+  const [r2,f2] = barRow(`<span class="tiny">${yb}</span>`, b, .6, "", (b*100).toFixed(b===.44?0:1)+"%"); f2.classList.add("gold");
+  g.append(r1, r2); $("#leb-bars").appendChild(g);
+});
+const CMP = [
+  {name:"Loneliness", unit:"of people feel lonely", max:.3, vals:[
+    {v:.158, t:"15.8%", src:"WHO, 2014–2023", ref:"src-who"},
+    {v:.21, t:"≈21%", src:"WHO Eastern Mediterranean Region, 2014–2023", ref:"src-who"},
+    {v:null, t:"—", src:"No comparable Lebanon estimate in the WHO report", ref:"src-who"}]},
+  {name:"Youth unemployment", unit:"of 15–24-year-olds in the labour force", max:.6, vals:[
+    {v:.13, t:"13%", src:"ILO global estimate, 2023", ref:"src-ilo"},
+    {v:.28, t:"28%", src:"ILO Arab States estimate, 2023", ref:"src-ilo"},
+    {v:.478, t:"47.8%", src:"CAS/ILO national survey, January 2022", ref:"src-lfs"}]},
+  {name:"Internet use", unit:"of people online", max:1, vals:[
+    {v:.68, t:"68%", src:"ITU, 2024", ref:"src-itu"},
+    {v:.70, t:"70%", src:"ITU Arab States, 2024", ref:"src-itu-arab"},
+    {v:.916, t:"91.6%", src:"DataReportal, early 2025 (different method)", ref:"src-dr"}]},
+];
+const GEO = ["Global","MENA","Lebanon"];
+function renderCmp(sel){
+  $$("[data-geo]").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.geo===sel)));
+  const host = $("#cmp"); host.innerHTML = "";
+  CMP.forEach(m => {
+    const v = m.vals[sel];
+    const card = el("div", {class:"panel cmp-card"});
+    card.appendChild(el("p", {class:"label"}, m.name));
+    card.appendChild(el("div", {class:"num-l", style:"margin:8px 0 2px"}, v.v==null ? '<span class="na" style="font-size:1rem">No comparable figure</span>' : v.t));
+    card.appendChild(el("p", {class:"tiny", style:"margin:0 0 12px"}, v.v==null ? v.src : `${m.unit}. ${v.src}.<a class="ref" href="#${v.ref}">src</a>`));
+    m.vals.forEach((g,i) => {
+      const row = el("div", {class:"geo" + (i===sel ? " sel" : "")});
+      row.appendChild(el("span", {}, GEO[i]));
+      const tr = el("div", {class:"bar-track"}); const f = el("div", {class:"bar-fill"}); f.style.width = g.v==null ? "0" : (g.v/m.max*100)+"%"; tr.appendChild(f); row.appendChild(tr);
+      row.appendChild(el("span", {class:"bv"}, g.v==null ? "n/a" : g.t));
+      card.appendChild(row);
+    });
+    host.appendChild(card);
+  });
+}
+$$("[data-geo]").forEach(b => b.onclick = () => { renderCmp(+b.dataset.geo); numberRefs(); });
+renderCmp(2);
+
+/* ---------------- 04 loops ---------------- */
+function drawLoop(g, labels, notes){
+  const cx=180, cy=150, r=100;
+  g.appendChild(svgEl("circle", {class:"ring", cx, cy, r}));
+  const runner = svgEl("circle", {class:"runner", r:4.5, cx:cx, cy:cy-r});
+  labels.forEach((l,i) => {
+    const a = -Math.PI/2 + i*2*Math.PI/labels.length, x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
+    const grp = svgEl("g"); const t = svgEl("title"); t.textContent = `${l}: ${notes[i]}`; grp.appendChild(t);
+    grp.appendChild(svgEl("circle", {class:"node", cx:x, cy:y, r:7}));
+    const tx = svgEl("text", {x: x + (Math.cos(a) > .3 ? 14 : Math.cos(a) < -.3 ? -14 : 0), y: y + (Math.sin(a) > .5 ? 24 : Math.sin(a) < -.5 ? -14 : 5), "text-anchor": Math.cos(a) > .3 ? "start" : Math.cos(a) < -.3 ? "end" : "middle"});
+    tx.textContent = l; grp.appendChild(tx); g.appendChild(grp);
+  });
+  g.appendChild(runner);
+  const mo = svgEl("animateMotion", {dur: labels.length*1.6 + "s", repeatCount:"indefinite", path:`M ${cx} ${cy-r} a ${r} ${r} 0 1 1 -0.01 0`});
+  runner.setAttribute("cx", 0); runner.setAttribute("cy", 0); runner.appendChild(mo);
+}
+{ const q = DATA.questions.find(x => x.id === "P94"); if (q) { $("#sm-bad").textContent = "≈" + pct(1 - q.lean); $("#sm-n").textContent = fmt(q.n); } }
+drawLoop($("#loop-a"), ["Post","Scroll","Compare","Repeat"], ["publish a curated self","consume others' highlights","measure yourself against them","come back for more of the same"]);
+drawLoop($("#loop-b"), ["Answer","Relate","Connect","Contribute","Return"], ["give one honest answer","see who answered like you","join the room where they talk","help or welcome someone","come back when the conversation moves"]);
+function syncSvgAnim(){ $$("svg").forEach(s => { if (s.pauseAnimations) reduce ? s.pauseAnimations() : s.unpauseAnimations(); }); }
+syncSvgAnim(); ["#btn-motion","#btn-motion-2"].forEach(s => $(s).addEventListener("click", syncSvgAnim));
+
+/* ---------------- 05 product flow ---------------- */
+const AV = ["neon-lynx","blue-signal","viozen","pink-circuit","solar-flame","violet-mask"];
+const flow = (function(){
+  let i = 0, av = "viozen";
+  const STEPS = [
+    ["Choose an avatar", "No real name, no photo. A username and an avatar are your identity."],
+    ["Answer a question", "Yes/No and this-or-that questions. One answer each."],
+    ["Discover others", "See the live split the moment you vote, and that you are not the only one."],
+    ["Enter a room", "Interest and tribe rooms where people who think alike are already talking."],
+    ["Connect", "Post, reply and like under your avatar. Moderated, invite-only for now."],
+  ];
+  const list = $("#flow-steps");
+  STEPS.forEach(([t,d],k) => { const li = el("li"); const b = el("button", {}, `<b>${k+1}</b><span><strong>${t}</strong>${d}</span>`); b.onclick = () => set(k); li.appendChild(b); list.appendChild(li); });
+  function screen(){
+    const s = $("#flow-screen"); s.innerHTML = "";
+    if (i===0){
+      s.appendChild(el("p", {class:"s-h"}, "Choose your avatar"));
+      const g = el("div", {class:"av-grid"});
+      AV.forEach(a => { const b = el("button", {"aria-pressed": String(a===av), "aria-label": a.replace("-"," ")}); const im = el("img", {alt:""}); im.src = IMG["av_"+a]; b.appendChild(im); b.onclick = () => { av = a; screen(); }; g.appendChild(b); });
+      s.appendChild(g); s.appendChild(el("p", {class:"tiny"}, "Real avatars from the raW app. Tap one."));
+    } else if (i===1 || i===2){
+      s.appendChild(el("p", {class:"s-h"}, "Today's question"));
+      const p = el("div", {class:"poll"}); p.appendChild(el("span", {class:"tiny"}, "953 labeled answers in raW's history"));
+      p.appendChild(el("div", {class:"q"}, "Trust or respect?"));
+      const tr = DATA.questions.find(q => q.id==="P31"); const lean = tr ? tr.lean : .5;
+      [["Trust", lean],["Respect", 1-lean]].forEach(([o,v],k) => {
+        const d = el("div", {class:"opt" + (i===2 && k===1 ? " mine" : "")});
+        if (i===2){ const fill = el("span", {style:`position:absolute;inset:0;width:${v*100}%;background:${k===1?"rgba(241,196,45,.16)":"rgba(217,217,217,.08)"}`}); d.appendChild(fill); }
+        d.appendChild(el("span", {style:"position:relative"}, o)); d.appendChild(el("span", {style:"position:relative;font-variant-numeric:tabular-nums"}, i===2 ? pct(v) : ""));
+        p.appendChild(d);
+      });
+      s.appendChild(p);
+      s.appendChild(el("p", {class:"tiny"}, i===2 ? "Split shown is the model's estimate from labeled historical answers." : "Pick a side. Nobody sees your answer, only the totals."));
+    } else if (i===3){
+      s.appendChild(el("p", {class:"s-h"}, "Rooms for you"));
+      [["LN","Late Night Talks","For the conversations that start after midnight."],["TR","Tribe room","Opens with a single-use invite after the Tribe Test."],["IB","I'm Bored","Start something with whoever is around."]].forEach(([ic,t,d]) => {
+        const r = el("div", {class:"room"}); r.appendChild(el("span", {class:"ic"}, ic)); r.appendChild(el("span", {}, `<strong style="display:block;font-size:.88rem">${t}</strong><span class="tiny">${d}</span>`)); s.appendChild(r); });
+    } else {
+      s.appendChild(el("p", {class:"s-h"}, "Late Night Talks"));
+      const c = el("div", {class:"chat"});
+      [["pink-circuit","Anyone else think respect has to come first? Trust follows it."],["solar-flame","For me it's the other way round. I can't respect someone I can't trust."],[av,"Same split as the poll, honestly. Glad I'm not the only one overthinking it.","me"]].forEach(([a,t,me]) => {
+        const m = el("div", {class:"msg" + (me ? " me" : "")}); const im = el("img", {alt:""}); im.src = IMG["av_"+a]; m.appendChild(im); m.appendChild(el("p", {}, t)); c.appendChild(m); });
+      s.appendChild(c); s.appendChild(el("p", {class:"tiny"}, "Example messages."));
+    }
+  }
+  function set(k){ i = k; $$("#flow-steps button").forEach((b,j) => b.setAttribute("aria-current", String(j===i))); $("#flow-next").textContent = i===STEPS.length-1 ? "Start again" : "Next step"; screen(); brand($("#flow-steps").parentNode.parentNode); }
+  $("#flow-next").onclick = () => set((i+1) % STEPS.length);
+  set(0);
+  return { set };
+})();
+
+/* ---------------- 06 demo: the real Tribe Test model ---------------- */
+const T = DATA.tribes, NT = T.length, CHECKPOINTS = [5, 10, Math.min(DATA.meta.fixed_len, DATA.questions.length)];
+$("#pool-n").textContent = DATA.questions.length;
+let st;
+function prior(){ const s = T.reduce((a,t) => a+t.share, 0); return T.map(t => t.share/s); }
+function entropy(p){ return -p.reduce((a,x) => a + (x>0 ? x*Math.log(x) : 0), 0); }
+function expEntropy(post, q){
+  let e = 0;
+  for (const side of [0,1]){
+    const num = post.map((p,t) => p * (side===0 ? q.pa[t] : 1-q.pa[t])); const z = num.reduce((a,b)=>a+b,0);
+    if (z <= 0) continue;
+    e += z * -num.reduce((a,x) => a + (x/z)*Math.log(x/z + 1e-12), 0);
+  }
+  return e;
+}
+function resetDemo(){
+  st = { post: prior(), pool: DATA.questions.slice(), asked: [], q: null, order: null, target: 0, trace: [], last: null };
+  $("#result").hidden = true; nextQuestion(); renderPost(); renderTrace();
+  $("#q-feedback").textContent = "";
+}
+function pickNext(){
+  if (!st.pool.length) return null;
+  let best = null, bv = Infinity;
+  for (const q of st.pool){ const v = expEntropy(st.post, q); if (v < bv){ bv = v; best = q; } }
+  return best;
+}
+function nextQuestion(){
+  const limit = CHECKPOINTS[st.target];
+  if (st.asked.length >= limit || !st.pool.length){ st.q = null; showCheckpoint(); return; }
+  st.q = pickNext(); st.order = Math.random() < .5 ? [0,1] : [1,0];
+  renderQuestion();
+}
+function renderQuestion(){
+  const q = st.q, limit = CHECKPOINTS[st.target];
+  $("#qcard").hidden = false;
+  $("#q-count").textContent = `Question ${st.asked.length+1} of ${limit}`;
+  $("#q-n").textContent = `${fmt(q.n)} labeled answers`;
+  $("#q-text").textContent = q.text;
+  const prog = $("#q-prog"); prog.innerHTML = ""; for (let k=0;k<limit;k++) prog.appendChild(el("i", {class: k < st.asked.length ? "done" : ""}));
+  const box = $("#q-answers"); box.innerHTML = "";
+  st.order.forEach(side => { const b = el("button", {class:"ans"}); b.textContent = side===0 ? q.a : q.b; b.onclick = () => answer(side); box.appendChild(b); });
+  $("#q-skip").disabled = false;
+}
+function answer(side){
+  const q = st.q, before = st.post.slice();
+  st.post = st.post.map((p,t) => p * (side===0 ? q.pa[t] : 1-q.pa[t]));
+  const z = st.post.reduce((a,b)=>a+b,0); st.post = st.post.map(p => p/z);
+  st.pool = st.pool.filter(x => x !== q);
+  st.asked.push({q, side}); st.last = before; st.trace.push(Math.max(...st.post));
+  const same = side===0 ? q.lean : 1-q.lean;
+  $("#q-feedback").innerHTML = `You chose <b>${side===0 ? q.a : q.b}</b>. About <b>${pct(same)}</b> of the labeled community leaned the same way (model estimate).`;
+  renderPost(); renderTrace(); renderSignals(); nextQuestion();
+}
+$("#q-skip").onclick = () => { if (!st.q) return; st.pool = st.pool.filter(x => x !== st.q); $("#q-feedback").textContent = "Skipped. A skip is replaced, not counted."; nextQuestion(); };
+$("#q-restart").onclick = () => { resetDemo(); renderSignals(); };
+function ranked(){ return st.post.map((p,i) => ({p, i})).sort((a,b) => b.p - a.p); }
+function renderPost(){
+  const host = $("#post-bars"); host.innerHTML = "";
+  const r = ranked(), lead = r[0].i;
+  T.forEach((t,i) => {
+    const d = st.last ? st.post[i] - st.last[i] : 0;
+    const label = `${t.name.replace("The ","")}${Math.abs(d) >= .01 ? `<span class="delta ${d>0?"up":"down"}">${d>0?"▲":"▼"}${Math.abs(d*100).toFixed(0)}</span>` : ""}`;
+    const [row] = barRow(label, st.post[i], 1, st.asked.length && i===lead ? "lead" : "", pct(st.post[i]));
+    host.appendChild(row);
+  });
+  host.setAttribute("aria-label", "Model belief: " + r.slice(0,3).map(x => `${T[x.i].name} ${pct(x.p)}`).join(", "));
+}
+function renderTrace(){
+  const s = $("#trace"); s.innerHTML = "";
+  const n = CHECKPOINTS[CHECKPOINTS.length-1], pts = [Math.max(...prior()), ...st.trace];
+  for (const y of [.25,.5,.75]) s.appendChild(svgEl("line", {x1:0, x2:300, y1:84-y*80, y2:84-y*80, stroke:"#1f1f22", "stroke-width":1}));
+  const xs = k => k/(n) * 296 + 2, ys = v => 82 - v*78;
+  const d = pts.map((v,k) => `${k?"L":"M"}${xs(k).toFixed(1)},${ys(v).toFixed(1)}`).join(" ");
+  s.appendChild(svgEl("path", {d, fill:"none", stroke:"#818cf8", "stroke-width":2, "vector-effect":"non-scaling-stroke"}));
+  const last = pts.length-1; s.appendChild(svgEl("circle", {cx:xs(last), cy:ys(pts[last]), r:3.5, fill:"#f1c42d"}));
+  CHECKPOINTS.slice(0,2).forEach(c => s.appendChild(svgEl("line", {x1:xs(c), x2:xs(c), y1:0, y2:84, stroke:"#2a2a2e", "stroke-dasharray":"3 3", "stroke-width":1})));
+  s.setAttribute("aria-label", `Leading tribe probability after ${st.trace.length} answers: ${pct(pts[last])}`);
+}
+function showCheckpoint(){
+  $("#q-text").textContent = ""; $("#q-answers").innerHTML = ""; $("#q-skip").disabled = true; $("#qcard").hidden = true;
+  const r = ranked(), top = T[r[0].i], second = T[r[1].i], n = st.asked.length;
+  const H = entropy(st.post)/Math.log(NT);
+  const res = $("#result"); res.hidden = false; res.innerHTML = "";
+  const stage = n >= CHECKPOINTS[2] || !st.pool.length ? "Full reading" : "Provisional pattern";
+  res.appendChild(el("p", {class:"label"}, `${stage} after ${n} answers`));
+  res.appendChild(el("p", {class:"tname", style:"margin:6px 0"}, top.name));
+  res.appendChild(el("p", {class:"small"}, `The model currently leans toward ${top.name} at ${pct(r[0].p)}, with ${second.name} next at ${pct(r[1].p)}. Remaining uncertainty: ${pct(H)} of the maximum.`));
+  res.appendChild(el("p", {class:"small muted", style:"font-style:italic"}, `How the data describes ${top.name}: “${top.description}”`));
+  const row = el("div", {class:"row"});
+  if (st.target < CHECKPOINTS.length-1 && st.pool.length){
+    const nextN = CHECKPOINTS[st.target+1];
+    const b = el("button", {class:"btn gold small"}, `Continue to ${nextN} questions`);
+    b.onclick = () => { st.target++; res.hidden = true; nextQuestion(); $("#q-text").focus?.(); };
+    row.appendChild(b);
+  }
+  const rb = el("button", {class:"btn small"}, "Restart"); rb.onclick = () => { resetDemo(); renderSignals(); }; row.appendChild(rb);
+  const sb = el("button", {class:"btn small"}, "See what the answers reveal"); sb.onclick = () => goTo("c07"); row.appendChild(sb);
+  res.appendChild(row); brand(res);
+  $("#q-count").textContent = `${n} answered`;
+  $("#q-prog").innerHTML = "";
+  $("#q-n").textContent = "";
+  $("#q-feedback").textContent = n ? "" : "No questions answered.";
+}
+
+/* ---------------- 07 signal network ---------------- */
+let sigMode = "obs";
+const SAMPLE = ["P31","P53","P83","P94","P18","P36"];
+function short(t){ t = t.replace(/\?$/,""); return t.length > 34 ? t.slice(0,32).trim()+"…" : t; }
+function renderSignals(){
+  const s = $("#sig"); s.innerHTML = "";
+  const answered = st && st.asked.length ? st.asked.slice(-6).map(a => a.q) : SAMPLE.map(id => DATA.questions.find(q => q.id===id)).filter(Boolean);
+  $("#sig-src").textContent = st && st.asked.length ? `Built from your last ${answered.length} answers in chapter 06.` : "Sample questions. Answer some in chapter 06 to see your own.";
+  const qx = 150, sx = 450, ox = 720;
+  const qy = answered.map((_,k) => 50 + k*(320/Math.max(1,answered.length-1)));
+  const SIG = [["Interests",70],["Perspectives",160],["Common ground",250],["Community fit",340]];
+  const OUT = [
+    ["Live split after each vote", "obs", 40, [0,1,2]],
+    ["Tribe estimate (Tribe Test)", "obs", 112, [1,2]],
+    ["Locked tribe room invite", "obs", 184, [3]],
+    ["Personal insight report", "plan", 256, [0,1]],
+    ["Room recommendations", "plan", 318, [0,3]],
+    ["People you would relate to", "plan", 380, [2,3]],
+  ];
+  const show = k => sigMode==="all" || sigMode===k;
+  const g = svgEl("g"); s.appendChild(g);
+  // edges q -> signals (observed: answers are captured)
+  answered.forEach((q,k) => SIG.forEach(([_,y],j) => { if ((k+j)%2===0 || j===2) g.appendChild(svgEl("path", {class:"e obs", d:`M${qx+120},${qy[k]} C ${qx+200},${qy[k]} ${sx-110},${y} ${sx-60},${y}`, opacity:.55})); }));
+  OUT.forEach(([label,kind,y,from]) => from.forEach(j => g.appendChild(svgEl("path", {class:`e ${kind} ${show(kind)?"":"dim"}`, d:`M${sx+60},${SIG[j][1]} C ${sx+130},${SIG[j][1]} ${ox-110},${y} ${ox-70},${y}`}))));
+  answered.forEach((q,k) => { const n = svgEl("g"); const t = svgEl("title"); t.textContent = q.text; n.appendChild(t);
+    n.appendChild(svgEl("rect", {class:"qn", x:qx-120, y:qy[k]-15, width:240, height:30, rx:15}));
+    const tx = svgEl("text", {x:qx, y:qy[k]+4.5, "text-anchor":"middle"}); tx.textContent = short(q.text); n.appendChild(tx); g.appendChild(n); });
+  SIG.forEach(([l,y]) => { g.appendChild(svgEl("rect", {class:"sn", x:sx-60, y:y-16, width:120, height:32, rx:8})); const tx = svgEl("text", {x:sx, y:y+4.5, "text-anchor":"middle"}); tx.textContent = l; g.appendChild(tx); });
+  OUT.forEach(([l,kind,y]) => { const n = svgEl("g", {class: show(kind) ? "" : "dim"});
+    n.appendChild(svgEl("rect", {class: kind==="obs" ? "on" : "sn", x:ox-70, y:y-16, width:200, height:32, rx:16, "stroke-dasharray": kind==="plan" ? "5 4" : "0"}));
+    const tx = svgEl("text", {x:ox+30, y:y+4.5, "text-anchor":"middle"}); tx.textContent = l; n.appendChild(tx); g.appendChild(n); });
+  [["Your answers",qx],["Signals",sx],["What happens next",ox+30]].forEach(([l,x]) => { const t = svgEl("text", {class:"cap", x, y:16, "text-anchor":"middle"}); t.textContent = l.toUpperCase(); g.appendChild(t); });
+}
+$$("[data-sig]").forEach(b => b.onclick = () => { sigMode = b.dataset.sig; $$("[data-sig]").forEach(x => x.setAttribute("aria-pressed", String(x===b))); renderSignals(); });
+
+/* ---------------- 08 pipeline ---------------- */
+const M = DATA.meta;
+const PIPE = [
+  {t:"Story polls", v:"~11K", s:"founder", d:"The Cumulative Mind, the founder's Instagram account, asked one honest question at a time. The founder reports about 11,000 followers and up to about 3,000 votes on a single question. These figures are founder-reported and were not independently verified for this deck."},
+  {t:"Extraction", v:fmt(M.confirmed_votes), s:"verified", d:`Story voter lists were read with OCR. A voter row counts only if read in at least two frames or matched to a handle seen cleanly elsewhere. Real usernames live in one private file that never leaves the founder's machine; everything else uses anonymous ids. Result: ${fmt(M.confirmed_votes)} confirmed votes in the extraction set.`},
+  {t:"Audit", v:"37,302", s:"founder", d:"A later audit documented 105 poll instances: 95 trusted, 10 awaiting review, and 37,302 trusted user-vote records. The audit files were not available for this review, so these figures are founder-reported. They count vote records, not people, and not every historical poll has been audited."},
+  {t:"Bridge", v:"23,424", s:"verified", d:`Quiz polls were matched to the audited master only where shared voters agreed at least 90% of the time. Shipped model note: “${M.bridge}”. Reposted questions stay separate on purpose.`},
+  {t:"Tribes", v:"1,795", s:"verified", d:"1,795 voters with at least eight answers were clustered into eight tribes (k-modes, best of 12 restarts, no tribe under 3%). Eight was a product choice for variety; a five-tribe fit measured more accurate (92.0% vs 89.0% under the same policy, 30 August 2026)."},
+  {t:"Tribe Test", v:pct(M.validated_accuracy,1), s:"sim", d:`An adaptive test picks each next question to sharpen its belief the most. Replaying the exact policy on ${fmt(M.validated_on)} labeled voters' real answers recovered their data-defined tribe ${pct(M.validated_accuracy,1)} of the time (chance: 12.5%). Labels and training share one corpus, so this is internal recovery, not psychometric validity or prediction about strangers. Measured with a 27-question cap; simulations averaged ${M.avg_length} questions. ${M.full_pool} of 122 historical questions have enough labeled answers to use.`},
+];
+const STATUS = {verified:["t-verified","Verified in code"], founder:["t-founder","Founder-reported"], sim:["t-sim","Internal simulation"]};
+PIPE.forEach((p,i) => { const li = el("li"); const b = el("button", {"aria-pressed": String(i===5)}, `<span class="pn">${String(i+1).padStart(2,"0")}</span><strong>${p.t}</strong><span class="pv">${p.v}</span><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span>`); b.onclick = () => showPipe(i); li.appendChild(b); $("#pipe").appendChild(li); });
+function showPipe(i){ $$("#pipe button").forEach((b,k) => b.setAttribute("aria-pressed", String(k===i))); const p = PIPE[i]; $("#pipe-detail").innerHTML = `<div class="row" style="justify-content:space-between"><h3>${String(i+1).padStart(2,"0")} · ${p.t}</h3><span class="tag ${STATUS[p.s][0]}">${STATUS[p.s][1]}</span></div><p class="small muted" style="margin-bottom:0">${p.d}</p>`; brand($("#pipe-detail")); }
+showPipe(5);
+
+/* ---------------- 10 calculator ---------------- */
+const USERS = 5340000;
+function calc(){
+  const j = +$("#c-join").value/100, p = +$("#c-pay").value/100, a = +$("#c-arppu").value;
+  $("#o-join").textContent = (j*100).toFixed(1)+"%"; $("#o-pay").textContent = (p*100).toFixed(1)+"%"; $("#o-arppu").textContent = "$"+a;
+  const mem = Math.round(USERS*j), pay = Math.round(mem*p);
+  $("#r-mem").textContent = fmt(mem); $("#r-pay").textContent = fmt(pay); $("#r-rev").textContent = "$" + fmt(Math.round(pay*a));
+}
+["#c-join","#c-pay","#c-arppu"].forEach(s => $(s).addEventListener("input", calc)); calc();
+
+/* ---------------- 11 expansion ---------------- */
+const STAGES = [
+  {n:"Lebanon", tag:["t-prog","In progress"], rows:{
+    "Target users":"Adults 18 to 34 in Lebanon, Beirut first, plus the existing Cumulative Mind audience.",
+    "Distribution":"Instagram story polls that link to the same question in the app, WhatsApp sharing, university communities, invite codes.",
+    "Localization":"Lebanese English first, local topics and rooms; Arabic copy for onboarding.",
+    "Trust and safety":"18+ gate, reports, timeouts, bans and blocked words already in the product; human review of reports.",
+    "Ready to expand when":"Week-four retention of activated members holds across several monthly cohorts, safety reports stay within set limits, and invites bring in new members without paid acquisition."}},
+  {n:"MENA", tag:["t-plan","Plan"], rows:{
+    "Target users":"Arabic-speaking young adults in markets close to Lebanon's diaspora and culture, starting with one or two test markets.",
+    "Distribution":"Diaspora networks, regional creators, Arabic question formats that travel on Instagram and WhatsApp.",
+    "Localization":"Full Arabic, right-to-left interface, dialect-aware questions, local payment methods through the app stores.",
+    "Trust and safety":"Arabic-language moderation, a legal review of content rules in each market before launch.",
+    "Ready to expand when":"A test market matches Lebanon's activation and retention without the founder seeding rooms."}},
+  {n:"International", tag:["t-plan","Plan"], rows:{
+    "Target users":"Diaspora and interest communities anywhere that form around shared questions.",
+    "Distribution":"Shareable question pages, community owners who bring their members, partnerships.",
+    "Localization":"Multilingual questions and rooms; tribes re-fit on each region's own answers.",
+    "Trust and safety":"Scaled moderation tooling, regional policies, transparency reporting.",
+    "Ready to expand when":"Rooms sustain themselves through member owners, and acquisition cost is known and repeatable."}},
+  {n:"Global", tag:["t-plan","Plan"], rows:{
+    "Target users":"Anyone who would rather be understood than seen.",
+    "Distribution":"The product itself: answers and rooms that people share because they relate to them.",
+    "Localization":"Local questions on a shared engine.",
+    "Trust and safety":"Safety and privacy as the brand promise, audited externally.",
+    "Ready to expand when":"Proven unit economics in several regions."}},
+];
+let stage = 0;
+function renderRings(){
+  const s = $("#rings"); s.innerHTML = "";
+  [200,150,100,52].forEach((r,k) => {
+    const idx = 3-k; const c = svgEl("circle", {cx:220, cy:220, r, class: idx===stage ? "active" : "", tabindex:-1});
+    c.addEventListener("click", () => setStage(idx)); s.appendChild(c);
+  });
+  [["Global",220,49],["International",220,99],["MENA",220,148],["Lebanon",220,224]].forEach(([l,x,y],k) => { const t = svgEl("text", {x, y, "text-anchor":"middle", class: (3-k)===stage ? "active" : ""}); t.textContent = l; s.appendChild(t); });
+}
+function setStage(i){
+  stage = i; renderRings();
+  $$("#stage-tabs button").forEach((b,k) => b.setAttribute("aria-pressed", String(k===i)));
+  const st_ = STAGES[i];
+  let h = `<div class="row" style="justify-content:space-between;margin-bottom:14px"><h3>Stage ${i+1}: ${st_.n}</h3><span class="tag ${st_.tag[0]}">${st_.tag[1]}</span></div><dl>`;
+  for (const k in st_.rows) h += `<dt>${k}</dt><dd>${st_.rows[k]}</dd>`;
+  $("#stage-body").innerHTML = h + "</dl>"; brand($("#stage-body"));
+}
+STAGES.forEach((s_,i) => { const b = el("button", {"aria-pressed":"false"}, `${i+1}. ${s_.n}`); b.onclick = () => setStage(i); $("#stage-tabs").appendChild(b); });
+setStage(0);
+
+/* ---------------- 12 flywheel ---------------- */
+const fly = (function(){
+  const s = $("#fly");
+  const room = [[250,170],[300,130],[320,200],[270,235],[215,215],[205,140],[255,105]];
+  const far = [[420,90],[450,200],[410,300],[90,300],[70,170],[120,70],[350,320],[180,330]];
+  const me = [110,230], next = [470,330];
+  const STEPS = [
+    {k:"Step 1", h:"A person enters.", p:"Bored, curious, disconnected or new in town. They answer one honest question.", m:"What raW measures: first-session poll answers, time to first answer."},
+    {k:"Step 2", h:"They find understanding.", p:"The split shows they are not alone. They enter the room where people who answered alike are talking.", m:"What raW measures: poll answer → room action within 24 hours (the north-star candidate)."},
+    {k:"Step 3", h:"They build confidence.", p:"Replies, likes and a returning conversation. The room starts to feel like theirs.", m:"What raW measures: second-week return, replies received in the first week."},
+    {k:"Step 4", h:"They contribute.", p:"They share an experience, answer someone else, start a thread.", m:"What raW measures: share of members who reply to others, not only post."},
+    {k:"Step 5", h:"They welcome the next person.", p:"Someone new arrives, and the person who was once new is the one who replies first.", m:"What raW measures: newcomer second-week return when welcomed by a member versus not."},
+  ];
+  let i = 0;
+  const edges = [], nodes = {};
+  const E = (a,b,cls,stepOn) => { const l = svgEl("line", {x1:a[0],y1:a[1],x2:b[0],y2:b[1], class:"edge"}); l.dataset.on = stepOn; l.dataset.cls = cls; s.appendChild(l); edges.push(l); };
+  for (let a=0;a<room.length;a++) for (let b=a+1;b<room.length;b++) if ((a+b)%3!==0) E(room[a], room[b], "lit", 0);
+  far.forEach((f,k) => E(f, room[k%room.length], "", 0));
+  [4,5,3].forEach(k => E(me, room[k], "lit", 1));
+  [0,2,6].forEach(k => E(me, room[k], "lit", 2));
+  E(me, far[3], "give", 3); E(me, far[7], "give", 3); E(room[2], far[1], "give", 3);
+  E(next, room[2], "lit", 4); E(me, next, "give", 4);
+  room.forEach((p,k) => { const c = svgEl("circle", {cx:p[0], cy:p[1], r:9, class:"p room"}); s.appendChild(c); });
+  far.forEach(p => s.appendChild(svgEl("circle", {cx:p[0], cy:p[1], r:6, class:"p"})));
+  nodes.me = svgEl("circle", {cx:me[0], cy:me[1], r:8, class:"p me"}); s.appendChild(nodes.me);
+  nodes.next = svgEl("circle", {cx:next[0], cy:next[1], r:7, class:"p new hidden"}); s.appendChild(nodes.next);
+  const lab = svgEl("text", {x:me[0], y:me[1]+28, "text-anchor":"middle", fill:"#a19e96", "font-size":"12", "font-family":"Raleway, sans-serif"}); lab.textContent = "a new member"; s.appendChild(lab);
+  STEPS.forEach(() => $("#fly-steps").appendChild(el("li")));
+  function render(){
+    edges.forEach(l => { const on = +l.dataset.on; l.classList.toggle("hidden", on > i); l.classList.remove("lit","give"); if (on <= i && l.dataset.cls) l.classList.add(l.dataset.cls); if (on===0 && i>0) l.style.opacity = .55; else l.style.opacity = ""; });
+    nodes.me.setAttribute("r", [8,9,12,13,13][i]);
+    nodes.next.classList.toggle("hidden", i < 4);
+    lab.textContent = i < 3 ? "a new member" : i < 4 ? "a contributor" : "now a helper";
+    $$("#fly-steps li").forEach((li,k) => li.classList.toggle("done", k <= i));
+    const x = STEPS[i]; $("#fly-k").textContent = `${x.k} of ${STEPS.length}`; $("#fly-h").textContent = x.h; $("#fly-p").textContent = x.p; $("#fly-m").textContent = x.m;
+    $("#fly-next").textContent = i === STEPS.length-1 ? "Begin again" : "Next"; brand($("#c12"));
+  }
+  $("#fly-next").onclick = () => { i = (i+1) % STEPS.length; render(); };
+  $("#fly-reset").onclick = () => { i = 0; render(); };
+  render();
+  return { reset(){ i = 0; render(); } };
+})();
+
+/* ---------------- 13 funding ---------------- */
+const FUND = [
+  {amt:100000, label:"$100K · base", months:12, burn:7900, team:"Founder full-time, one part-time engineer, part-time community and moderation support.",
+   alloc:[["Product reliability and safety",30000],["Community activation",25000],["Legal, privacy and operations",15000],["Analytics and retention evidence",10000],["Mobile readiness",10000],["Early monetization tests",5000],["Reserve",5000]],
+   miles:["Publish a two-week baseline of the core funnel: poll answered → room action within 24 hours.","Report week-four retention for activated versus non-activated members across at least three monthly cohorts.","iOS app approved and live on the App Store.","Run the first real-checkout test for premium identity or a private room.","Track moderation response time and report rate weekly, with limits set from the baseline.","Complete a legal and privacy review, including rights to the historical poll data."]},
+  {amt:150000, label:"$150K", months:15, burn:9300, team:"Adds a dedicated community and moderation lead.",
+   alloc:[["Product reliability and safety",45000],["Community activation",35000],["Legal, privacy and operations",20000],["Analytics and retention evidence",15000],["Mobile readiness",15000],["Early monetization tests",10000],["Reserve",10000]],
+   add:["Android release.","Rooms run by member owners, with the founder no longer seeding conversation.","Arabic onboarding and question set."]},
+  {amt:250000, label:"$250K", months:18, burn:13300, team:"Adds a full-time engineer and a first MENA test market.",
+   alloc:[["Product reliability and safety",75000],["Community activation",55000],["Legal, privacy and operations",30000],["Mobile readiness",25000],["Analytics and retention evidence",20000],["Early monetization tests",20000],["MENA test market",15000],["Reserve",10000]],
+   add:["Android release.","Rooms run by member owners, with the founder no longer seeding conversation.","Arabic onboarding and question set.","One MENA test market launched with localized onboarding, measured against Lebanon's cohorts.","A second monetization test, so pricing rests on two data points."]},
+];
+FUND.forEach((f,i) => { const b = el("button", {"aria-pressed":"false"}, f.label); b.onclick = () => renderFund(i); $("#fund-tabs").appendChild(b); });
+function renderFund(i){
+  const f = FUND[i];
+  $$("#fund-tabs button").forEach((b,k) => b.setAttribute("aria-pressed", String(k===i)));
+  $("#fund-kpis").innerHTML = `<div><span class="tiny">Raise</span><b>$${fmt(f.amt/1000)}K</b></div><div><span class="tiny">Runway</span><b>~${f.months} mo</b></div><div><span class="tiny">Monthly burn</span><b>~$${(f.burn/1000).toFixed(1)}K</b></div>`;
+  const a = $("#fund-alloc"); a.innerHTML = ""; const max = Math.max(...f.alloc.map(x => x[1]));
+  f.alloc.forEach(([l,v]) => { const [r,fill] = barRow(l, v, max, "", `$${v/1000}K`); if (l==="Reserve") fill.classList.add("hollow"); else fill.classList.add("gold"); a.appendChild(r); });
+  const m = $("#fund-miles"); m.innerHTML = "";
+  FUND[0].miles.forEach(t => m.appendChild(el("li", {}, t)));
+  (f.add || []).forEach(t => m.appendChild(el("li", {class:"add"}, t)));
+  $("#fund-team").textContent = "Team assumption: " + f.team; brand($("#c13"));
+}
+renderFund(0);
+
+/* ---------------- 14 copy ---------------- */
+$("#copy-email").onclick = () => {
+  const done = msg => { $("#copy-status").textContent = msg; };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText("info@myraw.app").then(() => done("Copied info@myraw.app."), () => { selectEmail(); done("Press Ctrl+C or Cmd+C to copy the selected address."); });
+  else { selectEmail(); done("Press Ctrl+C or Cmd+C to copy the selected address."); }
+};
+function selectEmail(){ const r = document.createRange(); r.selectNodeContents($("#email")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+
+/* ---------------- source numbering ---------------- */
+function numberRefs(){
+  const ids = $$("#sources li[id]").map(li => li.id);
+  $$("a.ref").forEach(a => { const k = ids.indexOf(a.getAttribute("href").slice(1)); if (k >= 0) { a.textContent = k+1; a.setAttribute("aria-label", "Source " + (k+1)); } });
+}
+
+/* ---------------- boot ---------------- */
+resetDemo(); renderSignals(); brand(document.body);
+numberRefs();
+const h = location.hash.slice(1);
+if (h && /^c\d\d$/.test(h)) { const k = chapters.findIndex(c => c.id===h); if (k>=0) setCurrent(k); } else setCurrent(0);
+})();
+</script>
