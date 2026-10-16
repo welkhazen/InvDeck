@@ -16,7 +16,7 @@ The full spoken and written narrative, chapter by chapter. Figures carry their s
 
 Question → Answer → Match → Talk → Insight → Return
 
-*Match and Insight are early: matching runs through the Tribe Test (implemented but unverified), and fuller insights are in progress.*
+*Match and Insight are early: answer-based matching is planned, and fuller insights are in progress.*
 
 Pre-seed · Pre-revenue · Public launch 1 November 2026 · Built in Lebanon
 
@@ -67,7 +67,7 @@ Context, not a market: raW is a social discovery product, not a mental-health se
 | Post → Scroll → Compare → Repeat | Answer → Relate → Connect → Contribute → Return |
 | Built around what people show. The feed rewards performance and attention. | Built around what people think. Every turn starts with a question and ends with a person. |
 
-**From raW's own history:** asked "Social media: good, or bad?", 144 of 234 labeled answerers (62%) chose "Bad". These are historical answers from raW's own audience, recovered from the Tribe Test model's counts. It is not a representative survey.
+**From raW's own history:** asked "Social media: good, or bad?", 144 of 234 labeled answerers (62%) chose "Bad". These are historical answers from raW's own audience, recovered from the historical answer data. It is not a representative survey.
 
 **This is a design hypothesis.** raW has not yet measured that its loop retains people better than a feed. Proving it is what this round pays for.
 
@@ -80,7 +80,7 @@ Context, not a market: raW is a social discovery product, not a mental-health se
 - 16Personalities and Boo cover self-discovery.
 - Character.AI and Replika offer always-on conversation.
 
-**raW's specific difference:** raW is built to route a person to a room from their own answers. Today that runs through the Tribe Test invite (implemented but unverified); answer-based suggestions are planned. Pseudonymity comes with accounts, moderation, invite codes and admin-run rooms; member-owned rooms are planned.
+**raW's specific difference:** raW starts with a question, not an image, a face or a follower count. It starts from a person's own answers; routing them to a room from those answers is planned. Rooms on Discord are mostly found through links people already have; raW proposes finding the room through what you answer. raW uses a short quiz only as one more way in: the product is the questions, the splits and the rooms. Pseudonymity comes with accounts, moderation, invite codes and admin-run rooms; member-owned rooms are planned.
 
 Competitor descriptions are qualitative. The only competitor figure shown is Reddit's, from its SEC filing.
 
@@ -91,52 +91,55 @@ Competitor descriptions are qualitative. The only competitor figure shown is Red
 1. **Choose an avatar.** Other members see only your username and avatar: no real name, no photo.
 2. **Answer a question.** Yes/No and this-or-that questions. One answer each. In the app, other members see only the totals.
 3. **Discover others.** See how others answered the moment you vote, and that you are not the only one.
-4. **Enter a room.** Pick an interest room, or take the Tribe Test to unlock your tribe's locked room.
+4. **Enter a room.** Pick a room for what is on your mind, from late-night talks to everyday dilemmas.
 5. **Connect.** Post, reply and like under your avatar. Moderated; signup needs an invite code for now.
 
-*Recreated from the shipped app. The avatars, room names and question are real. The split shown is the model's estimate from labeled historical answers. Chat messages are examples, not real users.*
+*Recreated from the shipped app. The avatars, room names and question are real. The phone shows "Trust or respect?" with 953 historical answers; the split shown is the model's estimate from labeled historical answers. Chat messages are examples, not real users.*
+
+Below the phone, a strip shows some of the rooms in the app today, with room names and covers as they appear on myraw.app.
 
 ## 06 · Interactive investor experience
 
 **Don't just hear about raW. Experience it.**
 
-The investor answers five real raW questions. A real model, trained on real answers, updates its belief about which of eight data-defined tribes the answers resemble. The demo shows:
-- the leading tribe,
-- the runner-up,
-- the remaining uncertainty,
-- a trace of how the model's belief moved.
+Answer five real questions from raW's history and see where you stand. Every split comes from people who answered the same question before you.
 
-After each answer it also shows how the labeled community leaned, as a model estimate. The investor can continue to 10 questions, then to 23, all from the same curated demo pool (the last result is a demo reading, not the full Tribe Test).
+The investor answers five questions drawn from a curated pool of 37 everyday questions. Each card shows how many past answers the question has. After each answer, the demo says which side they chose and about what share of the people who answered before chose the same. The demo shows:
+- **Where you stand:** for each answer, about X% of N past answers chose the same side,
+- a snapshot after five answers: "N of 5 with the majority". If every answer sided with the majority, it says that is where a conversation starts on raW. If not, it notes that even in the minority, at least some share of people answered alike, and that is who raW helps you find,
+- **Answer 5 more** to keep going until the pool runs out, **Restart**, or **See what the answers reveal** to jump to chapter 07.
+
+A skip is replaced, not counted.
 
 **Keep in mind (always on screen):**
-- The bars show the model's belief given the answers. They are not a measure of accuracy and not a personality diagnosis.
-- The tribes are clusters found in the historical answers of 1,795 voters (Instagram accounts). They are not externally validated personality types.
-- The full Tribe Test recovers a voter's data-defined tribe 87.9% of the time in an internal simulation on 1,780 voters, measured at a 27-question cap. Uniform chance is 12.5%; always guessing the largest tribe would score about 28%. The demo's curated 38-question pool does not inherit that figure, and a five-question reading is less certain still.
-- "Community lean" figures are model estimates from labeled answers, not live poll results. Nothing is stored or sent.
+- The questions are a curated pool of 37 everyday questions from The Cumulative Mind. Sensitive topics are left out.
+- Splits are estimated from each question's historical answers. They describe raW's own audience, not a representative survey.
+- Nothing you answer here is stored or sent anywhere.
 
 ## 07 · What the answers reveal
 
 **Every honest answer adds a signal.**
 
-Answers can point to four signals: interests, perspectives, common ground and community fit. These are categories, not computed scores. Some of this is in the product today. Some is a capability raW intends to build.
+Answers can point to interests, perspectives and common ground. Some of that is in the product today. Some is a capability raW intends to build.
 
-**Built today:**
-- the live split after each vote (verified in code),
-- a tribe estimate from the Tribe Test (implemented but unverified),
-- a locked tribe-room invite (implemented but unverified).
+The network maps answers to four signals: interests, perspectives, common ground and community fit. These are categories, not computed scores.
+
+**Built today** (verified in code or implemented but unverified):
+- the live split after each vote,
+- rooms to join.
 
 **Planned capability:**
 - an insight report in the app,
 - room recommendations,
 - people you would relate to.
 
-Today raW computes only the live split and the Tribe Test's tribe estimate. The network is drawn from the investor's own answers in chapter 06, or from sample questions until they answer some.
+Today raW computes only the live split after each vote. The network is drawn from the investor's latest answers in chapter 06, or from sample questions until they answer some.
 
 ## 08 · The Cumulative Mind
 
 **The proof of concept already exists. It started on Instagram.**
 
-Before the app, the founder ran The Cumulative Mind, an Instagram page that asked one honest question at a time. It is raW's proof of concept: people answered, played it with friends, and wrote in when it went quiet. Those answers also became raW's first dataset.
+Before the app, the founder ran The Cumulative Mind, an Instagram page that asked one honest question at a time. It is raW's proof of concept: people answered, played it with friends, and wrote in when it went quiet. Those answers also became raW's first dataset. Below is what followers wrote, then each step from story poll to dataset, and how much of it is verified.
 
 **What followers wrote back** (real messages, shared by the founder; quoted exactly, typos included; names and profile photos removed):
 
@@ -154,30 +157,26 @@ Before the app, the founder ran The Cumulative Mind, an Instagram page that aske
 
 Six more appear behind "Read 6 more". 12 of the 17 screenshots on myraw.app are quoted; 5 are left out because they are personal or about someone's mental health. The messages show how some followers felt, not how many.
 
-From story poll to model, with the verification status of each step:
+From story poll to dataset, with the verification status of each step:
 
 | Step | Figure | Status |
 |---|---|---|
 | 1. Story polls | ~11K followers; up to ~3,000 votes on one question | Founder-reported |
-| 2. Extraction | 33,486 confirmed votes; usernames stay in private files on the founder's computer, and the published model holds only aggregate statistics. The code of the original extraction behind the model was not available for this review. | Verified in code |
-| 3. Audit | 105 poll instances, 95 trusted, 10 awaiting review, 37,302 trusted user-vote records | Founder-reported |
-| 4. Bridge | 31 polls; 23,424 answers added to the model | Verified in code |
-| 5. Tribes | 1,795 voters with at least 8 answers → 8 tribes | Documented, not re-run |
-| 6. Tribe Test | 87.9% recovery on 1,780 voters (27-question cap; uniform chance 12.5%, largest tribe about 28%) | Internal simulation |
+| 2. Extraction | 33,486 confirmed votes in the extraction set. Story voter lists were read with OCR; raW's current extraction pipeline counts a voter row only if it is read in at least two frames or its handle was read cleanly elsewhere. The code of the original extraction behind the model was not available for this review. Usernames stay in private files on the founder's computer; the published data holds only aggregate statistics. | Verified in code |
+| 3. Audit | 105 poll instances, 95 trusted, 10 awaiting review, 37,302 trusted user-vote records. Vote records, not people; not every historical poll has been audited. | Founder-reported |
+| 4. Quiz funnel | theraw.me. The same historical answers power a short quiz on theraw.me, the Tribe Test. It is one more way in: it gives people a reason to answer more questions and hands out invite codes into the app. It is not the product, and its conversion has not been measured. | Implemented but unverified |
 
-Eight tribes were found with k-modes on the 30 August 2026 corpus, then refit as answers arrived. The restart and refit code is documented but not in the repository, so it was not re-run. Eight was a product choice for variety; a five-tribe fit scored higher in internal simulation (92.0% vs 89.0%).
+- **Measured:** tens of thousands of votes on honest questions, extracted and partly audited. They count vote records, not people.
+- **Suggested:** people engage with honest questions, play them with friends and come back for more, as the messages above show.
+- **Not yet verified:** that the same behaviour holds inside the app. Retention and room activity need live product data after the 1 November launch.
 
-- **Measured:** an adaptive model built from historical answers, with documented code, validation and limitations. It is built into the Tribe Test on theraw.me; live use is not yet verified.
-- **Suggested:** tribe centres held steady as the data grew, and the test recovers most labeled voters' tribes from their own recorded answers. Voters near tribe boundaries moved between refits, and placing new people has not been tested.
-- **Not yet verified:** whether the clusters predict who people enjoy talking to, or improve retention in the app.
+**Reconciling the counts.** Two vote counts appear in raW's records: 33,486 confirmed votes in the original extraction set, and 37,302 trusted user-vote records in a later founder-reported audit of 105 poll instances (95 trusted, 10 awaiting review). They come from different pipeline stages and dates, so they should not be added together. Both count vote records, not people. The audit's source files were not available for this review, so the audit figures are founder-reported; Instagram follower and per-question vote counts are also founder-reported. Usernames stay in private files on the founder's computer, and this deck and the published model hold only aggregate statistics. Confirming the right to use this data in the product is on the legal checklist this round funds.
 
-**The counts are different stages, not a sum.** They are vote records, not people. The clearest people count is 1,795 voters with at least eight answers. The audit's source files were not available for this review, so the audit figures are founder-reported. Data rights to the Instagram-derived answers are on the legal checklist.
-
-**On defensibility.** A dataset alone is not a moat. The potential moat is a retained community that keeps answering, if each new answer is fed back into the questions and rooms that bring people back. That loop is not built yet: today the model is trained only on historical Instagram answers.
+**On defensibility.** A dataset alone is not a moat. The potential moat is a retained community that keeps answering, if each new answer is fed back into the questions and rooms that bring people back. That loop is not built yet.
 
 ## 09 · The product is real
 
-**The foundation is already built.** raW is in an invite-only beta at myraw.app, with the public launch set for 1 November 2026. Signup needs an invite code, which the public Tribe Test hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.
+**The foundation is already built.** raW is in an invite-only beta at myraw.app, with the public launch set for 1 November 2026. Signup needs an invite code, which the public quiz funnel also hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.
 
 **Built (verified in code):**
 - members appear only as a username and avatar; no real name or photo is shown,
@@ -187,15 +186,15 @@ Eight tribes were found with k-modes on the 30 August 2026 corpus, then refit as
 - avatar ranks, store and tokens, with spending checked on the server.
 
 **Built (implemented but unverified):**
-- tribe rooms opened by single-use invite codes from the Tribe Test,
-- the Tribe Test: an adaptive 23-question engine on theraw.me.
+- locked rooms opened by single-use invite codes,
+- a quiz funnel on theraw.me (the Tribe Test) that brings new people and answers into the app.
 
 **Being validated (in progress):**
 - the activation and retention baseline. Signup, onboarding and poll-answer events are instrumented; room-join and message events are defined but not yet sent. No retention figures are verified for this deck.
 - the iOS app. Capacitor build and App Store preparation in progress.
 - the return trigger: push and email notifications that open the conversation they are about.
-- the Tribe Test → tribe room funnel. Link and invite flow built; conversion not yet measured.
-- pricing. Placeholder prices only: token packs ($5 to $90) and a $5-a-month plan in the app wallet, granted by hand on request; $1 and $2.99 on the Tribe Test site; $12 and $19 on an older reports preview. No payment processor or checkout is connected. A public donation page collects contact details from people who offer to back raW.
+- the quiz funnel into the app. Link and invite flow built; conversion not yet measured.
+- pricing. Placeholder prices only: token packs ($5 to $90) and a $5-a-month plan in the app wallet, granted by hand on request; $1 and $2.99 on the quiz site; $12 and $19 on an older reports preview. No payment processor or checkout is connected. A public donation page collects contact details from people who offer to back raW.
 
 **Next:**
 - real checkout for premium identity and private rooms (planned),
@@ -210,9 +209,9 @@ Eight tribes were found with k-modes on the 30 August 2026 corpus, then refit as
 
 **Monetization follows meaningful participation.**
 
-1. **Free participation.** Verified in code. A daily set of polls, open rooms and chat are free. Extra polls, locked rooms and the in-app Tribe Test cost tokens, which members can also earn.
+1. **Free participation.** Verified in code. A daily set of polls, open rooms and chat are free. Extra polls, locked rooms and the in-app quiz cost tokens, which members can also earn.
 2. **Premium identity.** Verified in code. Rare avatars and ranks, built and priced in tokens. There is no in-app checkout for tokens.
-3. **Private and paid rooms.** In progress. A revenue hypothesis. Locked tribe rooms are built and can charge tokens on entry. Member-run rooms and cash payment are not built.
+3. **Private and paid rooms.** In progress. A revenue hypothesis. Locked rooms are built and can charge tokens on entry. Member-run rooms and cash payment are not built.
 4. **Opt-in insights.** In progress. A fuller reading built only from a person's own answers, only if they ask for it. A preview is built; reports are not generated yet and nothing is sold.
 
 **raW will not sell identifiable responses.** In the app, answers are shown to other members only as totals. Any insight product is opt-in and built for the person who answered.
@@ -245,7 +244,7 @@ In Lebanon, trust and safety today means a self-declared 18+ gate, reports, time
 | Step | What happens | What raW would measure |
 |---|---|---|
 | 1. A person enters | They answer one honest question. | First-session poll answers, time to first answer |
-| 2. They find understanding | The split shows they are not alone. Through the Tribe Test, they reach the room of people who answered alike. | Poll answer → room action within 24 hours (the north-star candidate) |
+| 2. They find understanding | The split shows they are not alone, and they join a room to talk about it. | Poll answer → room action within 24 hours (the north-star candidate) |
 | 3. They build confidence | Replies, likes and a returning conversation. | Second-week return, replies received in the first week |
 | 4. They contribute | They answer others. | Share of members who reply to others, not only post |
 | 5. They welcome the next person | The person who was once new replies first. | Newcomer second-week return when welcomed by a member versus not (a comparison, not proof of cause unless tested at random) |
@@ -304,9 +303,9 @@ Let's talk about the raise. info@myraw.app · www.myraw.app
 |---|---|
 | "Anonymous apps always turn toxic." | raW is anonymous to other members but accountable: accounts, invite codes, a self-declared 18+ gate, reports, timeouts, bans and blocked words already ship. An in-app review queue is not built yet. Safety is the first budget line. |
 | "Where's traction?" | Not shown, because none is verified. The round's first milestones are a two-week funnel baseline and week-four retention across at least three monthly cohorts. These are goals, not commitments. |
-| "Is 87.9% real?" | It is real as defined: internal recovery of data-defined tribes in a simulation on 1,780 voters, at a 27-question cap. Uniform chance is 12.5%; always guessing the largest tribe scores about 28%. It is not psychometric validity, and the deck says so. |
+| "Isn't this just a personality quiz?" | No. raW uses a short quiz on theraw.me (the Tribe Test) only as one more way in: it brings new people and answers into the app, and its conversion has not been measured. The product is the questions, the splits and the rooms. |
 | "Do you own the Instagram data?" | Usernames stay in private files on the founder's computer; the deck and the published model hold only aggregate statistics. Rights to use the answers are on the legal checklist this round funds. |
 | "Lebanon can't pay." | Only 23% of adults in Lebanon had a bank or mobile-money account in 2024. Revenue tests will run through app-store billing once in-app purchase is built, and later stages add markets with better payment access. |
-| "Isn't this Reddit or Discord?" | They organize around topics you search for or links you have. raW organizes around what you answer. It routes you to a room through the Tribe Test invite today (implemented but unverified), with answer-based suggestions planned. |
+| "Isn't this Reddit or Discord?" | They organize around topics you search for or links you have. raW starts from what you answer: you see where you stand on a question, then pick a room to talk. Routing a person to a room from their answers is planned. |
 | "Why will people come back?" | The hypothesis is the conversation, not the feed. Notifications that open the exact conversation are in progress, and return would be measured per cohort. |
 | "Why is $100K enough?" | It funds a lean Lebanon team for about 12 months to produce evidence, not scale. The $150K and $250K scenarios show what more buys. |
