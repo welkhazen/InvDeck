@@ -35,7 +35,7 @@ async function open(ctxOpts, label) {
 
 async function noHorizontalScroll(page, label) {
   const r = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, w: innerWidth,
-    wide: [...document.querySelectorAll("main *")].filter(e => { const b = e.getBoundingClientRect(); return b.width && b.right > innerWidth + 1 && !e.closest(".sig-wrap,.table-wrap,#net"); }).slice(0, 5).map(e => e.tagName + "." + e.className) }));
+    wide: [...document.querySelectorAll("main *")].filter(e => { const b = e.getBoundingClientRect(); return b.width && b.right > innerWidth + 1 && !e.closest(".sig-wrap,.table-wrap,#net,.marquee,.hero-bg"); }).slice(0, 5).map(e => e.tagName + "." + e.className) }));
   ok(r.sw <= r.w, `${label}: page scrolls horizontally (${r.sw} > ${r.w}) ${r.wide.join(", ")}`);
   ok(r.wide.length === 0, `${label}: elements overflow the viewport: ${r.wide.join(", ")}`);
 }

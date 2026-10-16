@@ -34,6 +34,23 @@ DEMO_POOL = [
 
 AVATARS = ["neon-lynx", "blue-signal", "viozen", "pink-circuit", "solar-flame", "violet-mask", "blu-fifer"]
 BADGES = ["lvl-1", "lvl-5", "lvl-10"]
+# Artwork and screens from myraw.app (wzwznew/public/assets).
+PHOTOS = {
+    "night": "blog/honest-online-hero.webp",
+    "mirror": "blog/identity-fatigue-hero.webp",
+    "lebanon": "lebaneese.webp",
+    "mind": "cumulative-mind.webp",
+    "how": "explore/how.webp",
+    "rooms": "explore/rooms.webp",
+    "avatars": "explore/avatars.webp",
+    "privacy": "explore/privacy.webp",
+    "why": "explore/why.webp",
+}
+# Room covers with their names as seeded in wzwznew/supabase/migrations.
+ROOMS = [("the-ick", "The Ick"), ("am-i-evil", "Am I Evil?"), ("weirdest-thoughts", "My Weirdest Thoughts"),
+         ("is-this-normal", "Is This Normal?"), ("best-story", "Best story I’ve been told"),
+         ("lebanese-initiatives", "Lebanese Initiatives"), ("match-maker", "Match Maker"),
+         ("gamer-gang", "Gamer Gang"), ("bizniz-minded", "Bizniz Minded"), ("mancave", "The Mancave")]
 
 
 def data_uri(path: Path, mime: str) -> str:
@@ -113,11 +130,16 @@ def main():
         images[f"av_{a}"] = data_uri(app / f"public/avatars/landing/{a}.webp", "image/webp")
     for b in BADGES:
         images[f"badge_{b}"] = data_uri(app / f"src/assets/{b}.webp", "image/webp")
+    for k, p in PHOTOS.items():
+        images[f"ph_{k}"] = data_uri(app / "public/assets" / p, "image/webp")
+    for slug, _ in ROOMS:
+        images[f"room_{slug}"] = data_uri(app / f"public/assets/community-covers/{slug}.webp", "image/webp")
 
     data = curate(load_model(therawme))
     out = (tpl.replace("/*__MICHROMA__*/", font)
               .replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False, separators=(",", ":")))
-              .replace("/*__IMAGES__*/null", json.dumps(images, separators=(",", ":"))))
+              .replace("/*__IMAGES__*/null", json.dumps(images, separators=(",", ":")))
+              .replace("/*__ROOMS__*/null", json.dumps(ROOMS, ensure_ascii=False)))
     for key, uri in images.items():
         out = out.replace(f"__IMG_{key}__", uri)
     left = re.findall(r"__IMG_[a-z0-9_-]+__|/\*__[A-Z]+__\*/", out)

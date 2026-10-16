@@ -39,10 +39,13 @@ function PitchSelector() {
         <p className="subtext">Use this screen during founder/investor reviews so nobody needs to remember URLs.</p>
 
         <div className="grid">
+          <a href="/wave/" className="button primary">
+            Open The Next Social Wave
+          </a>
           <Link to="/pitch-v1" className="button ghost">
             Open V1
           </Link>
-          <Link to="/pitch-v2" className="button primary">
+          <Link to="/pitch-v2" className="button ghost">
             Open V2
           </Link>
           <button onClick={() => openPrintableDeck("/pitch-v2")} className="button ghost" type="button">
@@ -50,7 +53,7 @@ function PitchSelector() {
           </button>
         </div>
 
-        <p className="tip">Recommended flow: review V2, collect notes, then compare with V1 for copy/layout decisions.</p>
+        <p className="tip">The Next Social Wave is the current 14-chapter deck. V1 and V2 are kept for comparison.</p>
       </section>
     </main>
   );

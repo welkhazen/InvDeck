@@ -153,7 +153,7 @@ On 16 October 2026 we ran a code-level audit of the two raW repositories: `wzwzn
 
 ## 5. Open questions for the founder
 
-1. **Money received.** Has any money been received through manually granted token packs or through the donation page? If so, the deck should state the amount. Until this is answered, the deck makes no claim either way.
+1. **Money received.** Answered by the founder on 16 October 2026: raW is pre-revenue and has not launched publicly; the public launch is set for 1 November 2026. The deck now says "pre-revenue" (founder-reported). Token packs granted by hand and the donation page remain in the product and are disclosed in chapter 09.
 2. **Live split in production.** Is the 8 October 2026 live-split migration applied in production? Until then, the feed split cannot be called live in production.
 3. **Privacy hardening of vote-read permissions.** This needs to ship and be verified before stronger wording such as "nobody sees your answer" can return. Until then, the deck says only that other members see totals in the app.
 4. **Invite gate.** The invite gate can be bypassed via the public Tribe Test flow. Decide whether to close it or to describe signup as open through the Tribe Test.

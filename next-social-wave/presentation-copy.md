@@ -18,7 +18,7 @@ Question → Answer → Match → Talk → Insight → Return
 
 *Match and Insight are early: matching runs through the Tribe Test (implemented but unverified), and fuller insights are in progress.*
 
-Pre-seed presentation · Built in Lebanon · October 2026
+Pre-seed · Pre-revenue · Public launch 1 November 2026 · Built in Lebanon
 
 [Say little. Let the line land. Offer the five questions now or later.]
 
@@ -177,7 +177,7 @@ Eight tribes were found with k-modes on the 30 August 2026 corpus, then refit as
 
 ## 09 · The product is real
 
-**The foundation is already built.** raW is live at myraw.app as a beta. Signup needs an invite code, which the public Tribe Test hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.
+**The foundation is already built.** raW is in an invite-only beta at myraw.app, with the public launch set for 1 November 2026. Signup needs an invite code, which the public Tribe Test hands out. Every item below was checked in the codebase. A feature in the code is not proof that people use it, so usage claims are left out.
 
 **Built (verified in code):**
 - members appear only as a username and avatar; no real name or photo is shown,
@@ -204,7 +204,7 @@ Eight tribes were found with k-modes on the 30 August 2026 corpus, then refit as
 - Arabic and a right-to-left interface (planned),
 - Android (planned).
 
-**No user, retention or revenue metrics appear because none were verified.** Producing them is the round's first job.
+**raW is pre-revenue, and no user, retention or revenue metrics appear because none were verified.** Producing them is the round's first job.
 
 ## 10 · How the model can become a business
 
@@ -254,7 +254,7 @@ In Lebanon, trust and safety today means a self-declared 18+ gate, reports, time
 
 ## 13 · The investment opportunity
 
-**Fund the proof. Build the future.** The provisional base target is $100,000. It funds the work to measure what this deck cannot yet show: retention, safety and willingness to pay.
+**Fund the proof. Build the future.** raW is pre-revenue, with the public launch set for 1 November 2026. The provisional base target is $100,000. It funds the work to measure what this deck cannot yet show: retention, safety and willingness to pay.
 
 | Scenario | Runway | Burn | Team assumption |
 |---|---|---|---|
@@ -275,7 +275,7 @@ In Lebanon, trust and safety today means a self-declared 18+ gate, reports, time
 | Reserve | $5K |
 
 **Base target milestones (goals, not commitments):**
-1. A two-week baseline of the core funnel (poll answered → room action within 24 hours).
+1. A two-week baseline of the core funnel after the 1 November launch (poll answered → room action within 24 hours).
 2. Week-four retention for activated versus non-activated members across at least three monthly cohorts.
 3. The iOS app approved and live on the App Store.
 4. A first real-checkout test for premium identity or a private room.
