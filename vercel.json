@@ -1,12 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/wave",
-      "destination": "/wave/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

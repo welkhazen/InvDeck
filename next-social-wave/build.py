@@ -24,33 +24,15 @@ HERE = Path(__file__).resolve().parent
 #   P76 sexual connotation                      P79 age bracket (demographic, not opinion)
 #   P119 gender stereotype                      P138 disability framing
 #   P112 same question as P15 (the model's SAME_QUESTION rule keeps P15)
-#   P94 shown in chapter 04 with its exact split, so not repeated here
 DEMO_POOL = [
     "P01", "P03", "P04", "P06", "P11", "P15", "P17", "P18", "P19", "P20", "P21", "P25",
     "P31", "P32", "P35", "P36", "P53", "P55", "P58", "P61", "P66", "P68", "P73", "P78",
-    "P83", "P85", "P86", "P87", "P90", "P91", "P93", "P95", "P96", "P97", "P110",
+    "P83", "P85", "P86", "P87", "P90", "P91", "P93", "P94", "P95", "P96", "P97", "P110",
     "P116", "P118",
 ]
 
 AVATARS = ["neon-lynx", "blue-signal", "viozen", "pink-circuit", "solar-flame", "violet-mask", "blu-fifer"]
 BADGES = ["lvl-1", "lvl-5", "lvl-10"]
-# Artwork and screens from myraw.app (wzwznew/public/assets).
-PHOTOS = {
-    "night": "blog/honest-online-hero.webp",
-    "mirror": "blog/identity-fatigue-hero.webp",
-    "lebanon": "lebaneese.webp",
-    "mind": "cumulative-mind.webp",
-    "how": "explore/how.webp",
-    "rooms": "explore/rooms.webp",
-    "avatars": "explore/avatars.webp",
-    "privacy": "explore/privacy.webp",
-    "why": "explore/why.webp",
-}
-# Room covers with their names as seeded in wzwznew/supabase/migrations.
-ROOMS = [("the-ick", "The Ick"), ("am-i-evil", "Am I Evil?"), ("weirdest-thoughts", "My Weirdest Thoughts"),
-         ("is-this-normal", "Is This Normal?"), ("best-story", "Best story I’ve been told"),
-         ("lebanese-initiatives", "Lebanese Initiatives"), ("match-maker", "Match Maker"),
-         ("gamer-gang", "Gamer Gang"), ("bizniz-minded", "Bizniz Minded"), ("mancave", "The Mancave")]
 
 
 def data_uri(path: Path, mime: str) -> str:
@@ -62,7 +44,6 @@ def load_model(therawme: Path) -> dict:
     start = html.index("const M = ") + len("const M = ")
     end = html.index(";\n\nconst $ = ", start)
     return json.loads(html[start:end])
-
 
 
 def curate(m: dict) -> dict:
@@ -80,12 +61,20 @@ def curate(m: dict) -> dict:
         # (Laplace-smoothed, labeled voters only). Shown as an estimate, never as a poll result.
         lean = sum(t["share"] * p for t, p in zip(tribes, pa))
         questions.append({"id": pid, "text": q["text"], "a": q["a"], "b": q["b"],
-                          "n": q["n"], "lean": round(lean, 3)})
+                          "n": q["n"], "pa": pa, "lean": round(lean, 3)})
+    quiz = m["quizzes"][0]
     return {
+        "tribes": [{"name": t["name"], "description": t["description"], "share": t["share"]} for t in tribes],
         "questions": questions,
         "meta": {
+            "full_pool": len(m["questions"]),
             "demo_pool": len(questions),
+            "fixed_len": m["fixed_len"],
             "confirmed_votes": m["corpus_voters"],  # named corpus_voters in the model, but it counts confirmed votes
+            "bridge": m["bridge"],
+            "validated_accuracy": quiz["validated_accuracy"],
+            "validated_on": quiz["validated_on"],
+            "avg_length": quiz["avg_length"],
         },
     }
 
@@ -105,16 +94,11 @@ def main():
         images[f"av_{a}"] = data_uri(app / f"public/avatars/landing/{a}.webp", "image/webp")
     for b in BADGES:
         images[f"badge_{b}"] = data_uri(app / f"src/assets/{b}.webp", "image/webp")
-    for k, p in PHOTOS.items():
-        images[f"ph_{k}"] = data_uri(app / "public/assets" / p, "image/webp")
-    for slug, _ in ROOMS:
-        images[f"room_{slug}"] = data_uri(app / f"public/assets/community-covers/{slug}.webp", "image/webp")
 
     data = curate(load_model(therawme))
     out = (tpl.replace("/*__MICHROMA__*/", font)
               .replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False, separators=(",", ":")))
-              .replace("/*__IMAGES__*/null", json.dumps(images, separators=(",", ":")))
-              .replace("/*__ROOMS__*/null", json.dumps(ROOMS, ensure_ascii=False)))
+              .replace("/*__IMAGES__*/null", json.dumps(images, separators=(",", ":"))))
     for key, uri in images.items():
         out = out.replace(f"__IMG_{key}__", uri)
     left = re.findall(r"__IMG_[a-z0-9_-]+__|/\*__[A-Z]+__\*/", out)
@@ -127,7 +111,8 @@ def main():
                   '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
                   + out + "\n</html>\n")
     (HERE / "index.html").write_text(standalone, encoding="utf-8")
-    print(f"index.html {len(standalone)/1e3:.0f} KB | demo pool {len(data['questions'])} questions | {len(images)} images inlined")
+    print(f"index.html {len(standalone)/1e3:.0f} KB | demo pool {len(data['questions'])} of "
+          f"{data['meta']['full_pool']} questions | {len(images)} images inlined")
 
 
 if __name__ == "__main__":
