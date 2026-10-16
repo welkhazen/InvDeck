@@ -134,9 +134,27 @@ Today raW computes only the live split and the Tribe Test's tribe estimate. The 
 
 ## 08 · The Cumulative Mind
 
-**raW didn't start with an algorithm. It started with people answering honestly.**
+**The proof of concept already exists. It started on Instagram.**
 
-Before the app, the founder ran The Cumulative Mind, an Instagram account that asked one honest question at a time. Those answers became raW's first dataset. From story poll to model, with the verification status of each step:
+Before the app, the founder ran The Cumulative Mind, an Instagram page that asked one honest question at a time. It is raW's proof of concept: people answered, played it with friends, and wrote in when it went quiet. Those answers also became raW's first dataset.
+
+**What followers wrote back** (real messages, shared by the founder; quoted exactly, typos included; names and profile photos removed):
+
+> "I really love @myrawapp since i first followed and your page is like literally the best page on instagram i'd like it to reach the biggest number of people on instagram. I really love your page it makes me think deeper even things i never thought off ... the questions asked are really addictive like i want more questions i want more things to think about . It's good to see what goes inside others mind ."
+
+> "Your page really gives the feel of talking and freely saying anything / Just like that / That easy"
+
+> "I literally always do this and the nice thing is it always leads to different topics/scenarios to the point where the conversation never gets boring" (reply to a story that suggested reading the posts aloud with friends)
+
+> "Loved how i had to answer quick on the polls. Gave me a good idea of what i really think!"
+
+> "Made me think a lot. Had many debates about the topics you posted. Loved it !"
+
+> "Idk where to start, I lost my acc I came back and ur acc was off it was sad, I missed everything"
+
+Six more appear behind "Read 6 more". 12 of the 17 screenshots on myraw.app are quoted; 5 are left out because they are personal or about someone's mental health. The messages show how some followers felt, not how many.
+
+From story poll to model, with the verification status of each step:
 
 | Step | Figure | Status |
 |---|---|---|

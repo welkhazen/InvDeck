@@ -384,6 +384,13 @@ html.reduce-motion *{animation:none!important;transition:none!important}
 }
 @media (max-width:720px){body:not(.present) .pager{display:none}}
 body.present .ch.is-active{padding-bottom:96px}
+.quotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:12px;align-items:start}
+.qt{margin:0;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.qt p{margin:0;font-family:var(--serif);font-size:1.12rem;line-height:1.4;color:var(--text)}
+.qt p span{display:block}.qt p span+span{margin-top:6px}
+.qt p span:first-child::before{content:"“";color:var(--gold);margin-right:2px}.qt p span:last-child::after{content:"”";color:var(--gold)}
+.qt cite{font-style:normal;font-size:.78rem;color:var(--faint)}
+details.ev .quotes{padding-top:4px}
 </style>
 
 <header class="top">
@@ -659,8 +666,31 @@ body.present .ch.is-active{padding-bottom:96px}
 <section class="ch" id="c08" data-title="The Cumulative Mind" aria-labelledby="h08">
   <div class="wrap">
     <p class="eyebrow"><span class="n">08</span>The Cumulative Mind</p>
-    <h2 id="h08">raW didn't start with an algorithm. It started with people answering honestly.</h2>
-    <p class="lede">Before the app, the founder ran The Cumulative Mind, an Instagram account that asked one honest question at a time. Those answers became raW's first dataset. Here is each step from story poll to model, and how much of it is verified.</p>
+    <h2 id="h08">The proof of concept already exists. It started on Instagram.</h2>
+    <p class="lede">Before the app, the founder ran The Cumulative Mind, an Instagram page that asked one honest question at a time. It is raW's proof of concept: people answered, played it with friends, and wrote in when it went quiet. Those answers also became raW's first dataset. Below is what followers wrote, then each step from story poll to model, and how much of it is verified.</p>
+    <div class="mt">
+      <div class="row" style="justify-content:space-between"><p class="label" style="margin:0">What followers wrote back</p><span class="tag t-founder">Real messages, shared by the founder</span></div>
+      <div class="quotes" style="margin-top:14px">
+        <blockquote class="qt"><p><span>I really love @myrawapp since i first followed and your page is like literally the best page on instagram i&#x27;d like it to reach the biggest number of people on instagram. I really love your page it makes me think deeper even things i never thought off ... the questions asked are really addictive like i want more questions i want more things to think about . It&#x27;s good to see what goes inside others mind .</span></p></blockquote>
+        <blockquote class="qt"><p><span>💛</span> <span>Your page really gives the feel of talking and freely saying anything</span> <span>Just like that</span> <span>That easy</span></p></blockquote>
+        <blockquote class="qt"><p><span>I literally always do this and the nice thing is it always leads to different topics/scenarios to the point where the conversation never gets boring</span></p><cite>Reply to a story that suggested reading the posts aloud with friends</cite></blockquote>
+        <blockquote class="qt"><p><span>Loved how i had to answer quick on the polls. Gave me a good idea of what i really think!</span></p></blockquote>
+        <blockquote class="qt"><p><span>Made me think a lot. Had many debates about the topics you posted. Loved it !</span></p></blockquote>
+        <blockquote class="qt"><p><span>Idk where to start, I lost my acc I came back and ur acc was off it was sad, I missed everything</span></p></blockquote>
+      </div>
+      <details class="ev">
+        <summary>Read 6 more</summary>
+        <div class="ev-body quotes">
+        <blockquote class="qt"><p><span>I always do it whoever I meet I go through ur page and start asking</span></p><cite>Reply to a story that suggested reading the posts aloud with friends</cite></blockquote>
+        <blockquote class="qt"><p><span>or maybe it is idk bas it’s a whole new way of looking at things</span> <span>looking at myself</span> <span>fa wow thanks for that post It really made me thinkk</span></p></blockquote>
+        <blockquote class="qt"><p><span>this page is so missed 🤍 during quarantine it was my only go to when playing with fri</span></p><cite>Cut off in the screenshot</cite></blockquote>
+        <blockquote class="qt"><p><span>Wanted to ask if you&#x27;ll be active again, and if you&#x27;re doing well. Also really liked the polls and questions!</span></p></blockquote>
+        <blockquote class="qt"><p><span>I did other acc and made sure I followed u cause this acc is so interesting💕</span></p></blockquote>
+        <blockquote class="qt"><p><span>I&#x27;m so glad to see that you&#x27;re active again,</span></p><cite>Cut off in the screenshot</cite></blockquote>
+        </div>
+      </details>
+      <p class="tiny" style="margin-top:12px">Direct messages and story replies sent to The Cumulative Mind on Instagram, quoted exactly as written, typos included. Names and profile photos are removed. The screenshots appear on myraw.app. 12 of the 17 shown there are quoted here; 5 are left out because they are personal or about someone's mental health. Messages show how some followers felt, not how many.</p>
+    </div>
     <ol class="pipe mt" id="pipe"></ol>
     <div class="panel" id="pipe-detail" style="margin-top:12px" aria-live="polite"></div>
 
