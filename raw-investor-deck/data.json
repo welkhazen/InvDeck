@@ -1,0 +1,864 @@
+{
+  "version": "2026-10-17",
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "One honest answer",
+      "number": 1
+    },
+    {
+      "id": "human-need",
+      "title": "Feeling understood",
+      "number": 2
+    },
+    {
+      "id": "first-community",
+      "title": "The first community",
+      "number": 3
+    },
+    {
+      "id": "experience-gap",
+      "title": "The experience gap",
+      "number": 4
+    },
+    {
+      "id": "product-loop",
+      "title": "The product loop",
+      "number": 5
+    },
+    {
+      "id": "try-an-answer",
+      "title": "Try an answer",
+      "number": 6
+    },
+    {
+      "id": "from-answer-to-room",
+      "title": "From answer to room",
+      "number": 7
+    },
+    {
+      "id": "return-hypothesis",
+      "title": "The helped become the helpers",
+      "number": 8
+    },
+    {
+      "id": "origin",
+      "title": "Where it began",
+      "number": 9
+    },
+    {
+      "id": "signal-and-limits",
+      "title": "Signal and limits",
+      "number": 10
+    },
+    {
+      "id": "product-status",
+      "title": "What exists",
+      "number": 11
+    },
+    {
+      "id": "proof-to-earn",
+      "title": "The proof to earn",
+      "number": 12
+    },
+    {
+      "id": "distribution",
+      "title": "Build density",
+      "number": 13
+    },
+    {
+      "id": "validation-plan",
+      "title": "A year of learning",
+      "number": 14
+    },
+    {
+      "id": "alternatives",
+      "title": "The alternatives",
+      "number": 15
+    },
+    {
+      "id": "business-model",
+      "title": "Testing paid value",
+      "number": 16
+    },
+    {
+      "id": "market-arithmetic",
+      "title": "Beachhead arithmetic",
+      "number": 17
+    },
+    {
+      "id": "defensibility",
+      "title": "An advantage to earn",
+      "number": 18
+    },
+    {
+      "id": "trust-and-safety",
+      "title": "Operating trust",
+      "number": 19
+    },
+    {
+      "id": "team-and-gaps",
+      "title": "Team and coverage",
+      "number": 20
+    },
+    {
+      "id": "funding",
+      "title": "The funding plan",
+      "number": 21
+    },
+    {
+      "id": "decision-gates",
+      "title": "Expansion gates",
+      "number": 22
+    },
+    {
+      "id": "investment-case",
+      "title": "The investment case",
+      "number": 23
+    },
+    {
+      "id": "next-conversation",
+      "title": "The next conversation",
+      "number": 24
+    }
+  ],
+  "model": {
+    "schemaVersion": 1,
+    "source": {
+      "repository": "welkhazen/therawme",
+      "commit": "793b29be07a2901268da3ee7df0a9f026a93bc64",
+      "path": "index.html: const M",
+      "embeddedModelSha256": "4691cd5ad40faa9f9df61e9e8ebb9fe8c952a9afcdd2ad7ef52b65fe057d3731",
+      "extraction": "Explicit aggregate-field and question allowlists; no raw vote files read"
+    },
+    "tribes": [
+      {
+        "name": "The Flame",
+        "share": 0.2763
+      },
+      {
+        "name": "The Stone",
+        "share": 0.1811
+      },
+      {
+        "name": "The Storm",
+        "share": 0.1326
+      },
+      {
+        "name": "The Tide",
+        "share": 0.0942
+      },
+      {
+        "name": "The Frost",
+        "share": 0.093
+      },
+      {
+        "name": "The Calm",
+        "share": 0.0852
+      },
+      {
+        "name": "The Dawn",
+        "share": 0.0663
+      },
+      {
+        "name": "The Root",
+        "share": 0.0713
+      }
+    ],
+    "questions": [
+      {
+        "id": "P04",
+        "text": "Would you rather read a book, or 12 articles online about the same topic?",
+        "a": "Book",
+        "b": "Articles",
+        "n": 583,
+        "pa": [
+          0.6949,
+          0.708,
+          0.8,
+          0.7547,
+          0.1613,
+          0.0816,
+          0.7407,
+          0.6842
+        ]
+      },
+      {
+        "id": "P21",
+        "text": "TV shows or movies?",
+        "a": "TV shows",
+        "b": "Movies",
+        "n": 610,
+        "pa": [
+          0.7791,
+          0.6339,
+          0.7284,
+          0.0909,
+          0.16,
+          0.7931,
+          0.2,
+          0.1961
+        ]
+      },
+      {
+        "id": "P25",
+        "text": "Fork or spoon, forever?",
+        "a": "Fork",
+        "b": "Spoon",
+        "n": 538,
+        "pa": [
+          0.7407,
+          0.7525,
+          0.1061,
+          0.1228,
+          0.3509,
+          0.1707,
+          0.8974,
+          0.7419
+        ]
+      },
+      {
+        "id": "P31",
+        "text": "Trust or respect?",
+        "a": "Trust",
+        "b": "Respect",
+        "n": 953,
+        "pa": [
+          0.8449,
+          0.2147,
+          0.8844,
+          0.81,
+          0.3409,
+          0.8404,
+          0.7869,
+          0.7887
+        ]
+      },
+      {
+        "id": "P35",
+        "text": "Mountains or beach?",
+        "a": "Mountains",
+        "b": "Beach",
+        "n": 558,
+        "pa": [
+          0.2148,
+          0.6939,
+          0.2073,
+          0.2069,
+          0.1692,
+          0.2632,
+          0.3636,
+          0.1875
+        ]
+      },
+      {
+        "id": "P36",
+        "text": "Sunset or sunrise?",
+        "a": "Sunset",
+        "b": "Sunrise",
+        "n": 787,
+        "pa": [
+          0.7913,
+          0.7339,
+          0.8393,
+          0.7867,
+          0.6582,
+          0.1566,
+          0.2083,
+          0.3269
+        ]
+      },
+      {
+        "id": "P93",
+        "text": "Are we born good?",
+        "a": "Yes",
+        "b": "No",
+        "n": 519,
+        "pa": [
+          0.7305,
+          0.219,
+          0.2346,
+          0.2917,
+          0.2632,
+          0.2727,
+          0.1333,
+          0.9
+        ]
+      },
+      {
+        "id": "P95",
+        "text": "Work hard or smart?",
+        "a": "Hard",
+        "b": "Smart",
+        "n": 381,
+        "pa": [
+          0.098,
+          0.1023,
+          0.0784,
+          0.0645,
+          0.0645,
+          0.1071,
+          0.1613,
+          0.0286
+        ]
+      },
+      {
+        "id": "P96",
+        "text": "Would you rather be hot or cold?",
+        "a": "Hot",
+        "b": "Cold",
+        "n": 215,
+        "pa": [
+          0.2586,
+          0.1522,
+          0.2727,
+          0.15,
+          0.125,
+          0.3158,
+          0.2,
+          0.25
+        ]
+      },
+      {
+        "id": "P06",
+        "text": "The stronger emotion?",
+        "a": "Fear",
+        "b": "Love",
+        "n": 40,
+        "pa": [
+          0.3125,
+          0.1111,
+          0.8333,
+          0.6667,
+          0.625,
+          0.3333,
+          0.25,
+          0.5
+        ]
+      },
+      {
+        "id": "P03",
+        "text": "Believe everything, or lose the ability to lie?",
+        "a": "Believe everything",
+        "b": "Never lie again",
+        "n": 74,
+        "pa": [
+          0.9688,
+          0.9,
+          0.9,
+          0.8,
+          0.8889,
+          0.8,
+          0.875,
+          0.9091
+        ]
+      },
+      {
+        "id": "P53",
+        "text": "Power or love?",
+        "a": "Power",
+        "b": "Love",
+        "n": 588,
+        "pa": [
+          0.2515,
+          0.3723,
+          0.9091,
+          0.1364,
+          0.3902,
+          0.2281,
+          0.451,
+          0.775
+        ]
+      },
+      {
+        "id": "P58",
+        "text": "You can only feel as happy as you've been sad - true?",
+        "a": "True",
+        "b": "False",
+        "n": 503,
+        "pa": [
+          0.146,
+          0.25,
+          0.3462,
+          0.918,
+          0.2857,
+          0.9149,
+          0.8,
+          0.7879
+        ]
+      },
+      {
+        "id": "P91",
+        "text": "Do we NEED love, or WANT love?",
+        "a": "Need",
+        "b": "Want",
+        "n": 41,
+        "pa": [
+          0.8125,
+          0.8182,
+          0.6667,
+          0.8571,
+          0.4,
+          0.8,
+          0.6667,
+          0.5
+        ]
+      },
+      {
+        "id": "P116",
+        "text": "Confidence or intelligence?",
+        "a": "Confidence",
+        "b": "Intelligence",
+        "n": 729,
+        "pa": [
+          0.8416,
+          0.2533,
+          0.2766,
+          0.8413,
+          0.7812,
+          0.1791,
+          0.2115,
+          0.3019
+        ]
+      },
+      {
+        "id": "P97",
+        "text": "Long-term thinker or short-term?",
+        "a": "Long-term",
+        "b": "Short-term",
+        "n": 99,
+        "pa": [
+          0.6744,
+          0.875,
+          0.8333,
+          0.7273,
+          0.9,
+          0.7143,
+          0.6,
+          0.5
+        ]
+      },
+      {
+        "id": "P87",
+        "text": "Stubborn?",
+        "a": "True",
+        "b": "False",
+        "n": 124,
+        "pa": [
+          0.8158,
+          0.1481,
+          0.7368,
+          0.6667,
+          0.5833,
+          0.8125,
+          0.75,
+          0.2857
+        ]
+      },
+      {
+        "id": "P68",
+        "text": "Actions or intentions?",
+        "a": "Actions",
+        "b": "Intentions",
+        "n": 571,
+        "pa": [
+          0.3544,
+          0.266,
+          0.3671,
+          0.2642,
+          0.8958,
+          0.1887,
+          0.9661,
+          0.3721
+        ]
+      },
+      {
+        "id": "P78",
+        "text": "Only internet, or only electricity?",
+        "a": "Internet",
+        "b": "Electricity",
+        "n": 125,
+        "pa": [
+          0.0909,
+          0.1071,
+          0.3182,
+          0.1818,
+          0.7143,
+          0.2308,
+          0.1,
+          0.9
+        ]
+      },
+      {
+        "id": "P94",
+        "text": "Social media: good, or bad?",
+        "a": "Good",
+        "b": "Bad",
+        "n": 234,
+        "pa": [
+          0.1695,
+          0.186,
+          0.9211,
+          0.1429,
+          0.6333,
+          0.2,
+          0.9048,
+          0.0435
+        ]
+      },
+      {
+        "id": "P66",
+        "text": "What you say, or how you say it?",
+        "a": "What you say",
+        "b": "How you say it",
+        "n": 573,
+        "pa": [
+          0.2,
+          0.1684,
+          0.8378,
+          0.2167,
+          0.2745,
+          0.1429,
+          0.25,
+          0.2439
+        ]
+      },
+      {
+        "id": "P73",
+        "text": "'Truth comes out when angry' - agree?",
+        "a": "Agree",
+        "b": "Disagree",
+        "n": 40,
+        "pa": [
+          0.75,
+          0.8333,
+          0.375,
+          0.6667,
+          0.75,
+          0.8333,
+          0.125,
+          0.6667
+        ]
+      },
+      {
+        "id": "P18",
+        "text": "Would you rather help yourself or help others?",
+        "a": "Myself",
+        "b": "Others",
+        "n": 321,
+        "pa": [
+          0.4316,
+          0.8704,
+          0.25,
+          0.3667,
+          0.2683,
+          0.48,
+          0.0952,
+          0.087
+        ]
+      },
+      {
+        "id": "P118",
+        "text": "Forgive and not forget, or forget and not forgive?",
+        "a": "Forgive, never forget",
+        "b": "Forget, never forgive",
+        "n": 497,
+        "pa": [
+          0.993,
+          0.9899,
+          0.987,
+          0.9767,
+          0.9773,
+          0.9706,
+          0.9714,
+          0.9737
+        ]
+      }
+    ],
+    "policy": {
+      "maxAnswers": 23,
+      "checkpoints": [
+        5,
+        10,
+        23
+      ],
+      "themeBonus": 0.05,
+      "themedIds": [
+        "P04",
+        "P21",
+        "P25",
+        "P31",
+        "P35",
+        "P36",
+        "P93",
+        "P95",
+        "P96",
+        "P18",
+        "P118"
+      ],
+      "sameQuestionGroups": [
+        [
+          "P15",
+          "P112"
+        ]
+      ],
+      "selection": "Minimum expected posterior entropy minus themed bonus; stable fixture order breaks ties",
+      "confidenceEarlyStop": false,
+      "skip": "Remove question without evidence or answer count; stop at actual count if pool exhausted",
+      "priors": "Normalize positive source tribe shares before use"
+    },
+    "historicalEvaluation": {
+      "labelRecovery": 0.879,
+      "accounts": 1780,
+      "meanAnswers": 11.5,
+      "capWhenMeasured": 27,
+      "sameCorpus": true,
+      "appliesToCuratedDemo": false,
+      "currentCapRevalidated": false,
+      "limitations": "Historical internal recovery of data-derived cluster labels; shared label/training/evaluation corpus; no held-out or psychometric validation"
+    },
+    "counts": {
+      "confirmedVoteRecords": 33486,
+      "fullQuestionPool": 52,
+      "curatedQuestionPool": 24,
+      "documentedClusterAccounts": 1795,
+      "documentedClusterAccountsSource": "README.md and EXPLAINER.md; historical documented count, not independently recounted or unique people"
+    },
+    "bridge": "bridge: 31/122 quiz polls mapped to master | 25,168 master votes considered | 23,424 new (user,poll) answers | 29 conflicts (master kept)",
+    "disclosure": "Real historical questions and model likelihoods. Results are provisional behavioral patterns. Model probabilities are not validated accuracy. This curated demo has not been evaluated."
+  },
+  "funding": [
+    {
+      "id": "100k",
+      "months": 12,
+      "allocations": [
+        {
+          "label": "Product reliability and safety",
+          "amount": 30000
+        },
+        {
+          "label": "Community activation",
+          "amount": 25000
+        },
+        {
+          "label": "Legal, privacy and operations",
+          "amount": 15000
+        },
+        {
+          "label": "Analytics and retention evidence",
+          "amount": 10000
+        },
+        {
+          "label": "Mobile readiness",
+          "amount": 10000
+        },
+        {
+          "label": "Early monetization tests",
+          "amount": 5000
+        },
+        {
+          "label": "MENA test market",
+          "amount": 0
+        },
+        {
+          "label": "Reserve",
+          "amount": 5000,
+          "reserve": true
+        }
+      ],
+      "team": "Founder full time; part-time engineering; part-time community and moderation.",
+      "milestones": [
+        "Reliable answer-to-room journey and instrumented baseline",
+        "Three small monthly cohorts and repeat-participation review",
+        "Bounded checkout experiment; expansion decision"
+      ],
+      "raise": 100000
+    },
+    {
+      "id": "150k",
+      "months": 15,
+      "allocations": [
+        {
+          "label": "Product reliability and safety",
+          "amount": 45000
+        },
+        {
+          "label": "Community activation",
+          "amount": 35000
+        },
+        {
+          "label": "Legal, privacy and operations",
+          "amount": 20000
+        },
+        {
+          "label": "Analytics and retention evidence",
+          "amount": 15000
+        },
+        {
+          "label": "Mobile readiness",
+          "amount": 15000
+        },
+        {
+          "label": "Early monetization tests",
+          "amount": 10000
+        },
+        {
+          "label": "MENA test market",
+          "amount": 0
+        },
+        {
+          "label": "Reserve",
+          "amount": 10000,
+          "reserve": true
+        }
+      ],
+      "team": "Base team with longer engineering and moderation coverage.",
+      "milestones": [
+        "All base-round evidence goals",
+        "More cohort cycles and operational coverage",
+        "Broader checkout and mobile-readiness testing"
+      ],
+      "raise": 150000
+    },
+    {
+      "id": "250k",
+      "months": 18,
+      "allocations": [
+        {
+          "label": "Product reliability and safety",
+          "amount": 75000
+        },
+        {
+          "label": "Community activation",
+          "amount": 55000
+        },
+        {
+          "label": "Legal, privacy and operations",
+          "amount": 30000
+        },
+        {
+          "label": "Analytics and retention evidence",
+          "amount": 20000
+        },
+        {
+          "label": "Mobile readiness",
+          "amount": 25000
+        },
+        {
+          "label": "Early monetization tests",
+          "amount": 20000
+        },
+        {
+          "label": "MENA test market",
+          "amount": 15000
+        },
+        {
+          "label": "Reserve",
+          "amount": 10000,
+          "reserve": true
+        }
+      ],
+      "team": "Greater engineering, community and specialist coverage; compensation to confirm.",
+      "milestones": [
+        "All base-round evidence goals with longer observation",
+        "Deeper reliability, paid-value and mobile testing",
+        "Conditional small MENA test after retention and safety gates"
+      ],
+      "raise": 250000
+    }
+  ],
+  "expansion": [
+    {
+      "title": "Lebanon",
+      "subtitle": "Learn closely",
+      "audience": "Proposed adults 18–29 in founder-accessible communities.",
+      "distribution": "Small founder-led invitations and hosted groups; access still to confirm.",
+      "localization": "Start with the cohort’s chosen languages and observable room norms.",
+      "safety": "Named moderation coverage, reporting and escalation before invitations.",
+      "gate": "Reliable activation and reciprocal conversations; review repeat participation, incidents and founder-seeding dependence."
+    },
+    {
+      "title": "MENA",
+      "subtitle": "Test transfer",
+      "audience": "One selected adult community, after Lebanon evidence.",
+      "distribution": "A small local host experiment; no signed partner claimed.",
+      "localization": "Validate dialect, cultural context, payments and room expectations.",
+      "safety": "Local-language coverage and jurisdiction review.",
+      "gate": "Retention, safe operations and a credible cost per retained participant before adding another market."
+    },
+    {
+      "title": "International communities",
+      "subtitle": "Follow a real use case",
+      "audience": "A bounded adult cross-border community with a shared need.",
+      "distribution": "Specific hosts and member invitations, tested independently.",
+      "localization": "Adapt onboarding, consent and expectations for the selected place.",
+      "safety": "Privacy, moderation coverage and cross-border legal review.",
+      "gate": "Repeatable activity without constant founder seeding; workable contribution margin."
+    },
+    {
+      "title": "Global network",
+      "subtitle": "Earn the ambition",
+      "audience": "Many healthy local communities; future vision.",
+      "distribution": "Replicable acquisition and member contribution.",
+      "localization": "Community-specific language and product operations.",
+      "safety": "Scalable response, appeals and accountable governance.",
+      "gate": "Evidence that quality, safety and unit economics survive growth."
+    }
+  ],
+  "sources": [
+    {
+      "id": "who-connection",
+      "label": "WHO Commission on Social Connection · 2025",
+      "url": "https://www.who.int/groups/commission-on-social-connection/report",
+      "note": "Historical source register reports approximately 1 in 6 globally experiencing loneliness, pooled 2014–2023. Not freshly verified; original publisher requests blocked by environment."
+    },
+    {
+      "id": "lebanon-screen",
+      "label": "Lebanon national screening study · Frontiers in Psychiatry, 2024",
+      "url": "https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2024.1444245/full",
+      "note": "Supplied research; direct source check pending. 2022 cross-sectional adult screening: 45.3% anxiety, 47.8% depression, 43.5% PTSD symptoms. Screening is not diagnosis; no comparable longitudinal trend or product demand claim."
+    },
+    {
+      "id": "internet",
+      "label": "DataReportal · Digital 2025: Lebanon",
+      "url": "https://datareportal.com/reports/digital-2025-lebanon",
+      "note": "Historical source register: 5.34 million all-age internet users, early 2025. Reference denominator only, not eligible audience; fresh primary-source check pending."
+    },
+    {
+      "id": "app",
+      "label": "Main raW application · source snapshot cd6d642",
+      "url": "https://github.com/welkhazen/wzwznew",
+      "note": "Read-only source audit on 17 October 2026. Implementation evidence only; no production runtime, user, retention or revenue verification."
+    },
+    {
+      "id": "model",
+      "label": "therawme aggregate model · snapshot 793b29b",
+      "url": "https://github.com/welkhazen/therawme",
+      "note": "Aggregate runtime fixture extracted without running source JavaScript. 24 curated questions, 192 original likelihoods. No personal records. Curated policy has no validated accuracy."
+    },
+    {
+      "id": "reddit",
+      "label": "Reddit · About",
+      "url": "https://redditinc.com/",
+      "note": "Vendor description is a source lead for topic communities. Qualitative comparison only; current feature inventory not freshly verified."
+    },
+    {
+      "id": "discord",
+      "label": "Discord · Discover",
+      "url": "https://discord.com/servers",
+      "note": "Vendor description is a source lead for interest communities. No exclusive-feature or performance claim."
+    },
+    {
+      "id": "bff",
+      "label": "Bumble For Friends",
+      "url": "https://bumble.com/bff",
+      "note": "Vendor source lead for friendship discovery; current feature availability may vary."
+    },
+    {
+      "id": "16p",
+      "label": "16Personalities",
+      "url": "https://www.16personalities.com/",
+      "note": "Vendor source lead for self-discovery; no psychometric comparison or score is asserted."
+    }
+  ]
+}
