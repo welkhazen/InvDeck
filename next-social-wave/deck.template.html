@@ -352,7 +352,7 @@ input[type=range]{width:100%;accent-color:var(--gold)}
 /* ---------- 14 + sources ---------- */
 #c14 .wrap{text-align:left}
 .final h2{font-size:clamp(2.2rem,3.6vw,2.8rem);max-width:22ch}
-.final .split{grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr)}
+@media (min-width:821px){.final .split{grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr)}}
 .final .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--silver);margin-top:24px;max-width:40ch}
 .contact{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.95rem}
 .contact code{font-family:var(--body);background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:8px 12px;user-select:all;color:var(--text)}
@@ -426,6 +426,14 @@ html.reduce-motion .marquee-track{animation:none}
 .shot.rv{transform:scale(.96)}
 .rv.in{opacity:1;transform:none}
 html.reduce-motion .rv{opacity:1;transform:none;transition:none}
+@media (max-width:620px){
+  .table-wrap table,.table-wrap tbody,.table-wrap tr,.table-wrap td{display:block;width:auto}
+  .table-wrap thead{display:none}
+  .table-wrap tr{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--surface)}
+  .table-wrap td{border:0;padding:4px 0}
+  .table-wrap td:first-child{font-weight:600;color:var(--text)}
+  .table-wrap td:last-child{color:var(--silver)}
+}
 </style>
 
 <header class="top">
