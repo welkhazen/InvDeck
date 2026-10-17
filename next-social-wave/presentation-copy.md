@@ -67,7 +67,7 @@ Context, not a market: raW is a social discovery product, not a mental-health se
 | Post → Scroll → Compare → Repeat | Answer → Relate → Connect → Contribute → Return |
 | Built around what people show. The feed rewards performance and attention. | Built around what people think. Every turn starts with a question and ends with a person. |
 
-**From raW's own history:** asked "Social media: good, or bad?", 144 of 234 labeled answerers (62%) chose "Bad". These are historical answers from raW's own audience, recovered from the historical answer data. It is not a representative survey.
+**From raW's own history:** asked "Social media: good, or bad?", 144 of 234 answerers (62%) chose "Bad". These are historical answers from raW's own audience, recovered from the historical answer data. It is not a representative survey.
 
 **This is a design hypothesis.** raW has not yet measured that its loop retains people better than a feed. Proving it is what this round pays for.
 
@@ -98,11 +98,11 @@ Competitor descriptions are qualitative. The only competitor figure shown is Red
 
 Below the phone, a strip shows some of the rooms in the app today, with room names and covers as they appear on myraw.app.
 
-## 06 · Interactive investor experience
+## 06 · Experience it
 
 **Don't just hear about raW. Experience it.**
 
-Answer five real questions from raW's history and see where you stand. Every split comes from people who answered the same question before you.
+Answer five real questions from The Cumulative Mind, the Instagram page raW grew from, and see where you stand. Every split is estimated from people who answered the same question before you.
 
 The investor answers five questions drawn from a curated pool of 37 everyday questions. Each card shows how many past answers the question has. After each answer, the demo says which side they chose and about what share of the people who answered before chose the same. The demo shows:
 - **Where you stand:** for each answer, about X% of N past answers chose the same side,
@@ -157,7 +157,7 @@ Before the app, the founder ran The Cumulative Mind, an Instagram page that aske
 
 Six more appear behind "Read 6 more". 12 of the 17 screenshots on myraw.app are quoted; 5 are left out because they are personal or about someone's mental health. The messages show how some followers felt, not how many.
 
-From story poll to dataset, with the verification status of each step:
+From story poll to dataset to quiz funnel, with the verification status of each step:
 
 | Step | Figure | Status |
 |---|---|---|
@@ -180,7 +180,7 @@ From story poll to dataset, with the verification status of each step:
 
 **Built (verified in code):**
 - members appear only as a username and avatar; no real name or photo is shown,
-- Yes/No polls with the split shown after voting (live member votes in the feed since 8 October 2026), one vote per person enforced in the database,
+- Yes/No polls with the split shown after voting (the feed counts live member votes only, from an 8 October 2026 change), one vote per person enforced in the database,
 - interest communities with realtime group chat, likes and replies,
 - moderation: message reports, warnings, timeouts, bans and blocked words,
 - avatar ranks, store and tokens, with spending checked on the server.
@@ -189,11 +189,10 @@ From story poll to dataset, with the verification status of each step:
 - locked rooms opened by single-use invite codes,
 - a quiz funnel on theraw.me (the Tribe Test) that brings new people and answers into the app.
 
-**Being validated (in progress):**
+**In progress:**
 - the activation and retention baseline. Signup, onboarding and poll-answer events are instrumented; room-join and message events are defined but not yet sent. No retention figures are verified for this deck.
 - the iOS app. Capacitor build and App Store preparation in progress.
 - the return trigger: push and email notifications that open the conversation they are about.
-- the quiz funnel into the app. Link and invite flow built; conversion not yet measured.
 - pricing. Placeholder prices only: token packs ($5 to $90) and a $5-a-month plan in the app wallet, granted by hand on request; $1 and $2.99 on the quiz site; $12 and $19 on an older reports preview. No payment processor or checkout is connected. A public donation page collects contact details from people who offer to back raW.
 
 **Next:**
@@ -205,11 +204,11 @@ From story poll to dataset, with the verification status of each step:
 
 **raW is pre-revenue, and no user, retention or revenue metrics appear because none were verified.** Producing them is the round's first job.
 
-## 10 · How the model can become a business
+## 10 · Business model
 
 **Monetization follows meaningful participation.**
 
-1. **Free participation.** Verified in code. A daily set of polls, open rooms and chat are free. Extra polls, locked rooms and the in-app quiz cost tokens, which members can also earn.
+1. **Free participation.** Verified in code. A daily set of polls, open rooms and chat are free. Extra polls and the in-app quiz cost tokens, which members can also earn.
 2. **Premium identity.** Verified in code. Rare avatars and ranks, built and priced in tokens. There is no in-app checkout for tokens.
 3. **Private and paid rooms.** In progress. A revenue hypothesis. Locked rooms are built and can charge tokens on entry. Member-run rooms and cash payment are not built.
 4. **Opt-in insights.** In progress. A fuller reading built only from a person's own answers, only if they ask for it. A preview is built; reports are not generated yet and nothing is sold.
@@ -251,9 +250,9 @@ In Lebanon, trust and safety today means a self-declared 18+ gate, reports, time
 
 *raW's mission and a product hypothesis, not a measured outcome. Each step names what raW would measure to test it.*
 
-## 13 · The investment opportunity
+## 13 · The investment
 
-**Fund the proof. Build the future.** raW is pre-revenue, with the public launch set for 1 November 2026. The provisional base target is $100,000. It funds the work to measure what this deck cannot yet show: retention, safety and willingness to pay.
+**Fund the proof. Build the future.** raW is pre-revenue, with the public launch set for 1 November 2026. The provisional base target is $100,000, with $150K and $250K scenarios below for discussion. It funds the work to measure what this deck cannot yet show: retention, safety and willingness to pay.
 
 | Scenario | Runway | Burn | Team assumption |
 |---|---|---|---|
@@ -293,7 +292,7 @@ Runway is the amount spent before the reserve, divided by the monthly burn. Burn
 
 *A world where honest connection creates belonging, and the helped become the helpers.*
 
-Let's talk about the raise. info@myraw.app · www.myraw.app
+Let's talk about the $100K pre-seed round. info@myraw.app · www.myraw.app
 
 ---
 

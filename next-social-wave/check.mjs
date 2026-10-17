@@ -126,6 +126,7 @@ async function presentMode(page, label) {
   await presentMode(page, "desktop");
   // menu
   await page.click("#btn-menu"); await page.click("#menu-list li:nth-child(8) button");
+  await page.waitForFunction(() => document.querySelector("#where-n").textContent.startsWith("08"), null, { timeout: 4000 }).catch(() => {});
   ok((await page.textContent("#where-n")).startsWith("08"), "desktop: chapter menu navigation failed");
   // links
   const ext = await page.$$eval("a[href^='http']", as => as.filter(a => a.target !== "_blank").length);
